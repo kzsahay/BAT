@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="batapp">
+<head>
+	<meta charset="UTF-8">
+	<title>sling_shot</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/mobile-angular-ui-base.min.css" />
+</head>
 
-  <head>
-    <title>NodeJS Starter Application</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="stylesheets/style.css">
-  </head>
+<body>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
 
-  <body>
-    <table>
-      <tr>
-        <td style= "width:30%;">
-          <img class = "newappIcon" src="images/newapp-icon.png">
-        <td>
-            <h1>Hi there!</h1>
-          <p>Thanks for creating a
-            <span class = "blue">NodeJS Starter Application</span>.
-            To get started see the Start Coding guide under your app in your dashboard.
-    </table>
-  </body>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-resource.min.js"></script>
+
+<script src="js/appCont.js"></script>
+
+<div id="main">
+	
+	<div ng-view></div>
+</div>
+</body>
 
 </html>
