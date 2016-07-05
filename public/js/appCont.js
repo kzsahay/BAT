@@ -13,7 +13,7 @@ var batapp = angular.module('batapp', ['ngRoute','ngResource']);
     }]);
     
 	batapp.controller('mainController',['$scope', '$route', '$resource', '$http', '$location', function($scope, $route, $resource, $http, $location) {
-    	    	
+		$scope.selectedClass = "account";
     }]);
     
     

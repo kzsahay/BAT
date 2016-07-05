@@ -109,8 +109,17 @@ pre {
     padding: 0.7em;
     text-decoration: none;
     background: #fff;
+    color: #333;
+}
+.leftPannel ul li a.active {
+	background: #c1c0be;
+	color: #fff;
 }
 .formCls {margin: 2em 1em 1em;}
+.username span {
+	display: inline-block;
+    margin: 0.7em 1em;
+}
 .username a {
 	width: 40px;
 	height: 40px;
@@ -119,9 +128,6 @@ pre {
 	float: right;
 	text-decoration: none !important;
 }
-.username span {
-	display: inline-block;
-    margin: 0.7em 1em;
-}
+
 
 
