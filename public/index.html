@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en" ng-app="batapp">
 <head>
@@ -24,4 +25,73 @@
 </div>
 </body>
 
+</html-->
+
+<!doctype html>
+<html ng-app="BatDemo">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="css/common.css" rel="stylesheet" type="text/css">
+
+
+
+<script type="text/javascript" src="libs/angular.js"></script>
+<script type="text/javascript" src="libs/angular-route.js"></script>
+<script type="text/javascript" src="libs/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="libs/bootstrap.min.js"></script>
+<script type="text/javascript" src="libs/highcharts.js"></script>
+<script type="text/javascript" src="libs/highcharts-more.js"></script>
+<script type="text/javascript" src="libs/data.js"></script>
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+
+
+
+
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="controllers/Page1Ctrl.js"></script>
+<script type="text/javascript" src="controllers/Page2Ctrl.js"></script>
+<script type="text/javascript" src="controllers/Page3Ctrl.js"></script>
+<script type="text/javascript" src="controllers/IndexCtrl.js"></script>
+<script type="text/javascript" src="controllers/Page4Ctrl.js"></script>
+<script type="text/javascript" src="controllers/Page5Ctrl.js"></script>
+
+
+</head>
+<body style="height: 100%; width: 100%; position: absolute;">
+
+	
+	<div ng-controller="IndexCtrl"
+		style="background-color: grey; width: 10%; height: 100%; position: fixed;">
+		<div style="padding-top: 100%; width: 50%; margin-left: 20%;">
+		<img alt="" src="images/flower.png"
+				style="width: 100%; margin-left: 20%;" ><br/>
+			<br /><br />  
+			<img alt="" src="images/{{page1}}.png"
+				style="width: 100%; margin-left: 20%;" ng-click="gotoPage1()"><br/>
+			<br />  <br />  
+			<img alt="" src="images/{{page2}}.png"
+				style="width: 100%; margin-left: 20%;" ng-click="gotoPage2()"> <br/>
+			<br /> <br />  
+			<img alt="" src="images/{{page3}}.png"
+				style="width: 100%; margin-left: 20%; margin-left: 20%;" ng-click="gotoPage3()"><br />
+			<br /> <br />  
+			<img alt="" src="images/{{page4}}.png"
+				style="width: 100%; margin-left: 20%; margin-left: 20%;" ng-click="gotoPage4()"><br />
+			<br /> <br />  
+		</div>
+	</div>
+	<!-- ngView:  -->
+	<div ng-view="" class="ng-scope"
+		style=" margin-left: 10%; position: relative; height: 100%;"></div>
+</body>
 </html>
+
+
+
+

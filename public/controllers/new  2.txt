@@ -1,0 +1,5 @@
+ODM links
+
+www.ibm.com/support/knowledgecenter/SSQP76_8.8.0/com.ibm.odm.dserver.rules.tutorials/tut_designer_topics/tut_rule_designer_tutorials.html
+https://www.ibm.com/support/knowledgecenter/SSQP76_8.8.0/com.ibm.odm.dserver.rules.tutorials/tut_gs_topics/tut_dserver_gs_orchestrate_lsn.html
+http://www.ibm.com/support/knowledgecenter/SSQP76_8.8.0/com.ibm.odm.dserver.rules.tutorials/tut_gs_topics/tut_dserver_gs_debug_lsn.html
