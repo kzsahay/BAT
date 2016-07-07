@@ -1,5 +1,35 @@
-<div>Page3</div>
+
 <div style="float: right;" class="ng-scope">
 	<span style="font-size: 15px; margin-right: 5%;">Bob Macintosh</span><img
 		src="images/user.png" style="width: 30%;">
+</div>
+<div>
+	<div class="formCls">
+		<div class="row">
+			<div class="col-md-9 col-xs-9 col-sm-9">
+				<h2 style="padding-left: 1em;">Brand wise Scenario input (for One Account)</h2>
+			</div>
+			<table  cellspacing="0" cellpadding="0" class="tabelCls">
+				<thead>
+					<tr>
+						<th>Band</th>
+						<th ng-repeat="item in baseHeader"> {{ item.scenario }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="itemCh in basePriceBody">
+						<td>{{itemCh.brandName}}</td>
+						<td>{{itemCh.brandPrice}}</td>
+						<td>{{itemCh.corporatePrice}}</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>						
+				</tbody>
+			</table>
+		</div>
+		<div class="row" style="clear: both;">
+			<a href="javascript:void(0);" class="runScenario">Run Scenario</a>
+		</div>
+	</div>
 </div>

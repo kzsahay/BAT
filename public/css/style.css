@@ -123,10 +123,10 @@ pre {
 .username a {
 	width: 40px;
 	height: 40px;
-	border-radius: 50%;
 	background: #A8A49F;
 	float: right;
 	text-decoration: none !important;
+	background: url(../images/user.png) no-repeat !important;
 }
 
 .tabelCls {
@@ -156,26 +156,5 @@ pre {
 	border: 1px solid;
 	margin: 1em 1.5em;
 }
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.x.axis path {
-  display: none;
-}
-
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-}
-
-.legend rect {
-  fill:white;
-  stroke:black;
-  opacity:0.8;}
 
 

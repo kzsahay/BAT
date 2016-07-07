@@ -32,3 +32,33 @@
 	color: grey !important;
 	background-color: #ececec;
 }
+
+.tabelCls {
+	float: left;
+    margin: 1em 1.5em;
+    background: #F3F2F0;
+    border-top: 1px solid #333;
+    border-left: 1px solid #333;
+    width: 60%;
+}
+.tabelCls th, .tabelCls td {
+	border-right: 1px solid #333;
+	border-bottom: 1px solid #333;
+	padding: 5px;
+}
+.runScenario {
+	background: #7f7c77;
+    border: 1px solid #7f7c77;
+    border-radius: 0.5em;
+    color: #fff;
+    float: right;
+    margin-right: 3em;
+    padding: 1em;
+    text-decoration: none !important;	
+}
+.canvas {
+	width: 70%;
+	height: 300px;
+	border: 1px solid;
+	margin: 1em 1.5em;
+}
