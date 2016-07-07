@@ -140,6 +140,42 @@ pre {
 	border-bottom: 1px solid #333;
 	 padding-left: 5px;
 }
+.runScenario {
+	background: #7f7c77;
+    border: 1px solid #7f7c77;
+    border-radius: 0.5em;
+    color: #fff;
+    float: right;
+    margin-right: 3em;
+    padding: 1em;
+    text-decoration: none !important;	
+}
+.canvas {
+	width: 70%;
+	height: 300px;
+	border: 1px solid;
+	margin: 1em 1.5em;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
 
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.legend rect {
+  fill:white;
+  stroke:black;
+  opacity:0.8;}
 
 
