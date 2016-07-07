@@ -13,6 +13,24 @@
 						<a href="javascript:void(0);">&nbsp;</a>				
 					</label>				
 				</div>
+				<table class="tabelCls">
+					<thead>
+						<tr>
+							<th>Band</th>
+							<th ng-repeat="item in baseHeader"> {{ item.scenario }}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="itemCh in basePriceBody">
+							<td>{{itemCh.brandName}}</td>
+							<td>{{itemCh.brandPrice}}</td>
+							<td>{{itemCh.corporatePrice}}</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>						
+					</tbody>
+				</table>
 			</div>			
 		</div>
 	</div>	

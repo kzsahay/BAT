@@ -129,5 +129,17 @@ pre {
 	text-decoration: none !important;
 }
 
+.tabelCls {
+	float: left;
+    margin: 1em 1.5em;
+    background: #F3F2F0;
+    border: 1px solid #333;
+}
+.tabelCls th, .tabelCls td {
+	border-right: 1px solid #333;
+	border-bottom: 1px solid #333;
+	 padding-left: 5px;
+}
+
 
 
