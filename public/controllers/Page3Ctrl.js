@@ -61,26 +61,93 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
     	console.log('Error '+data);
     });
 	
+	$scope.change_scenario = function () {
+		$scope.scenarioLineChart = $(function () {
+			var scenario_json = []; 
+			$.getJSON('JSON/newScenario.json', function(data) {			
+				console.log("marketshareForecasts:==  "+JSON.stringify(data.marketshareForecasts));
+				
+				for (var i = 0; i < data.marketshareForecasts.length; i++) {
+					var mshareScenario = data.marketshareForecasts[i].mshareTrend;
+					if (mshareScenario.length > 0){
+						var scenarioObj = {
+								name: "",
+								data: []
+						};
+						if(data.marketshareForecasts[i].scenario == "B"){
+							scenarioObj.name = "Base Case";
+						}else if(data.marketshareForecasts[i].scenario == "C"){
+							scenarioObj.name = "Corporate";
+						}else {
+							scenarioObj.name = data.marketshareForecasts[i].scenario;
+						}
+						
+						for (var j = 0; j < mshareScenario.length; j++) {
+							var wkNum = "Wk" + mshareScenario[j].weekNum;
+							var marsVal = mshareScenario[j].mshare * 1;
+							scenarioObj.data.push([wkNum, marsVal])
+						}
+						console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
+						scenario_json.push(scenarioObj);
+					}				
+				}
+				console.log("scenario_json:==  "+JSON.stringify(scenario_json));
+				
+				$('#scenario').highcharts({
+					title: {
+			            text: 'Overall Market Share Forecast',
+			            x: -20 //center
+			        },
+			        xAxis: {
+			        	title: {
+		                    text: "Forecast for the next 3 months"
+		                }
+			        },
+			        yAxis: {
+			        	title: {
+		                    text: "Overall Market Share"
+		                }
+			        },
+			        legend: {
+			            layout: 'vertical',
+			            align: 'right',
+			            verticalAlign: 'middle',
+			            borderWidth: 0
+			        },
+			        series: scenario_json				
+				}); 			
+			});
+		});
+	};
+	
 	$scope.scenarioLineChart = $(function () {
 		var scenario_json = []; 
-		
-		$.getJSON('JSON/baseScenario.json', function(data) {
-			
+		$.getJSON('JSON/baseScenario.json', function(data) {			
 			console.log("marketshareForecasts:==  "+JSON.stringify(data.marketshareForecasts));
 			
 			for (var i = 0; i < data.marketshareForecasts.length; i++) {
-				var scenarioObj = {
-						name: data.marketshareForecasts[i].scenario,
-						data: []
-				};
-				var mshareScenario =data.marketshareForecasts[i].mshareTrend;
-				for (var j = 0; j < mshareScenario.length; j++) {
-					var wkNum = "Wk" + mshareScenario[j].weekNum;
-					var marsVal = mshareScenario[j].mshare * 1;
-					scenarioObj.data.push([wkNum, marsVal])
-				}
-				console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
-				scenario_json.push(scenarioObj);
+				var mshareScenario = data.marketshareForecasts[i].mshareTrend;
+				if (mshareScenario.length > 0){
+					var scenarioObj = {
+							name: "",
+							data: []
+					};
+					if(data.marketshareForecasts[i].scenario == "B"){
+						scenarioObj.name = "Base Case";
+					}else if(data.marketshareForecasts[i].scenario == "C"){
+						scenarioObj.name = "Corporate";
+					}else {
+						scenarioObj.name = data.marketshareForecasts[i].scenario;
+					}
+					
+					for (var j = 0; j < mshareScenario.length; j++) {
+						var wkNum = "Wk" + mshareScenario[j].weekNum;
+						var marsVal = mshareScenario[j].mshare * 1;
+						scenarioObj.data.push([wkNum, marsVal])
+					}
+					console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
+					scenario_json.push(scenarioObj);
+				}				
 			}
 			console.log("scenario_json:==  "+JSON.stringify(scenario_json));
 			
@@ -106,9 +173,8 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		            borderWidth: 0
 		        },
 		        series: scenario_json				
-			}); 
-			
+			}); 			
 		});
-	});
+	});	
 	
 }]);

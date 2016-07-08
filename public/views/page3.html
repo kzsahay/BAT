@@ -20,15 +20,21 @@
 						<td>{{itemCh.brandName}}</td>
 						<td>{{itemCh.brandPrice}}</td>
 						<td>{{itemCh.corporatePrice}}</td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>
+							<input type="text" ng-model="fst_scenario[$index]">
+						</td>
+						<td>
+							<input type="text" ng-model="snd_scenario[$index]">
+						</td>
+						<td>
+							<input type="text" ng-model="thrd_scenario[$index]">
+						</td>
 					</tr>						
 				</tbody>
 			</table>
 		</div>
 		<div class="row" style="clear: both;">
-			<a href="javascript:void(0);" class="runScenario">Run Scenario</a>
+			<a href="javascript:void(0);" class="runScenario"  ng-click="change_scenario();">Run Scenario</a>
 		</div>
 		<div class="row" style="clear: both;">
 			<div id="scenario" style="min-width: 310px; height: 400px; max-width: 1170px; margin: 0 auto" ng-model="scenarioLineChart"></div>
