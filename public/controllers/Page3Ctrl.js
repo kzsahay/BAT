@@ -30,7 +30,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		};
 		
 		for (var int = 0; int < tabelJson.length; int++) {
-			
+			console.log("scenario:::   "+tabelJson[int].scenario)
 			if(tabelJson[int].scenario == "Base Case"){
 				var priceScenario = tabelJson[int].priceScenario;
 				for (var int2 = 0; int2 < priceScenario.length; int2++) {
