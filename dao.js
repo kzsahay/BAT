@@ -40,11 +40,12 @@ exports.getTableDetails = function(conn, viewData, req) {
 					// }
 
 					var mshareTrend = {"weekNum": "", "mshare": ""};
-					mshareTrend.weekNum = i;//priceS_data[i].$TI_TimeLabel;
-					mshareTrend.mshare = priceS_data[i].Share_Sum;
-					console.log(mshareTrend)
-					marketshareForecasts.mshareTrend[k++] = mshareTrend;
-
+					if(i<=10){
+						mshareTrend.weekNum = i;//priceS_data[i].$TI_TimeLabel;
+						mshareTrend.mshare = priceS_data[i].Share_Sum;
+						console.log(mshareTrend)
+						marketshareForecasts.mshareTrend[k++] = mshareTrend;
+					}
 					
 					tabledata.marketshareForecasts.push(marketshareForecasts)
 
