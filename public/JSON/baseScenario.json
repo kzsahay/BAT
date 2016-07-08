@@ -2,7 +2,7 @@
   "accountName": "Velora",
   "marketshareForecasts": [
     {
-      "scenario": "B",
+      "scenario": "Base Case",
       "priceScenario": [
         {
           "brandName": "PALL MALL",
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "scenario": "C",
+      "scenario": "Corporate",
       "priceScenario": [
         {
           "brandName": "PALL MALL",

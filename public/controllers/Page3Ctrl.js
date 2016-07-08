@@ -31,8 +31,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		
 		for (var int = 0; int < tabelJson.length; int++) {
 			
-			if(tabelJson[int].scenario == "B"){
-				$scope.baseHeader.header.push("Base Case");
+			if(tabelJson[int].scenario == "Base Case"){
 				var priceScenario = tabelJson[int].priceScenario;
 				for (var int2 = 0; int2 < priceScenario.length; int2++) {
 					var brandObj={};
@@ -40,8 +39,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 					brandObj["brandPrice"]= priceScenario[int2].brandPrice;
 					$scope.basePriceBody.push(brandObj);
 				}
-			}else if(tabelJson[int].scenario == "C"){
-				$scope.baseHeader.header.push("Corporate");
+			}else if(tabelJson[int].scenario == "Corporate"){
 				var priceScenario = tabelJson[int].priceScenario;
 				for (var int3 = 0; int3 < $scope.basePriceBody.length; int3++) {
 					for (var int = 0; int < priceScenario.length; int++) {
@@ -50,13 +48,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 						}
 					}
 				}
-			}else if(tabelJson[int].scenario == "S1"){
-				$scope.baseHeader.header.push("Scenario 1");
-			}else if(tabelJson[int].scenario == "S2"){
-				$scope.baseHeader.header.push("Scenario 2");
-			}else if(tabelJson[int].scenario == "S3"){
-				$scope.baseHeader.header.push("Scenario 3");
 			}
+			
+			$scope.baseHeader.header.push(tabelJson[int].scenario);
 		}
 		console.log("baseHeader::  "+JSON.stringify($scope.baseHeader));
 		console.log("baseBody::  "+JSON.stringify($scope.basePriceBody));					
