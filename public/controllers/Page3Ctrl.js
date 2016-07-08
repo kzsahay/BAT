@@ -22,12 +22,15 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		
 		var tabelJson = data.marketshareForecasts;		
 		$scope.basePriceBody = [];
-		$scope.baseHeader = [];
+		$scope.baseHeader = {
+				"account": data.accountName,
+				"header" : []
+		};
 		
 		for (var int = 0; int < tabelJson.length; int++) {
 			
 			if(tabelJson[int].scenario == "B"){
-				$scope.baseHeader.push("Base Case");
+				$scope.baseHeader.header.push("Base Case");
 				var priceScenario = tabelJson[int].priceScenario;
 				for (var int2 = 0; int2 < priceScenario.length; int2++) {
 					var brandObj={};
@@ -36,7 +39,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 					$scope.basePriceBody.push(brandObj);
 				}
 			}else if(tabelJson[int].scenario == "C"){
-				$scope.baseHeader.push("Corporate");
+				$scope.baseHeader.header.push("Corporate");
 				var priceScenario = tabelJson[int].priceScenario;
 				for (var int3 = 0; int3 < $scope.basePriceBody.length; int3++) {
 					for (var int = 0; int < priceScenario.length; int++) {
@@ -45,9 +48,13 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 						}
 					}
 				}
+			}else if(tabelJson[int].scenario == "S1"){
+				$scope.baseHeader.header.push(tabelJson[int].scenario);
+			}else if(tabelJson[int].scenario == "S2"){
+				$scope.baseHeader.header.push(tabelJson[int].scenario);
+			}else if(tabelJson[int].scenario == "S3"){
+				$scope.baseHeader.header.push(tabelJson[int].scenario);
 			}
-			
-			$scope.baseHeader.push(tabelJson[int].scenario);
 		}
 		console.log("baseHeader::  "+JSON.stringify($scope.baseHeader));
 		console.log("baseBody::  "+JSON.stringify($scope.basePriceBody));					
