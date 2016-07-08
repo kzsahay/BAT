@@ -60,7 +60,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			
 			for (var i = 0; i < data.marketshareForecasts.length; i++) {
 				var scenarioObj = {
-						name: data.marketshareForecasts[i].mshareTrend,
+						name: data.marketshareForecasts[i].scenario,
 						data: []
 				};
 				var mshareScenario =data.marketshareForecasts[i].mshareTrend;
