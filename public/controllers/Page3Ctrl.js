@@ -74,32 +74,10 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			}
 			console.log("scenario_json:==  "+JSON.stringify(scenario_json));
 			
-			/*
-			scenario_json = [
-			                 {
-		                	    name: 'Base',
-		                	    data: [
-		                	      ["wk1", 1],["wk2", 2],["wk3", 3],["wk4", 4]
-		                	    ]
-		                	  },
-		                	  {
-		                	    name: 'Corporate',
-		                	    data: [
-		                	     ["wk1", 5],["wk2", 6],["wk3", 7],["wk4", 8]
-		                	    ]
-		                	  }
-		                	];
-			console.log("scenario_json:++  "+JSON.stringify(scenario_json));
-			*/
-			
 			$('#scenario').highcharts({
 				title: {
-		            text: 'Monthly Average Temperature',
+		            text: 'Overall Market Share Forecast',
 		            x: -20 //center
-		        },
-		        subtitle: {
-		            text: 'Source: WorldClimate.com',
-		            x: -20
 		        },
 		        xAxis: {
 		        	title: {
@@ -122,8 +100,5 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			
 		});
 	});
-	
-	
-	
 	
 }]);
