@@ -2,6 +2,7 @@
 
 var deutscheDemo = angular.module('BatDemo', [
   'ngRoute',
+  'LoginCtrl',
   'Page1Ctrl',
   'Page2Ctrl',
   'Page3Ctrl',
@@ -20,6 +21,10 @@ deutscheDemo.filter('capitalize', function() {
 deutscheDemo.config(['$routeProvider',
                     function($routeProvider) {
                       $routeProvider.
+                       when('/', {
+                          templateUrl: 'views/login.html',
+                          controller: 'LoginCtrl'
+                        }).
                         when('/page1', {
                           templateUrl: 'views/page1.html',
                           controller: 'Page1Ctrl'
@@ -43,6 +48,6 @@ deutscheDemo.config(['$routeProvider',
                                 
                             
                            
-                            otherwise({redirectTo: '/page1'});
+                            otherwise({redirectTo: '/'});
                         
 }]);
