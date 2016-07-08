@@ -13,7 +13,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 		var mshareTrend = {"weekNum": "", "mshare": ""};
 		var arraynew = [];
 
-		var stmt1 = "select BrandSegment, Price_Mean from FPSI2 where Account = 'VALORA' and TYPE = 'B'";
+		var stmt1 = daoConst.BRANDFETCH;
 		var priceS = conn.querySync(stmt1);
 		var priceS_data = JSON.parse(JSON.stringify(priceS));
 		 console.log("pricescenario -->" + JSON.stringify(priceS_data));
