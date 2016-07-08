@@ -48,7 +48,11 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
     	console.log('Error '+data);
     });
 	
-	$scope.scenarioLineChart = $(function () {alert("mon");
+	$scope.scenarioLineChart = $(function () {
+		console.log("baseBody::  "+JSON.stringify($scope.baseHeader));
+		
+		
+		
 		$('#scenario').highcharts({
 			title: {
 	            text: 'Monthly Average Temperature',
@@ -59,21 +63,15 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	            x: -20
 	        },
 	        xAxis: {
-	            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-	                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	        	title: {
+                    text: "Forecast for the next 3 months"
+                },
+                categories: ['Wk1', 'Wk2', 'Wk3', 'Wk4', 'Wk5', 'Wk6', 'Wk7', 'Wk8', 'Wk9', 'Wk10', 'Wk11', 'Wk12']
 	        },
 	        yAxis: {
-	            title: {
-	                text: 'Temperature (°C)'
-	            },
-	            plotLines: [{
-	                value: 0,
-	                width: 1,
-	                color: '#808080'
-	            }]
-	        },
-	        tooltip: {
-	            valueSuffix: '°C'
+	        	title: {
+                    text: "Overall Market Share"
+                }
 	        },
 	        legend: {
 	            layout: 'vertical',

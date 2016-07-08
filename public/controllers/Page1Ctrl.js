@@ -11,6 +11,7 @@ $scope.linechart=$(function () {
                     for (i = 0; i < data.length; i++){
                         processed_json.push([data[i].Date, data[i].Sale_hist]);
                     }
+                    console.log("processed_json::  "+JSON.stringify(processed_json));
                     // draw chart
                     $('#container1').highcharts({
                     chart: {
