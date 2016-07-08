@@ -45,9 +45,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 						}
 					}
 				}
-			}else {
-				$scope.baseHeader.push(tabelJson[int].scenario);
 			}
+			
+			$scope.baseHeader.push(tabelJson[int].scenario);
 		}
 		console.log("baseHeader::  "+JSON.stringify($scope.baseHeader));
 		console.log("baseBody::  "+JSON.stringify($scope.basePriceBody));					

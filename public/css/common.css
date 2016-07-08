@@ -55,7 +55,9 @@
     float: right;
     margin-right: 1.7em;
     padding: 1em;
-    text-decoration: none !important;	
+    text-align: center;
+    text-decoration: none !important;
+    width: 8%;	
 }
 .canvas {
 	width: 70%;
