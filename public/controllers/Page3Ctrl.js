@@ -58,6 +58,22 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			
 			console.log("marketshareForecasts:==  "+JSON.stringify(data.marketshareForecasts));
 			
+			for (var i = 0; i < data.marketshareForecasts.length; i++) {
+				var scenarioObj = {
+						name: data.marketshareForecasts[i].mshareTrend,
+						data: []
+				};
+				var mshareScenario =data.marketshareForecasts[i].mshareTrend;
+				for (var j = 0; j < mshareScenario.length; j++) {
+					var wkNum = "Wk" + mshareScenario[j].weekNum;
+					scenarioObj.data.push([wkNum, mshareScenario[j].mshare])
+				}
+				console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
+				scenario_json.push(scenarioObj);
+			}
+			console.log("scenario_json:==  "+JSON.stringify(scenario_json));
+			
+			/*
 			scenario_json = [
 			                 {
 		                	    name: 'Base',
@@ -73,6 +89,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		                	  }
 		                	];
 			console.log("scenario_json:++  "+JSON.stringify(scenario_json));
+			*/
 			
 			$('#scenario').highcharts({
 				title: {
