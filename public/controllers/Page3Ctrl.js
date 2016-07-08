@@ -66,7 +66,8 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 				var mshareScenario =data.marketshareForecasts[i].mshareTrend;
 				for (var j = 0; j < mshareScenario.length; j++) {
 					var wkNum = "Wk" + mshareScenario[j].weekNum;
-					scenarioObj.data.push([wkNum, mshareScenario[j].mshare])
+					var marsVal = mshareScenario[j].mshare * 1;
+					scenarioObj.data.push([wkNum, marsVal])
 				}
 				console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
 				scenario_json.push(scenarioObj);
