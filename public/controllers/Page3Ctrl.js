@@ -20,7 +20,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	}).success(function(data) {
 		
 		
-		var tabelJson = data.marketshareForecasts;		
+		var tabelJson = data.marketshareForecasts;	
+		console.log("tabelJson::  "+JSON.stringify(tabelJson));
+		
 		$scope.basePriceBody = [];
 		$scope.baseHeader = {
 				"account": data.accountName,
