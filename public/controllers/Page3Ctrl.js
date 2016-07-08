@@ -5,6 +5,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		'$rootScope', function Page3Ctrl($scope, $location, $http, $rootScope) {
 	
 	$scope.basePriceBody=[];
+	var dataArry = [];
 	
 	
 	$http({
@@ -51,9 +52,6 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
     });
 	
 	$scope.scenarioLineChart = $(function () {
-		console.log("dataArry::  "+JSON.stringify(dataArry));
-		var axisArr = [];
-		
 		
 		$http({
 			method: "GET",
@@ -66,9 +64,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	        }
 		}).success(function(result) {
 			
-			var dataArry = result.marketshareForecasts;
-			console.log("axisArr::  "+JSON.stringify(axisArr));
-			
+			dataArry = result.marketshareForecasts;
+			console.log("dataArry::  "+JSON.stringify(dataArry));
+			var axisArr = [];
 			
 			for (var i = 0; i < dataArry.length; i++) {
 				var axisObj = {
