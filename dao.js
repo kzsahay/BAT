@@ -40,15 +40,12 @@ exports.getTableDetails = function(conn, viewData, req) {
 					// }
 
 					var mshareTrend = {"weekNum": "", "mshare": ""};
-					if(i<=10){
+					
 						mshareTrend.weekNum = i;//priceS_data[i].$TI_TimeLabel;
 						mshareTrend.mshare = priceS_data[i].Share_Sum;
 						console.log(mshareTrend)
 						marketshareForecasts.mshareTrend[k++] = mshareTrend;
-					}
 					
-					tabledata.marketshareForecasts.push(marketshareForecasts)
-
 				}
 
 				
@@ -81,6 +78,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 			}
 		}
 		
+			tabledata.marketshareForecasts.push(marketshareForecasts)
 		// for(var i in marketshareForecasts.priceScenario){
 		// 	if(marketshareForecasts.priceScenario[i]!= undefined){
 		// 		marketshareForecasts.priceScenario[m++] = marketshareForecasts.priceScenario[i];
