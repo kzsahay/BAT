@@ -2,22 +2,22 @@
   "accountName": "Velora",
   "marketshareForecasts": [
     {
-      "scenario": "Base",
+      "scenario": "B",
       "priceScenario": [
         {
-          "brandName": "abc",
+          "brandName": "PALL MALL",
           "brandPrice": "5.4"
         },
         {
-          "brandName": "def",
+          "brandName": "PARISIENNE",
           "brandPrice": "5.1"
         },
         {
-          "brandName": "ghi",
+          "brandName": "MARLBORO",
           "brandPrice": "4.4"
         },
         {
-          "brandName": "jkl",
+          "brandName": "CHESTERFIELD",
           "brandPrice": "3.4"
         }
       ],
@@ -77,22 +77,22 @@
       ]
     },
     {
-      "scenario": "Corporate",
+      "scenario": "C",
       "priceScenario": [
         {
-          "brandName": "abc",
+          "brandName": "PALL MALL",
           "brandPrice": "5.9"
         },
         {
-          "brandName": "def",
+          "brandName": "PARISIENNE",
           "brandPrice": "5.2"
         },
         {
-          "brandName": "ghi",
+          "brandName": "MARLBORO",
           "brandPrice": "4.3"
         },
         {
-          "brandName": "jkl",
+          "brandName": "CHESTERFIELD",
           "brandPrice": "3.5"
         }
       ],
@@ -155,19 +155,19 @@
       "scenario": "S1",
       "priceScenario": [
         {
-          "brandName": "abc",
+          "brandName": "PALL MALL",
           "brandPrice": "5.8"
         },
         {
-          "brandName": "def",
+          "brandName": "PARISIENNE",
           "brandPrice": "5.1"
         },
         {
-          "brandName": "ghi",
+          "brandName": "MARLBORO",
           "brandPrice": "4.4"
         },
         {
-          "brandName": "jkl",
+          "brandName": "CHESTERFIELD",
           "brandPrice": "3.6"
         }
       ],
@@ -230,19 +230,19 @@
       "scenario": "S2",
       "priceScenario": [
         {
-          "brandName": "abc",
+          "brandName": "PALL MALL",
           "brandPrice": "5.7"
         },
         {
-          "brandName": "def",
+          "brandName": "PARISIENNE",
           "brandPrice": "5.3"
         },
         {
-          "brandName": "ghi",
+          "brandName": "MARLBORO",
           "brandPrice": "4.7"
         },
         {
-          "brandName": "jkl",
+          "brandName": "CHESTERFIELD",
           "brandPrice": "3.8"
         }
       ],
@@ -305,19 +305,19 @@
       "scenario": "S3",
       "priceScenario": [
         {
-          "brandName": "abc",
+          "brandName": "PALL MALL",
           "brandPrice": "5.5"
         },
         {
-          "brandName": "def",
+          "brandName": "PARISIENNE",
           "brandPrice": "5.9"
         },
         {
-          "brandName": "ghi",
+          "brandName": "MARLBORO",
           "brandPrice": "4.3"
         },
         {
-          "brandName": "jkl",
+          "brandName": "CHESTERFIELD",
           "brandPrice": "3.8"
         }
       ],
