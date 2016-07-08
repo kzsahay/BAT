@@ -19,7 +19,6 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
         }
 	}).success(function(data) {
 		
-		
 		var tabelJson = data.marketshareForecasts;	
 		console.log("tabelJson::  "+JSON.stringify(tabelJson));
 		
@@ -29,28 +28,30 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 				"header" : []
 		};
 		
-		for (var int = 0; int < tabelJson.length; int++) {
-			console.log("scenario:::   "+tabelJson[int].scenario)
-			if(tabelJson[int].scenario == "Base Case"){
-				var priceScenario = tabelJson[int].priceScenario;
+		for (var i = 0; i < tabelJson.length; i++) {
+			
+			if(tabelJson[i].scenario == "B"){
+				$scope.baseHeader.header.push("Base Case");
+				var priceScenario = tabelJson[i].priceScenario;
 				for (var int2 = 0; int2 < priceScenario.length; int2++) {
 					var brandObj={};
 					brandObj["brandName"]= priceScenario[int2].brandName;
 					brandObj["brandPrice"]= priceScenario[int2].brandPrice;
 					$scope.basePriceBody.push(brandObj);
 				}
-			}else if(tabelJson[int].scenario == "Corporate"){
-				var priceScenario = tabelJson[int].priceScenario;
+			}else if(tabelJson[i].scenario == "C"){
+				$scope.baseHeader.header.push("Corporate");
+				var priceScenario = tabelJson[i].priceScenario;
 				for (var int3 = 0; int3 < $scope.basePriceBody.length; int3++) {
-					for (var int = 0; int < priceScenario.length; int++) {
-						if($scope.basePriceBody[int3].brandName == priceScenario[int].brandName) {
-							$scope.basePriceBody[int3]["corporatePrice"]=priceScenario[int].brandPrice;
+					for (var int4 = 0; int4 < priceScenario.length; int4++) {
+						if($scope.basePriceBody[int3].brandName == priceScenario[int4].brandName) {
+							$scope.basePriceBody[int3]["corporatePrice"]=priceScenario[int4].brandPrice;
 						}
 					}
 				}
+			}else {
+				$scope.baseHeader.header.push(tabelJson[i].scenario);
 			}
-			
-			$scope.baseHeader.header.push(tabelJson[int].scenario);
 		}
 		console.log("baseHeader::  "+JSON.stringify($scope.baseHeader));
 		console.log("baseBody::  "+JSON.stringify($scope.basePriceBody));					
