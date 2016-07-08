@@ -52,36 +52,27 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
     });
 	
 	$scope.scenarioLineChart = $(function () {
+		var scenario_json = []; 
 		
-		$http({
-			method: "GET",
-			url: "JSON/baseScenario.json",
-			headers: {
-	            'Access-Control-Allow-Origin': '*',
-	            'Access-Control-Request-Method': 'GET',
-	            'Content-Type': "application/json",
-	            'Access-Control-Allow-Headers': "Content-Type"
-	        }
-		}).success(function(result) {
+		$.getJSON('JSON/baseScenario.json', function(data) {
 			
-			dataArry = result.marketshareForecasts;
-			console.log("dataArry::  "+JSON.stringify(dataArry));
-			var axisArr = [];
+			console.log("marketshareForecasts:==  "+JSON.stringify(data.marketshareForecasts));
 			
-			for (var i = 0; i < dataArry.length; i++) {
-				var axisObj = {
-						name: dataArry[i].scenario,
-						data: []
-				};
-				var mshareTrendObj = dataArry[i].mshareTrend;
-				for (var int = 0; int < mshareTrendObj.length; int++) {
-					var wkNum = "Wk" + mshareTrendObj[int].weekNum;
-					data.push([wkNum, mshareTrendObj[int].mshare]);
-				}
-				axisArr.push(axisObj);
-				console.log("axisObj::  "+JSON.stringify(axisObj));
-			}
-			console.log("axisArr::  "+JSON.stringify(axisArr));
+			scenario_json = [
+			                 {
+		                	    name: 'Base',
+		                	    data: [
+		                	      ["wk1", 1],["wk2", 2],["wk3", 3],["wk4", 4]
+		                	    ]
+		                	  },
+		                	  {
+		                	    name: 'Corporate',
+		                	    data: [
+		                	     ["wk1", 5],["wk2", 6],["wk3", 7],["wk4", 8]
+		                	    ]
+		                	  }
+		                	];
+			console.log("scenario_json:++  "+JSON.stringify(scenario_json));
 			
 			$('#scenario').highcharts({
 				title: {
@@ -108,16 +99,10 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		            verticalAlign: 'middle',
 		            borderWidth: 0
 		        },
-		        series: axisArr				
+		        series: scenario_json				
 			}); 
 			
-		})
-	    .error(function(result) {
-	    	alert("Invalide userId or password");
-	    	console.log('Error '+result);
-	    });
-		
-		
+		});
 	});
 	
 	
