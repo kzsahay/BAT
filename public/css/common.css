@@ -22,16 +22,85 @@
 	color: #07b60f !important;
 	background-color: #ececec;
 }
-
 .blocked{
 	color: red !important;
 	background-color: #ececec;
 }
-
 .cancelled{
 	color: grey !important;
 	background-color: #ececec;
 }
+
+
+.scopeClass {
+	margin-left: 10%; 
+	position: relative; 
+	height: 100%;
+}
+
+/********  Start Left Navigation  **********/
+
+.leftPannel {
+	background-color: grey; 
+	width: 10%; 
+	height: 100%; 
+	position: fixed;
+}
+.leftPannel ul {
+	margin: 2.5em 0;
+	padding: 0;
+	list-style: none;
+}
+.leftPannel ul li {
+	padding: 3em 0;
+	text-align: center;
+}
+.leftPannel li a {
+	padding: 2em;
+    text-decoration: none;
+}
+.leftPannel li a.flower {
+	background: url(../images/flower.png) no-repeat;
+	background-size: 100% auto;    
+}
+
+.leftPannel li a.clock {
+	background: url(../images/clock2.png) no-repeat;
+	background-size: 100% auto;    
+}
+.leftPannel li a.clock.selected {
+	background: url(../images/clock1.png) no-repeat;
+	background-size: 100% auto;    
+}
+
+.leftPannel li a.new {
+	background: url(../images/new2.png) no-repeat;
+	background-size: 100% auto;    
+}
+.leftPannel li a.new.selected {
+	background: url(../images/new1.png) no-repeat;
+	background-size: 100% auto;    
+}
+
+.leftPannel li a.pig {
+	background: url(../images/pig2.png) no-repeat;
+	background-size: 100% auto;    
+}
+.leftPannel li a.pig.selected {
+	background: url(../images/pig1.png) no-repeat;
+	background-size: 100% auto;    
+}
+
+.leftPannel li a.chick {
+	background: url(../images/chick2.png) no-repeat;
+	background-size: 100% auto;    
+}
+.leftPannel li a.chick.selected {
+	background: url(../images/chick1.png) no-repeat;
+	background-size: 100% auto;    
+}
+
+/********  End Left Navigation  **********/
 
 .tabelCls {
     background: #F3F2F0;
