@@ -51,11 +51,11 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 					}
 				}
 			}else if(tabelJson[int].scenario == "S1"){
-				$scope.baseHeader.header.push(tabelJson[int].scenario);
+				$scope.baseHeader.header.push("Scenario 1");
 			}else if(tabelJson[int].scenario == "S2"){
-				$scope.baseHeader.header.push(tabelJson[int].scenario);
+				$scope.baseHeader.header.push("Scenario 2");
 			}else if(tabelJson[int].scenario == "S3"){
-				$scope.baseHeader.header.push(tabelJson[int].scenario);
+				$scope.baseHeader.header.push("Scenario 3");
 			}
 		}
 		console.log("baseHeader::  "+JSON.stringify($scope.baseHeader));
