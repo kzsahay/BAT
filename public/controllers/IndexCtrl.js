@@ -7,12 +7,14 @@ IndexCtrl.controller('IndexCtrl', ['$scope','$location','$http','$rootScope',
 	$scope.page2 = 'new2';
 	$scope.page3 = 'pig2';
 	$scope.page4 = 'chick2';
+	$scope.page5 = 'chick3';
 	
 	$scope.gotoPage1 = function(){
 		$scope.page1 = 'clock1';
 		$scope.page2 = 'new2';
 		$scope.page3 = 'pig2';
 		$scope.page4 = 'chick2';
+		$scope.page5 = 'chick3';
 		$location.path('/page1');
 	}
 		
@@ -21,6 +23,7 @@ IndexCtrl.controller('IndexCtrl', ['$scope','$location','$http','$rootScope',
 		$scope.page2 = 'new1';
 		$scope.page3 = 'pig2';
 		$scope.page4 = 'chick2';
+		$scope.page5 = 'chick3';
 		$location.path('/page2');
 	}
 	
@@ -29,6 +32,7 @@ IndexCtrl.controller('IndexCtrl', ['$scope','$location','$http','$rootScope',
 		$scope.page2 = 'new2';
 		$scope.page3 = 'pig1';
 		$scope.page4 = 'chick2';
+		$scope.page5 = 'chick3';
 		$location.path('/page3');
 	}
 	
@@ -36,7 +40,8 @@ IndexCtrl.controller('IndexCtrl', ['$scope','$location','$http','$rootScope',
 		$scope.page1 = 'clock2';
 		$scope.page2 = 'new2';
 		$scope.page3 = 'pig2';
-		$scope.page4 = 'chick1';
+		$scope.page4 = 'chick2';
+		$scope.page5 = 'chick3';
 		$location.path('/page4');
 	}
 	
@@ -45,6 +50,7 @@ IndexCtrl.controller('IndexCtrl', ['$scope','$location','$http','$rootScope',
 		$scope.page2 = 'new2';
 		$scope.page3 = 'pig2';
 		$scope.page4 = 'chick2';
+		$scope.page5 = 'chick3';
 		$location.path('/page5');
 	}
 	
