@@ -21,6 +21,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 
 		
 		async.series([
+		        //Scenario: Base
 				function(callback) {
 					var arraynew = [];
 					for (var i in priceS_data) {
@@ -62,48 +63,194 @@ exports.getTableDetails = function(conn, viewData, req) {
 						
 					tabledata.marketshareForecasts.push(marketshareForecasts);
 					callback(null, 1);
-				} 
-				// function(callback) {
-				// 	for (var i in priceS_data) {
-				// 		if(priceS_data[i].Account == "VALORA    "){
-				// 			tabledata.accountName = "VALORA";
-				// 			if(priceS_data[i].TYPE == "C "){
+				}, 
+				
+				//Scenario: Corporate Price
+				function(callback) {
+					var arraynew = [];
+					for (var i in priceS_data) {
+						if(priceS_data[i].Account == "VALORA    "){
+							tabledata.accountName = "VALORA";
 
-				// 				marketshareForecasts.scenario = "Corporate Price"
-				// 				var pricescenario = {"brandName": "", "brandPrice": ""};
-				// 				var arraynew = [];
+							if(priceS_data[i].TYPE == "C "){
 
-				// 				pricescenario.brandName = priceS_data[i].BrandSegment;
-				// 				pricescenario.brandPrice = priceS_data[i].Price_Mean;
+								marketshareForecasts.scenario = "Corporate Price"
+								var pricescenario = {"brandName": "", "brandPrice": ""};
 
-				// 				marketshareForecasts.priceScenario[k++] = pricescenario;
-				// 				// if(i>0){
-				// 				// 	if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment){
-				// 				// 		marketshareForecasts.priceScenario.splice(k-1, 1);
-				// 				// 	}
-				// 				// }
+								pricescenario.brandName = priceS_data[i].BrandSegment;
+								pricescenario.brandPrice = priceS_data[i].Price_Mean;
 
-				// 				var mshareTrend = {"weekNum": "", "mshare": ""};
-				// 				mshareTrend.weekNum = i;//priceS_data[i].$TI_TimeLabel;
-				// 				mshareTrend.mshare = priceS_data[i].Share_Sum;
+								arraynew[k++] = pricescenario;
+								if(i>0){
+									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment){
+										arraynew.splice(k-1, 1);
+										console.log("Inside")
+										
+									}
+								}
 
-				// 				marketshareForecasts.mshareTrend[k++] = mshareTrend;
+								var mshareTrend = {"weekNum": "", "mshare": ""};
+								mshareTrend.weekNum = i+1;//priceS_data[i].$TI_TimeLabel;
+								mshareTrend.mshare = priceS_data[i].Share_Sum;
+								// console.log(mshareTrend)
+								marketshareForecasts.mshareTrend[m++] = mshareTrend;
 
-				// 			}
-				// 		}
-				// 	}
-				// 		tabledata.marketshareForecasts.push(marketshareForecasts)
-				// 	callback(null, 2);
-				/*}*/ ], function(err) {
+							}
+						}
+					}
+
+					for(var i in arraynew){
+						if(arraynew[i]!= undefined){
+							marketshareForecasts.priceScenario[n++] = arraynew[i];
+						}
+					}
+						
+					tabledata.marketshareForecasts.push(marketshareForecasts);
+					callback(null, 2);
+					
+				},
+				
+				//Scenario: S1
+				function(callback) {
+					var arraynew = [];
+					for (var i in priceS_data) {
+						if(priceS_data[i].Account == "VALORA    "){
+							tabledata.accountName = "VALORA";
+
+							if(priceS_data[i].TYPE == "S1 "){
+
+								marketshareForecasts.scenario = "Corporate Price"
+								var pricescenario = {"brandName": "", "brandPrice": ""};
+
+								pricescenario.brandName = priceS_data[i].BrandSegment;
+								pricescenario.brandPrice = priceS_data[i].Price_Mean;
+
+								arraynew[k++] = pricescenario;
+								if(i>0){
+									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment){
+										arraynew.splice(k-1, 1);
+										console.log("Inside")
+										
+									}
+								}
+
+								var mshareTrend = {"weekNum": "", "mshare": ""};
+								mshareTrend.weekNum = i+1;//priceS_data[i].$TI_TimeLabel;
+								mshareTrend.mshare = priceS_data[i].Share_Sum;
+								// console.log(mshareTrend)
+								marketshareForecasts.mshareTrend[m++] = mshareTrend;
+
+							}
+						}
+					}
+
+					for(var i in arraynew){
+						if(arraynew[i]!= undefined){
+							marketshareForecasts.priceScenario[n++] = arraynew[i];
+						}
+					}
+						
+					tabledata.marketshareForecasts.push(marketshareForecasts);
+					callback(null, 3);
+					
+				},
+				
+				//Scenario: S2
+				function(callback) {
+					var arraynew = [];
+					for (var i in priceS_data) {
+						if(priceS_data[i].Account == "VALORA    "){
+							tabledata.accountName = "VALORA";
+
+							if(priceS_data[i].TYPE == "S2 "){
+
+								marketshareForecasts.scenario = "S2"
+								var pricescenario = {"brandName": "", "brandPrice": ""};
+
+								pricescenario.brandName = priceS_data[i].BrandSegment;
+								pricescenario.brandPrice = priceS_data[i].Price_Mean;
+
+								arraynew[k++] = pricescenario;
+								if(i>0){
+									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment){
+										arraynew.splice(k-1, 1);
+										console.log("Inside")
+										
+									}
+								}
+
+								var mshareTrend = {"weekNum": "", "mshare": ""};
+								mshareTrend.weekNum = i+1;//priceS_data[i].$TI_TimeLabel;
+								mshareTrend.mshare = priceS_data[i].Share_Sum;
+								// console.log(mshareTrend)
+								marketshareForecasts.mshareTrend[m++] = mshareTrend;
+
+							}
+						}
+					}
+
+					for(var i in arraynew){
+						if(arraynew[i]!= undefined){
+							marketshareForecasts.priceScenario[n++] = arraynew[i];
+						}
+					}
+						
+					tabledata.marketshareForecasts.push(marketshareForecasts);
+					callback(null, 4);
+					
+				},
+				
+				//Scenario: S3
+				function(callback) {
+					var arraynew = [];
+					for (var i in priceS_data) {
+						if(priceS_data[i].Account == "VALORA    "){
+							tabledata.accountName = "VALORA";
+
+							if(priceS_data[i].TYPE == "S3 "){
+
+								marketshareForecasts.scenario = "S3"
+								var pricescenario = {"brandName": "", "brandPrice": ""};
+
+								pricescenario.brandName = priceS_data[i].BrandSegment;
+								pricescenario.brandPrice = priceS_data[i].Price_Mean;
+
+								arraynew[k++] = pricescenario;
+								if(i>0){
+									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment){
+										arraynew.splice(k-1, 1);
+										console.log("Inside")
+										
+									}
+								}
+
+								var mshareTrend = {"weekNum": "", "mshare": ""};
+								mshareTrend.weekNum = i+1;//priceS_data[i].$TI_TimeLabel;
+								mshareTrend.mshare = priceS_data[i].Share_Sum;
+								// console.log(mshareTrend)
+								marketshareForecasts.mshareTrend[m++] = mshareTrend;
+
+							}
+						}
+					}
+
+					for(var i in arraynew){
+						if(arraynew[i]!= undefined){
+							marketshareForecasts.priceScenario[n++] = arraynew[i];
+						}
+					}
+						
+					tabledata.marketshareForecasts.push(marketshareForecasts);
+					callback(null, 5);
+					
+				}], function(err) {
 			if (!err) {
-
-				viewData.Data = tabledata;
+				console.log(tabledata);
 			} else {
 				console.log(JSON.stringify(err));
 			}
 		});
 
-		
 		viewData.Data = tabledata;
 
 	} catch (err) {
