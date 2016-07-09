@@ -7,10 +7,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	$scope.basePriceBody=[];
 	var dataArry = [];
 	
-	
 	$http({
 		method: "GET",
-		url: "JSON/baseScenario.json",
+		url: "JSON/initialScenario.json",
 		headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Request-Method': 'GET',
@@ -21,31 +20,30 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		
 		var tabelJson = data.marketshareForecasts;	
 		console.log("tabelJson::  "+JSON.stringify(tabelJson));
-		
+				
 		$scope.basePriceBody = [];
 		$scope.baseHeader = {
 				"account": data.accountName,
 				"header" : []
 		};
 		
-		for (var i = 0; i < tabelJson.length; i++) {
-			
+		for (var i = 0; i < tabelJson.length; i++) {			
 			if(tabelJson[i].scenario == "B"){
 				$scope.baseHeader.header.push("Base Case");
 				var priceScenario = tabelJson[i].priceScenario;
-				for (var int2 = 0; int2 < priceScenario.length; int2++) {
+				for (var int = 0; int < priceScenario.length; int++) {
 					var brandObj={};
-					brandObj["brandName"]= priceScenario[int2].brandName;
-					brandObj["brandPrice"]= priceScenario[int2].brandPrice;
+					brandObj["brandName"]= priceScenario[int].brandName;
+					brandObj["brandPrice"]= priceScenario[int].brandPrice;
 					$scope.basePriceBody.push(brandObj);
 				}
 			}else if(tabelJson[i].scenario == "C"){
 				$scope.baseHeader.header.push("Corporate");
 				var priceScenario = tabelJson[i].priceScenario;
-				for (var int3 = 0; int3 < $scope.basePriceBody.length; int3++) {
-					for (var int4 = 0; int4 < priceScenario.length; int4++) {
-						if($scope.basePriceBody[int3].brandName == priceScenario[int4].brandName) {
-							$scope.basePriceBody[int3]["corporatePrice"]=priceScenario[int4].brandPrice;
+				for (var int2 = 0; int2 < $scope.basePriceBody.length; int2++) {
+					for (var int3 = 0; int3 < priceScenario.length; int3++) {
+						if($scope.basePriceBody[int2].brandName == priceScenario[int3].brandName) {
+							$scope.basePriceBody[int2]["corporatePrice"]=priceScenario[int3].brandPrice;
 						}
 					}
 				}
@@ -62,9 +60,64 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
     });
 	
 	$scope.change_scenario = function () {
+		console.log("accountName ++::  "+JSON.stringify($scope.baseHeader));
+		
+		var changMarkObj = {
+				"accountName": $scope.baseHeader.account,
+				"marketPrices": []
+		};
+		var fastClass = $(".fastClass");
+		var fastContents = [];
+		for (i = 0; i < fastClass.length; i++) {
+			var fastBrand = {
+					"brandName": $("#fst_" + i).attr("field"),
+					"brandPrice": $("#fst_" + i).val()
+			}
+			fastContents.push(fastBrand);
+		}
+		var fastPrice = {
+				"scenario": "S1",
+				"priceScenario": fastContents
+		};
+		changMarkObj.marketPrices.push(fastPrice);
+		//alert("fastPrice::  "+JSON.stringify(fastPrice));
+		
+		var sendClass = $(".sendClass");
+		var sendContents = [];
+		for (i = 0; i < sendClass.length; i++) {
+			var sndBrand = {
+					"brandName": $("#snd_" + i).attr("field"),
+					"brandPrice": $("#snd_" + i).val()
+			}
+			sendContents.push(sndBrand);
+		}
+		var sendPrice = {
+				"scenario": "S2",
+				"priceScenario": sendContents
+		};
+		changMarkObj.marketPrices.push(sendPrice);
+		
+		var thrdClass = $(".thrdClass");
+		var thrdContents = [];
+		for (i = 0; i < thrdClass.length; i++) {
+			var trdBrand = {
+					"brandName": $("#trd_" + i).attr("field"),
+					"brandPrice": $("#trd_" + i).val()
+			}
+			thrdContents.push(trdBrand);
+		}
+		var thrdPrice = {
+				"scenario": "S3",
+				"priceScenario": thrdContents
+		};
+		changMarkObj.marketPrices.push(thrdPrice);		
+		console.log("changMarkObj::  "+JSON.stringify(changMarkObj));
+		
+		
+		
 		$scope.scenarioLineChart = $(function () {
 			var scenario_json = []; 
-			$.getJSON('JSON/newScenario.json', function(data) {			
+			$.getJSON('JSON/finalScenario.json', function(data) {			
 				console.log("marketshareForecasts:==  "+JSON.stringify(data.marketshareForecasts));
 				
 				for (var i = 0; i < data.marketshareForecasts.length; i++) {
@@ -85,9 +138,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 						for (var j = 0; j < mshareScenario.length; j++) {
 							var wkNum = "Wk" + mshareScenario[j].weekNum;
 							var marsVal = mshareScenario[j].mshare * 1;
-							scenarioObj.data.push([wkNum, marsVal])
+							scenarioObj.data.push([wkNum, marsVal]);
 						}
-						console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
+						//console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
 						scenario_json.push(scenarioObj);
 					}				
 				}
@@ -122,7 +175,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	
 	$scope.scenarioLineChart = $(function () {
 		var scenario_json = []; 
-		$.getJSON('JSON/baseScenario.json', function(data) {			
+		$.getJSON('JSON/initialScenario.json', function(data) {			
 			console.log("marketshareForecasts:==  "+JSON.stringify(data.marketshareForecasts));
 			
 			for (var i = 0; i < data.marketshareForecasts.length; i++) {
@@ -176,5 +229,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			}); 			
 		});
 	});	
+	
+	$scope.gotoFinalize = function () {
+		$location.path('/finalize');
+	};
 	
 }]);
