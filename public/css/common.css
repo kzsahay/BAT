@@ -100,6 +100,14 @@
 	background-size: 100% auto;    
 }
 
+.leftPannel li a.chick1 {
+	background: url(../images/chick3.png) no-repeat;
+	background-size: 100% auto;    
+}
+.leftPannel li a.chick1.selected {
+	background: url(../images/chick4.png) no-repeat;
+	background-size: 100% auto;    
+}
 /********  End Left Navigation  **********/
 
 .tabelCls {

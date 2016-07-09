@@ -25,7 +25,7 @@ IndexCtrl.controller('IndexCtrl', ['$scope','$location','$http','$rootScope',
 	}
 	
 	$scope.gotoPage5 = function (){
-		$scope.selectedClass = '';
+		$scope.selectedClass = 'sim';
 		$location.path('/page5');
 	}
 	
