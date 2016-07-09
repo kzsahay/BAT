@@ -1,5 +1,6 @@
 var deutscheDemo = angular.module('BatDemo', ['ngResource','ngCookies',
   'ngRoute',
+  'Page0Ctrl',
   'Page1Ctrl',
   'Page2Ctrl',
   'Page3Ctrl',
@@ -21,6 +22,10 @@ deutscheDemo.config(['$routeProvider', '$locationProvider',
 					  when('/login', {
                           templateUrl: 'views/login.html',
                           controller: 'logincontroller'
+                        }).
+                        when('/page0', {
+                          templateUrl: 'views/page0.html',
+                          controller: 'Page0Ctrl'
                         }).
                         when('/page1', {
                           templateUrl: 'views/page1.html',
@@ -79,7 +84,7 @@ deutscheDemo.controller('logincontroller', ['$scope','$http','$resource','$locat
 		if ($scope.username==="nextgen"&&$scope.password==="nextgen"){
 			AuthenticationService.SetCredentials($scope.username, $scope.password);
 			userid=$scope.username;
-			$location.path('/page1');
+			$location.path('/page0');
 		}else
 		{
 			alert("Invalid Username/Password. Please try again.");

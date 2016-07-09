@@ -29,4 +29,9 @@ IndexCtrl.controller('IndexCtrl', ['$scope','$location','$http','$rootScope',
 		$location.path('/page5');
 	}
 	
+	$scope.gotoPage0 = function() {
+		$scope.selectedClass = '';
+		$location.path('/page0');
+	}
+	
 }]);
