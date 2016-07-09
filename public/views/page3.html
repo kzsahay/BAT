@@ -34,8 +34,25 @@
 			</table>
 		</div>
 		<div class="row" style="clear: both;">
-			<a href="javascript:void(0);" class="runScenario"  ng-click="change_scenario();">Run Scenario</a>
+			<a href="javascript:void(0);" class="runScenario"  ng-click="run_scenario();">Run Scenario</a>
 		</div>
+		<div class="radioDiv" ng-show="radio_btn">
+			<label class="radio-inline">
+			  <input ng-model="radioSelect" type="radio" name="rdoResult" ng-value="'B'">Base
+			</label>
+			<label class="radio-inline">
+			  <input ng-model="radioSelect" type="radio" name="rdoResult" ng-value="'C'">Corporate
+			</label>
+			<label class="radio-inline">
+			  <input ng-model="radioSelect" type="radio" name="rdoResult" ng-value="'S1'">S1
+			</label>
+			<label class="radio-inline">
+			  <input ng-model="radioSelect" type="radio" name="rdoResult" ng-value="'S2'">S2
+			</label>
+			<label class="radio-inline">
+			  <input ng-model="radioSelect" type="radio" name="rdoResult" ng-value="'S3'">S3
+			</label>
+    	</div>
 		<div class="row" style="clear: both;">
 			<div id="scenario" style="min-width: 310px; height: 400px; max-width: 1170px; margin: 0 auto" ng-model="scenarioLineChart"></div>
 		</div>

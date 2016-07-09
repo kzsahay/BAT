@@ -59,8 +59,17 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
     	console.log('Error '+data);
     });
 	
-	$scope.change_scenario = function () {
+	$scope.validNumber = function (val) {
+		if (isNaN(val)){
+			alert("The input data should be numaric!");
+			return false;
+		}
+		return true;
+	}
+	
+	$scope.run_scenario = function () {
 		console.log("accountName ++::  "+JSON.stringify($scope.baseHeader));
+		$scope.radio_btn = true;
 		
 		var changMarkObj = {
 				"accountName": $scope.baseHeader.account,
@@ -69,6 +78,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		var fastClass = $(".fastClass");
 		var fastContents = [];
 		for (i = 0; i < fastClass.length; i++) {
+			if(!$scope.validNumber($("#fst_" + i).val())){return;}
 			var fastBrand = {
 					"brandName": $("#fst_" + i).attr("field"),
 					"brandPrice": $("#fst_" + i).val()
@@ -85,6 +95,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		var sendClass = $(".sendClass");
 		var sendContents = [];
 		for (i = 0; i < sendClass.length; i++) {
+			if(!$scope.validNumber($("#snd_" + i).val())){return;}
 			var sndBrand = {
 					"brandName": $("#snd_" + i).attr("field"),
 					"brandPrice": $("#snd_" + i).val()
@@ -100,6 +111,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		var thrdClass = $(".thrdClass");
 		var thrdContents = [];
 		for (i = 0; i < thrdClass.length; i++) {
+			if(!$scope.validNumber($("#trd_" + i).val())){return;}
 			var trdBrand = {
 					"brandName": $("#trd_" + i).attr("field"),
 					"brandPrice": $("#trd_" + i).val()
@@ -231,6 +243,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	});	
 	
 	$scope.gotoFinalize = function () {
+		var radioVal = $scope.radioSelect;
 		$location.path('/finalize');
 	};
 	

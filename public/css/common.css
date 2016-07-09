@@ -142,3 +142,10 @@
 	border: 1px solid;
 	margin: 1em 1.5em;
 }
+.radioDiv {
+	clear: both;
+    margin: 1em auto;
+    width: 26%;
+}
+
+
