@@ -90,7 +90,7 @@ app.get('/loadtable', function(req, res) {
 
 		async.series([
 				function(callback) {
-					viewData = dao.getTableDetails(conn, viewData);
+					viewData = dao.getTableDetails(conn, viewData, req);
 					callback(null);
 				}, function(callback) {
 					util.closeDBConn(conn);
@@ -114,9 +114,40 @@ app.get('/loadtable', function(req, res) {
 
 /*****************************************************************************************************************************************/
 
+//finalize button slide 6
+app.post('/finalize', function(req, res) {
+	var error_msg = "";
+	var conn = util.getDBConn();
+	try {
+		var viewData = {
+			Data : []
+		};
 
+		async.series([
+				function(callback) {
+					viewData = dao.getfinalizeDetails(conn, viewData, req);
+					callback(null);
+				}, function(callback) {
+					util.closeDBConn(conn);
+					callback(null);
+				} ], function(err) {
+			if (!err) {
+				res.setHeader('Content-Type', 'application/json');
+				res.send(viewData);
+			} else {
+				console.log(JSON.stringify(err));
+			}
+		});
+	} catch (err) {
+		console.log("Error in finalize :: " + err);
+		if (conn.connected)
+			util.closeDBConn(conn);
+		res.status(600);
+		res.send(error_msg);
+	}
+});
 
-
+/*****************************************************************************************************************************************/
 
 
 
