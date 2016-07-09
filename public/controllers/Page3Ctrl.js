@@ -164,7 +164,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			        legend: {
 			            layout: 'vertical',
 			            align: 'right',
-			            verticalAlign: 'middle',
+			            verticalAlign: 'top',
 			            borderWidth: 0
 			        },
 			        series: scenario_json				
@@ -222,7 +222,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		        legend: {
 		            layout: 'vertical',
 		            align: 'right',
-		            verticalAlign: 'middle',
+		            verticalAlign: 'top',
 		            borderWidth: 0
 		        },
 		        series: scenario_json				

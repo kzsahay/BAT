@@ -1,0 +1,47 @@
+{
+  "accountName": "Velora",
+  "marketshareForecasts": [
+    {
+      "scenario": "B",
+      "forecasts": [
+        {
+          "brandName": "PALL MALL",
+          "sum_share": "20"
+        },
+        {
+          "brandName": "PARISIENNE",
+          "sum_share": "10"
+        },
+        {
+          "brandName": "MARLBORO",
+          "sum_share": "15"
+        },
+        {
+          "brandName": "CHESTERFIELD",
+          "sum_share": "18"
+        }
+      ]
+    },
+    {
+      "scenario": "S1",
+      "forecasts": [
+        {
+          "brandName": "PALL MALL",
+          "sum_share": "30"
+        },
+        {
+          "brandName": "PARISIENNE",
+          "sum_share": "40"
+        },
+        {
+          "brandName": "MARLBORO",
+          "sum_share": "25"
+        },
+        {
+          "brandName": "CHESTERFIELD",
+          "sum_share": "28"
+        }
+      ]
+    }
+  ]
+}

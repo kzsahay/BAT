@@ -6,6 +6,7 @@ var deutscheDemo = angular.module('BatDemo', ['ngResource','ngCookies',
   'Page3Ctrl',
   'Page4Ctrl',
   'Page5Ctrl',
+  'finalizeCtrl',
   'IndexCtrl'
 ]);
 
@@ -47,8 +48,10 @@ deutscheDemo.config(['$routeProvider', '$locationProvider',
                                   templateUrl: 'views/page5.html',
                                   controller: 'Page5Ctrl'
                                 }).
-                                
-                            
+                                when('/finalize', {
+                                    templateUrl: 'views/finalize.html',
+                                    controller: 'finalizeCtrl'
+                                  }).
                            
                             otherwise({redirectTo: '/login'});
                         
@@ -81,7 +84,7 @@ deutscheDemo.controller('logincontroller', ['$scope','$http','$resource','$locat
         });	
 		 */    	
 		//To Bypass Login
-		if ($scope.username==="nextgen"&&$scope.password==="nextgen"){
+		if ($scope.username==="nextgen" && $scope.password==="nextgen"){
 			AuthenticationService.SetCredentials($scope.username, $scope.password);
 			userid=$scope.username;
 			$location.path('/page0');
