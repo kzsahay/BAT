@@ -501,7 +501,7 @@ exports.getfinalizeDetails = function(conn, viewData, req) {
 //run scenario button slide 6
 exports.getRunscenarioDetails = function(conn, viewData, req) {
 	var bodydata = req.body;
-	// console.log(JSON.stringify(bodydata.accountMsScenarios.marketPrices));
+	 console.log(JSON.stringify(bodydata.accountMsScenarios));
 	var type = 0;
 	try {
 		
@@ -557,6 +557,7 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 						}
 
 						accountMsScenarios1.fpsi.push(fpsi);
+						console.log(JSON.stringify(accountMsScenarios1));
 						var SDate = new Date(new Date(SDate).setDate(SDate.getDate()+7));
 					}
 				}
