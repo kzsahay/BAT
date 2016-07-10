@@ -13,6 +13,9 @@ var ibmdb = require('ibm_db');
 var util = require('./util.js');
 var vcapCredential = require('./vcapCredentialExtraction.js');
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false }));
 
 
 
