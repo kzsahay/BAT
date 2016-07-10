@@ -27,7 +27,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 					var arraynew = [];
 					var marketshareForecasts = {"scenario":"", "priceScenario": [], "mshareTrend": []};
 					var k = 0; m =0; n = 0; j=1;
-					marketshareForecasts.scenario = "Base"
+					marketshareForecasts.scenario = "B"
 
 					for (var i in priceS_data){
 						if(priceS_data[i].Account == "VALORA    "){
@@ -95,7 +95,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 					var arraynew = [];
 					var marketshareForecasts = {"scenario":"", "priceScenario": [], "mshareTrend": []};
 					var k = 0; m =0; n = 0; j=1;
-					marketshareForecasts.scenario = "Corporate Price"
+					marketshareForecasts.scenario = "C"
 					
 					for (var i in priceS_data){
 						if(priceS_data[i].Account == "VALORA    "){
