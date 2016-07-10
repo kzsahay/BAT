@@ -508,8 +508,8 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 		var tabledata = {"accountMsScenarios": []};	
 		for(var k in bodydata.accountMsScenarios.marketPrices){
 			
-				var accountMsScenarios = {"scenario": "", "fpsi": []};
-				accountMsScenarios.scenario = bodydata.accountMsScenarios.marketPrices[k].scenario;
+				var accountMsScenarios1 = {"scenario": "", "fpsi": []};
+				accountMsScenarios1.scenario = bodydata.accountMsScenarios.marketPrices[k].scenario;
 				
 				for(var i in bodydata.accountMsScenarios.marketPrices[k].priceScenario){
 					
@@ -556,12 +556,12 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 								 break;
 						}
 
-						accountMsScenarios.fpsi.push(fpsi);
+						accountMsScenarios1.fpsi.push(fpsi);
 						var SDate = new Date(new Date(SDate).setDate(SDate.getDate()+7));
 					}
 				}
 
-				tabledata.accountMsScenarios.push(accountMsScenarios);
+				tabledata.accountMsScenarios.push(accountMsScenarios1);
 		}
 
 //		for(var i in tabledata.accountMsScenarios){
