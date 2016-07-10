@@ -149,9 +149,40 @@ app.post('/finalize', function(req, res) {
 
 /*****************************************************************************************************************************************/
 
+//run scenario button slide 6
+app.post('/runscenario', function(req, res) {
+	var error_msg = "";
+	var conn = util.getDBConn();
+	try {
+		var viewData = {
+			Data : []
+		};
 
+		async.series([
+				function(callback) {
+					viewData = dao.getRunscenarioDetails(conn, viewData, req);
+					callback(null);
+				}, function(callback) {
+					util.closeDBConn(conn);
+					callback(null);
+				} ], function(err) {
+			if (!err) {
+				res.setHeader('Content-Type', 'application/json');
+				res.send(viewData);
+			} else {
+				console.log(JSON.stringify(err));
+			}
+		});
+	} catch (err) {
+		console.log("Error in runscenario :: " + err);
+		if (conn.connected)
+			util.closeDBConn(conn);
+		res.status(600);
+		res.send(error_msg);
+	}
+});
 
-
+/*****************************************************************************************************************************************/
 
 
 
