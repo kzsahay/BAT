@@ -207,7 +207,8 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	        xAxis: {
 	        	title: {
                     text: "Forecast for the next 3 months"
-                }
+                },
+                categories: []
 	        },
 	        yAxis: {
 	        	title: {
