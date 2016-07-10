@@ -70,29 +70,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		console.log("baseBody::  "+JSON.stringify($scope.basePriceBody));	
 		console.log("initial_scenario_json::  "+JSON.stringify(initial_scenario_json));		
 		
-		$('#scenario').highcharts({
-			title: {
-	            text: 'Overall Market Share Forecast',
-	            x: -20 //center
-	        },
-	        xAxis: {
-	        	title: {
-                    text: "Forecast for the next 3 months"
-                }
-	        },
-	        yAxis: {
-	        	title: {
-                    text: "Overall Market Share"
-                }
-	        },
-	        legend: {
-	            layout: 'vertical',
-	            align: 'right',
-	            verticalAlign: 'top',
-	            borderWidth: 0
-	        },
-	        series: initial_scenario_json				
-		}); 
+		$scope.populateLineChart(initial_scenario_json);
 	})
     .error(function(data) {
     	alert("Invalide userId or password");
@@ -108,10 +86,8 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	}
 	
 	$scope.run_scenario = function () {
-		console.log("accountName ++::  "+JSON.stringify($scope.baseHeader));
-		
-		$scope.mask_page = true;
-		
+		console.log("accountName ++::  "+JSON.stringify($scope.baseHeader));		
+		$scope.mask_page = true;	
 		
 		var changMarkObj = {
 				"accountName": $scope.baseHeader.account,
@@ -213,36 +189,39 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 					final_scenario_json.push(scenarioObj);
 				}				
 			}
-			console.log("final_scenario_json:==  "+JSON.stringify(final_scenario_json));
-			
-			$('#scenario').highcharts({
-				title: {
-		            text: 'Overall Market Share Forecast',
-		            x: -20 //center
-		        },
-		        xAxis: {
-		        	title: {
-	                    text: "Forecast for the next 3 months"
-	                }
-		        },
-		        yAxis: {
-		        	title: {
-	                    text: "Overall Market Share"
-	                }
-		        },
-		        legend: {
-		            layout: 'vertical',
-		            align: 'right',
-		            verticalAlign: 'top',
-		            borderWidth: 0
-		        },
-		        series: final_scenario_json				
-			}); 
+			console.log("final_scenario_json:==  "+JSON.stringify(final_scenario_json));			
+			$scope.populateLineChart(final_scenario_json);
 		})
 	    .error(function(data) {
 	    	alert("Invalide userId or password");
 	    	console.log('Error '+data);
 	    });
+	};
+	
+	$scope.populateLineChart = function (json_scenario) {
+		$('#scenario').highcharts({
+			title: {
+	            text: 'Overall Market Share Forecast',
+	            x: -20 //center
+	        },
+	        xAxis: {
+	        	title: {
+                    text: "Forecast for the next 3 months"
+                }
+	        },
+	        yAxis: {
+	        	title: {
+                    text: "Overall Market Share"
+                }
+	        },
+	        legend: {
+	            layout: 'vertical',
+	            align: 'right',
+	            verticalAlign: 'top',
+	            borderWidth: 0
+	        },
+	        series: json_scenario				
+		});
 	};
 	
 	$scope.gotoFinalize = function () {
