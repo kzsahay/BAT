@@ -26,10 +26,17 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 				"account": data.accountName,
 				"header" : []
 		};
+		var initial_scenario_json = []; 
 		
-		for (var i = 0; i < tabelJson.length; i++) {			
+		for (var i = 0; i < tabelJson.length; i++) {
+			var scenarioObj = {
+					name: "",
+					data: []
+			};
+			var mshareScenario = tabelJson[i].mshareTrend;
 			if(tabelJson[i].scenario == "B"){
 				$scope.baseHeader.header.push("Base Case");
+				scenarioObj.name = "Base Case";
 				var priceScenario = tabelJson[i].priceScenario;
 				for (var int = 0; int < priceScenario.length; int++) {
 					var brandObj={};
@@ -39,6 +46,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 				}
 			}else if(tabelJson[i].scenario == "C"){
 				$scope.baseHeader.header.push("Corporate");
+				scenarioObj.name = "Corporate";
 				var priceScenario = tabelJson[i].priceScenario;
 				for (var int2 = 0; int2 < $scope.basePriceBody.length; int2++) {
 					for (var int3 = 0; int3 < priceScenario.length; int3++) {
@@ -50,9 +58,41 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			}else {
 				$scope.baseHeader.header.push(tabelJson[i].scenario);
 			}
+			for (var j = 0; j < mshareScenario.length; j++) {
+				var wkNum = "Wk" + mshareScenario[j].weekNum;
+				var marsVal = mshareScenario[j].mshare * 1;
+				scenarioObj.data.push([wkNum, marsVal])
+			}
+			console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
+			initial_scenario_json.push(scenarioObj);
 		}
 		console.log("baseHeader::  "+JSON.stringify($scope.baseHeader));
-		console.log("baseBody::  "+JSON.stringify($scope.basePriceBody));					
+		console.log("baseBody::  "+JSON.stringify($scope.basePriceBody));	
+		console.log("initial_scenario_json::  "+JSON.stringify(initial_scenario_json));		
+		
+		$('#scenario').highcharts({
+			title: {
+	            text: 'Overall Market Share Forecast',
+	            x: -20 //center
+	        },
+	        xAxis: {
+	        	title: {
+                    text: "Forecast for the next 3 months"
+                }
+	        },
+	        yAxis: {
+	        	title: {
+                    text: "Overall Market Share"
+                }
+	        },
+	        legend: {
+	            layout: 'vertical',
+	            align: 'right',
+	            verticalAlign: 'top',
+	            borderWidth: 0
+	        },
+	        series: initial_scenario_json				
+		}); 
 	})
     .error(function(data) {
     	alert("Invalide userId or password");
@@ -69,7 +109,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	
 	$scope.run_scenario = function () {
 		console.log("accountName ++::  "+JSON.stringify($scope.baseHeader));
-		$scope.radio_btn = true;
+		
+		$scope.mask_page = true;
+		
 		
 		var changMarkObj = {
 				"accountName": $scope.baseHeader.account,
@@ -77,7 +119,14 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		};
 		var fastClass = $(".fastClass");
 		var fastContents = [];
+		var fstCount = 0;
 		for (i = 0; i < fastClass.length; i++) {
+			if ($("#fst_" + i).val() != null && $("#fst_" + i).val() != ""){
+				fstCount++;
+			}
+			//alert("fstCount   "+fstCount);
+			//alert("Please give all the brand data");
+			
 			if(!$scope.validNumber($("#fst_" + i).val())){return;}
 			var fastBrand = {
 					"brandName": $("#fst_" + i).attr("field"),
@@ -125,69 +174,19 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		changMarkObj.marketPrices.push(thrdPrice);		
 		console.log("changMarkObj::  "+JSON.stringify(changMarkObj));
 		
-		
-		
-		$scope.scenarioLineChart = $(function () {
-			var scenario_json = []; 
-			$.getJSON('JSON/finalScenario.json', function(data) {			
-				console.log("marketshareForecasts:==  "+JSON.stringify(data.marketshareForecasts));
-				
-				for (var i = 0; i < data.marketshareForecasts.length; i++) {
-					var mshareScenario = data.marketshareForecasts[i].mshareTrend;
-					if (mshareScenario.length > 0){
-						var scenarioObj = {
-								name: "",
-								data: []
-						};
-						if(data.marketshareForecasts[i].scenario == "B"){
-							scenarioObj.name = "Base Case";
-						}else if(data.marketshareForecasts[i].scenario == "C"){
-							scenarioObj.name = "Corporate";
-						}else {
-							scenarioObj.name = data.marketshareForecasts[i].scenario;
-						}
-						
-						for (var j = 0; j < mshareScenario.length; j++) {
-							var wkNum = "Wk" + mshareScenario[j].weekNum;
-							var marsVal = mshareScenario[j].mshare * 1;
-							scenarioObj.data.push([wkNum, marsVal]);
-						}
-						//console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
-						scenario_json.push(scenarioObj);
-					}				
-				}
-				console.log("scenario_json:==  "+JSON.stringify(scenario_json));
-				
-				$('#scenario').highcharts({
-					title: {
-			            text: 'Overall Market Share Forecast',
-			            x: -20 //center
-			        },
-			        xAxis: {
-			        	title: {
-		                    text: "Forecast for the next 3 months"
-		                }
-			        },
-			        yAxis: {
-			        	title: {
-		                    text: "Overall Market Share"
-		                }
-			        },
-			        legend: {
-			            layout: 'vertical',
-			            align: 'right',
-			            verticalAlign: 'top',
-			            borderWidth: 0
-			        },
-			        series: scenario_json				
-				}); 			
-			});
-		});
-	};
-	
-	$scope.scenarioLineChart = $(function () {
-		var scenario_json = []; 
-		$.getJSON('JSON/initialScenario.json', function(data) {			
+		$http({
+			method: "GET",
+			url: "JSON/finalScenario.json",
+			headers: {
+	            'Access-Control-Allow-Origin': '*',
+	            'Access-Control-Request-Method': 'GET',
+	            'Content-Type': "application/json",
+	            'Access-Control-Allow-Headers': "Content-Type"
+	        }
+		}).success(function(data) {	
+			$scope.radio_btn = true;
+			$scope.mask_page = false;
+			var final_scenario_json = []; 			
 			console.log("marketshareForecasts:==  "+JSON.stringify(data.marketshareForecasts));
 			
 			for (var i = 0; i < data.marketshareForecasts.length; i++) {
@@ -208,13 +207,13 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 					for (var j = 0; j < mshareScenario.length; j++) {
 						var wkNum = "Wk" + mshareScenario[j].weekNum;
 						var marsVal = mshareScenario[j].mshare * 1;
-						scenarioObj.data.push([wkNum, marsVal])
+						scenarioObj.data.push([wkNum, marsVal]);
 					}
-					console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
-					scenario_json.push(scenarioObj);
+					//console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
+					final_scenario_json.push(scenarioObj);
 				}				
 			}
-			console.log("scenario_json:==  "+JSON.stringify(scenario_json));
+			console.log("final_scenario_json:==  "+JSON.stringify(final_scenario_json));
 			
 			$('#scenario').highcharts({
 				title: {
@@ -237,10 +236,14 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		            verticalAlign: 'top',
 		            borderWidth: 0
 		        },
-		        series: scenario_json				
-			}); 			
-		});
-	});	
+		        series: final_scenario_json				
+			}); 
+		})
+	    .error(function(data) {
+	    	alert("Invalide userId or password");
+	    	console.log('Error '+data);
+	    });
+	};
 	
 	$scope.gotoFinalize = function () {
 		var radioVal = $scope.radioSelect;
