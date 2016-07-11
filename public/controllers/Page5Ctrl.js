@@ -33,10 +33,10 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             name: 'Brands',
             colorByPoint: true,
             data: [{
-                name: 'Microsoft Internet Explorer',
+                name: 'BAT',
                 y: 40
             }, {
-                name: 'Chrome',
+                name: ' ',
                 y: 60,
                 sliced: true,
                 selected: true
@@ -72,7 +72,7 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             name: 'Brands',
             colorByPoint: true,
             data: [{
-                name: 'Microsoft Internet Explorer',
+                name: 'PMI',
                 y: 30
             }, {
                 name: 'Chrome',
@@ -111,10 +111,10 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             name: 'Brands',
             colorByPoint: true,
             data: [{
-                name: 'Microsoft Internet Explorer',
+                name: 'JTI',
                 y: 10
             }, {
-                name: 'Chrome',
+                name: '',
                 y: 90,
                 sliced: true,
                 selected: true
@@ -150,10 +150,10 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             name: 'Brands',
             colorByPoint: true,
             data: [{
-                name: 'Microsoft Internet Explorer',
+                name: 'Others',
                 y: 20
             }, {
-                name: 'Chrome',
+                name: '',
                 y: 80,
                 sliced: true,
                 selected: true
