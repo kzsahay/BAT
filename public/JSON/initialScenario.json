@@ -1,173 +1,181 @@
 {
-  "accountName": "Velora",
-  "marketshareForecasts": [
-    {
-      "scenario": "B",
-      "priceScenario": [
-        {
-          "brandName": "PALL MALL",
-          "brandPrice": "5.4"
-        },
-        {
-          "brandName": "PARISIENNE",
-          "brandPrice": "5.1"
-        },
-        {
-          "brandName": "MARLBORO",
-          "brandPrice": "4.4"
-        },
-        {
-          "brandName": "CHESTERFIELD",
-          "brandPrice": "3.4"
-        }
-      ],
-      "mshareTrend": [
-        {
-          "weekNum": "1",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "2",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "3",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "4",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "5",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "6",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "7",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "8",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "9",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "10",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "11",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "12",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "13",
-          "mshare": "12"
-        }
-      ]
-    },
-    {
-      "scenario": "C",
-      "priceScenario": [
-        {
-          "brandName": "PALL MALL",
-          "brandPrice": "5.9"
-        },
-        {
-          "brandName": "PARISIENNE",
-          "brandPrice": "5.2"
-        },
-        {
-          "brandName": "MARLBORO",
-          "brandPrice": "4.3"
-        },
-        {
-          "brandName": "CHESTERFIELD",
-          "brandPrice": "3.5"
-        }
-      ],
-      "mshareTrend": [
-        {
-          "weekNum": "1",
-          "mshare": "11"
-        },
-        {
-          "weekNum": "2",
-          "mshare": "10"
-        },
-        {
-          "weekNum": "3",
-          "mshare": "9"
-        },
-        {
-          "weekNum": "4",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "5",
-          "mshare": "6"
-        },
-        {
-          "weekNum": "6",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "7",
-          "mshare": "5"
-        },
-        {
-          "weekNum": "8",
-          "mshare": "12"
-        },
-        {
-          "weekNum": "9",
-          "mshare": "3"
-        },
-        {
-          "weekNum": "10",
-          "mshare": "5"
-        },
-        {
-          "weekNum": "11",
-          "mshare": "5"
-        },
-        {
-          "weekNum": "12",
-          "mshare": "5"
-        },
-        {
-          "weekNum": "13",
-          "mshare": "5"
-        }
-      ]
-    },
-    {
-      "scenario": "S1",
-      "mshareTrend": [
-        
-      ]
-    },
-    {
-      "scenario": "S2",
-      "mshareTrend": [
-        
-      ]
-    },
-    {
-      "scenario": "S3",
-      "mshareTrend": [
-        
-      ]
-    }
-  ]
+  "Data": {
+    "accountName": "VALORA",
+    "marketshareForecasts": [
+      {
+        "scenario": "B",
+        "priceScenario": [
+          {
+            "brandName": "WINSTON",
+            "brandPrice": 29.932000000000002
+          },
+          {
+            "brandName": "CHESTERFIELD",
+            "brandPrice": 31.217999999999996
+          },
+          {
+            "brandName": "L&M",
+            "brandPrice": 30.502000000000002
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": 30.830000000000005
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": 16.3
+          },
+          {
+            "brandName": "PALL MALL",
+            "brandPrice": 28.94
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": 30.776
+          }
+        ],
+        "mshareTrend": [
+          {
+            "weekNum": 1,
+            "mshare": 100.00000000000001
+          },
+          {
+            "weekNum": 2,
+            "mshare": 100.00000000000001
+          },
+          {
+            "weekNum": 3,
+            "mshare": 100.00000000000001
+          },
+          {
+            "weekNum": 4,
+            "mshare": 100
+          },
+          {
+            "weekNum": 5,
+            "mshare": 100
+          },
+          {
+            "weekNum": 6,
+            "mshare": 100
+          },
+          {
+            "weekNum": 7,
+            "mshare": 100
+          },
+          {
+            "weekNum": 8,
+            "mshare": 100.00000000000003
+          },
+          {
+            "weekNum": 9,
+            "mshare": 99.99999999999996
+          },
+          {
+            "weekNum": 10,
+            "mshare": 100.00000000000001
+          },
+          {
+            "weekNum": 11,
+            "mshare": 100
+          },
+          {
+            "weekNum": 12,
+            "mshare": 100.00000000000003
+          },
+          {
+            "weekNum": 13,
+            "mshare": 100
+          }
+        ]
+      },
+      {
+        "scenario": "C",
+        "priceScenario": [
+          {
+            "brandName": "PALL MALL",
+            "brandPrice": 28.94
+          },
+          {
+            "brandName": "CHESTERFIELD",
+            "brandPrice": 31.217999999999996
+          },
+          {
+            "brandName": "L&M",
+            "brandPrice": 30.502000000000002
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": 30.830000000000005
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": 16.3
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": 30.776
+          },
+          {
+            "brandName": "WINSTON",
+            "brandPrice": 29.932000000000002
+          }
+        ],
+        "mshareTrend": [
+          {
+            "weekNum": 1,
+            "mshare": 100.00000000000001
+          },
+          {
+            "weekNum": 2,
+            "mshare": 100
+          },
+          {
+            "weekNum": 3,
+            "mshare": 99.99999999999999
+          },
+          {
+            "weekNum": 4,
+            "mshare": 99.99999999999999
+          },
+          {
+            "weekNum": 5,
+            "mshare": 100.00000000000001
+          },
+          {
+            "weekNum": 6,
+            "mshare": 100
+          },
+          {
+            "weekNum": 7,
+            "mshare": 100.00000000000001
+          },
+          {
+            "weekNum": 8,
+            "mshare": 99.99999999999999
+          },
+          {
+            "weekNum": 9,
+            "mshare": 99.99999999999999
+          },
+          {
+            "weekNum": 10,
+            "mshare": 99.99999999999999
+          },
+          {
+            "weekNum": 11,
+            "mshare": 100.00000000000001
+          },
+          {
+            "weekNum": 12,
+            "mshare": 100.00000000000001
+          },
+          {
+            "weekNum": 13,
+            "mshare": 100.00000000000004
+          }
+        ]
+      }
+    ]
+  }
 }
