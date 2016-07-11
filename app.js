@@ -156,9 +156,6 @@ app.post('/finalize', function(req, res) {
 
 //run scenario button slide 6
 app.post('/runscenario', function(req, res) {
-	var bodydata = req.body;
-	console.log("Req Header:: "+req.headers['content-type']);
-	console.log(JSON.stringify(bodydata));
 	var error_msg = "";
 	var conn = util.getDBConn();
 	try {
