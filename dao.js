@@ -72,7 +72,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 							if(priceS_data[i].Account == "VALORA    "){
 								if(priceS_data[i].TYPE == 1){
 									if(priceS_data[i].WeekEndingDate == weekdata[p]){
-										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
+//										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
 										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
 									}
 							
@@ -140,7 +140,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 							if(priceS_data[i].Account == "VALORA    "){
 								if(priceS_data[i].TYPE == 2){
 									if(priceS_data[i].WeekEndingDate == weekdata[p]){
-										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
+//										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
 										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
 									}
 							
@@ -207,7 +207,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 							if(priceS_data[i].Account == "VALORA    "){
 								if(priceS_data[i].TYPE == 3){
 									if(priceS_data[i].WeekEndingDate == weekdata[p]){
-										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
+//										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
 										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
 									}
 							
@@ -274,7 +274,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 							if(priceS_data[i].Account == "VALORA    "){
 								if(priceS_data[i].TYPE == 4){
 									if(priceS_data[i].WeekEndingDate == weekdata[p]){
-										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
+//										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
 										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
 									}
 							
@@ -341,7 +341,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 							if(priceS_data[i].Account == "VALORA    "){
 								if(priceS_data[i].TYPE == 5){
 									if(priceS_data[i].WeekEndingDate == weekdata[p]){
-										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
+//										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
 										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
 									}
 							
