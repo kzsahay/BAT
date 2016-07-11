@@ -1,33 +1,24 @@
 <!--div ng-app="LoginCtrl" ng-controller="LoginCtrl">
 <div ng-view></div-->
 <!--div ng-show="error" class="alert alert-danger">{{error}}</div-->
-<div style="max-width: 500px;
-	width: 100%;
-	margin: 0 auto;
-	position: absolute;margin-left: 25%;
-    margin-top: 5%;">
-<form name="form" ng-submit="login()" role="form">
-    <div >
-          
-          	
-              <input style="background-color: white; color: black;    height: 50px;
-    width: 280px;border-radius: 30px;
-    border-style: groove;    padding-left: 20px;" type="text"   id="userId" placeholder="Username" ng-model="username">
-         
-          <br/>
-          
-          	 <br/>
-              <input style="background-color: white; color: black;    height: 50px;
-    width: 280px;border-radius: 30px;
-    border-style: groove;    padding-left: 20px;" type="password"  id="pwd"  placeholder="Password" ng-model="password">
-        <br/>
-		  <br/>
-		      <button id="loginBtn" type="submit" style="border-radius: 30px;    height: 50px;
-    width: 300px;    background-color: cornflowerblue;
-    color: white;
-    font-size: 20px;
-    border-style: none;" class="button button-block button-balanced" ng-disabled="" ng-click="login()">Authenticate</button>
- 
-      </div>
-</form>
+<div
+	style="max-width: 350px; width: 100%; margin: 0 auto; position: absolute; margin-left: 25%; margin-top: 10%;">
+	<form name="form" ng-submit="login()" role="form">
+		<div style="text-align: center;">
+		<img alt="" src="images/bat.png">
+		<br/>
+			<input
+				style="background-color: white; color: black; height: 50px; width: 300px; border-radius: 30px; border-style: groove; padding-left: 20px;"
+				type="text" id="userId" placeholder="Username" ng-model="username">
+
+			<br /> <br /> <input
+				style="background-color: white; color: black; height: 50px; width: 300px; border-radius: 30px; border-style: groove; padding-left: 20px;"
+				type="password" id="pwd" placeholder="Password" ng-model="password">
+			<br /> <br />
+			<button id="loginBtn" type="submit"
+				style="border-radius: 30px; height: 50px; width: 300px; background-color: cornflowerblue; color: white; font-size: 20px; border-style: none;"
+				class="button button-block button-balanced" ng-disabled=""
+				ng-click="login()">Authenticate</button>
+		</div>
+	</form>
 </div>

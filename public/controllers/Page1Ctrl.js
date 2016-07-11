@@ -17,6 +17,7 @@ $scope.linechart=$(function () {
                     chart: {
                         type: "line"
                     },
+                    color: '#FFA500',
                     title: {
                         text: "BAT market "
                     },
@@ -34,6 +35,7 @@ $scope.linechart=$(function () {
                     },
                     series: [{
 	                    name: 'Date',
+	                    color:'#FFA500',
                         data: processed_json
                     }]
                 }); 

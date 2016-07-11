@@ -22,7 +22,7 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             pie: {
                 allowPointSelect: true,
                 cursor: 'pointer',
-                 innerSize: '50%',
+                 innerSize: '70%',
                 dataLabels: {
                     enabled: false
                 },
@@ -34,11 +34,13 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             colorByPoint: true,
             data: [{
                 name: 'BAT',
-                y: 40
+                y: 40,
+				color:'#483D8B'
             }, {
                 name: ' ',
                 y: 60,
                 sliced: true,
+				color:'#FFA500',
                 selected: true
             }]
         }]
@@ -61,7 +63,7 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             pie: {
                 allowPointSelect: true,
                 cursor: 'pointer',
-                 innerSize: '50%',
+                 innerSize: '70%',
                 dataLabels: {
                     enabled: false
                 },
@@ -73,9 +75,11 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             colorByPoint: true,
             data: [{
                 name: 'PMI',
+				color:'#483D8B',
                 y: 30
             }, {
                 name: 'Chrome',
+				color:'#FFA500',
                 y: 70,
                 sliced: true,
                 selected: true
@@ -100,7 +104,7 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             pie: {
                 allowPointSelect: true,
                 cursor: 'pointer',
-                 innerSize: '50%',
+                 innerSize: '70%',
                 dataLabels: {
                     enabled: false
                 },
@@ -112,11 +116,13 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             colorByPoint: true,
             data: [{
                 name: 'JTI',
+				color:'#483D8B',
                 y: 10
             }, {
                 name: '',
                 y: 90,
                 sliced: true,
+				color:'#FFA500',
                 selected: true
             }]
         }]
@@ -139,7 +145,7 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             pie: {
                 allowPointSelect: true,
                 cursor: 'pointer',
-                 innerSize: '50%',
+                 innerSize: '70%',
                 dataLabels: {
                     enabled: false
                 },
@@ -151,11 +157,13 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             colorByPoint: true,
             data: [{
                 name: 'Others',
+				color:'#483D8B',
                 y: 20
             }, {
                 name: '',
                 y: 80,
                 sliced: true,
+				color:'#FFA500',
                 selected: true
             }]
         }]
