@@ -97,6 +97,9 @@ deutscheDemo.controller('logincontroller', ['$scope','$http','$resource','$locat
 	AuthenticationService.ClearCredentials();
 }]);
 
+deutscheDemo.service('finalservice', function() {       
+    this.finalizeDt = "";
+});
 
 
 
