@@ -43,7 +43,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 				for (var int = 0; int < priceScenario.length; int++) {
 					var brandObj={};
 					brandObj["brandName"]= priceScenario[int].brandName;
-					brandObj["brandPrice"]= priceScenario[int].brandPrice;
+					brandObj["brandPrice"]= priceScenario[int].brandPrice.toFixed(2);
 					$scope.basePriceBody.push(brandObj);
 				}
 				radioObj.name = "Base Case";
@@ -55,7 +55,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 				for (var int2 = 0; int2 < $scope.basePriceBody.length; int2++) {
 					for (var int3 = 0; int3 < priceScenario.length; int3++) {
 						if($scope.basePriceBody[int2].brandName == priceScenario[int3].brandName) {
-							$scope.basePriceBody[int2]["corporatePrice"]=priceScenario[int3].brandPrice;
+							$scope.basePriceBody[int2]["corporatePrice"]=priceScenario[int3].brandPrice.toFixed(2);
 						}
 					}
 				}
@@ -98,8 +98,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	}
 	
 	$scope.run_scenario = function () {
-		console.log("accountName ++::  "+JSON.stringify($scope.baseHeader));		
-		$scope.mask_page = true;	
+		console.log("accountName ++::  "+JSON.stringify($scope.baseHeader));
 		
 		var changMarkObj = {
 				"accountName": $scope.baseHeader.account,
@@ -112,9 +111,6 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			if ($("#fst_" + i).val() != null && $("#fst_" + i).val() != ""){
 				fstCount++;
 			}
-			//alert("fstCount   "+fstCount);
-			//alert("Please give all the brand data");
-			
 			if(!$scope.validNumber($("#fst_" + i).val())){return;}
 			var fastBrand = {
 					"brandName": $("#fst_" + i).attr("field"),
@@ -122,6 +118,11 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			}
 			fastContents.push(fastBrand);
 		}
+		if(fstCount >0 && fstCount < fastClass.length){
+			alert("Please give all the brand data for Series 3");
+			return;
+		}
+		
 		var fastPrice = {
 				"scenario": "S1",
 				"priceScenario": fastContents
@@ -131,13 +132,21 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		
 		var sendClass = $(".sendClass");
 		var sendContents = [];
+		var sndCount = 0;
 		for (i = 0; i < sendClass.length; i++) {
+			if ($("#snd_" + i).val() != null && $("#snd_" + i).val() != ""){
+				sndCount++;
+			}
 			if(!$scope.validNumber($("#snd_" + i).val())){return;}
 			var sndBrand = {
 					"brandName": $("#snd_" + i).attr("field"),
 					"brandPrice": $("#snd_" + i).val()
 			}
 			sendContents.push(sndBrand);
+		}
+		if(sndCount >0 && sndCount < fastClass.length){
+			alert("Please give all the brand data for Series 4");
+			return;
 		}
 		var sendPrice = {
 				"scenario": "S2",
@@ -147,13 +156,21 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		
 		var thrdClass = $(".thrdClass");
 		var thrdContents = [];
+		var trdCount = 0;
 		for (i = 0; i < thrdClass.length; i++) {
+			if ($("#trd_" + i).val() != null && $("#trd_" + i).val() != ""){
+				trdCount++;
+			}
 			if(!$scope.validNumber($("#trd_" + i).val())){return;}
 			var trdBrand = {
 					"brandName": $("#trd_" + i).attr("field"),
 					"brandPrice": $("#trd_" + i).val()
 			}
 			thrdContents.push(trdBrand);
+		}
+		if(trdCount >0 && trdCount < fastClass.length){
+			alert("Please give all the brand data for Series 5");
+			return;
 		}
 		var thrdPrice = {
 				"scenario": "S3",
@@ -162,6 +179,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		changMarkObj.marketPrices.push(thrdPrice);		
 		console.log("changMarkObj::  "+JSON.stringify(changMarkObj));
 		
+		$scope.mask_page = true;
 		$http({
 			method: "GET",
 			url: "JSON/finalScenario.json"
@@ -267,6 +285,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			url: "https://batobacco.mybluemix.net/finalize",
 			data: inputFnJSON
 		}).success(function(data) {
+			
 			
 			$scope.finalservice.finalizeDt = data;
 			console.log("finalize JSON::  "+JSON.stringify($scope.finalservice.finalizeDt));
