@@ -501,19 +501,20 @@ exports.getfinalizeDetails = function(conn, viewData, req) {
 //run scenario button slide 6
 exports.getRunscenarioDetails = function(conn, viewData, req) {
 	var bodydata = req.body;
-//	 console.log(JSON.stringify(bodydata.accountMsScenarios));
+	// console.log(JSON.stringify(bodydata.accountMsScenarios.marketPrices));
 	var type = 0;
 	try {
 		
 		var tabledata = {"accountMsScenarios": []};	
 		for(var k in bodydata.accountMsScenarios.marketPrices){
 			
-				var accountMsScenarios1 = {"scenario": "", "fpsi": []};
-				accountMsScenarios1.scenario = bodydata.accountMsScenarios.marketPrices[k].scenario;
+				var accountMsScenarios = {"scenario": "", "fpsi": []};
+				accountMsScenarios.scenario = bodydata.accountMsScenarios.marketPrices[k].scenario;
 				
 				for(var i in bodydata.accountMsScenarios.marketPrices[k].priceScenario){
 					
 					var SDate = new Date("2015-12-28");
+					// var SDate = new Date("December, 28, 2015");
 					
 					for(var j=0; j<13; j++){
 						var fpsi = {"brandSegment":"", "PriceMean": "","WeekendingDate": "", "Account": "", "Company": "", "LastWeekShare": "", "scenarioType": ""}
@@ -522,7 +523,7 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 						fpsi.PriceMean = bodydata.accountMsScenarios.marketPrices[k].priceScenario[i].brandPrice;
 						fpsi.Account = "VALORA";
 						fpsi.scenarioType = bodydata.accountMsScenarios.marketPrices[k].scenario;
-						fpsi.WeekendingDate = SDate;
+						fpsi.WeekendingDate = SDate.toISOString().split("Z")[0].split("T").join(" ");
 						
 						switch(bodydata.accountMsScenarios.marketPrices[k].priceScenario[i].brandName){
 
@@ -530,8 +531,8 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 								 fpsi.Company = "PH. MORRIS";
 								 fpsi.LastWeekShare = 8.483;
 								 break;
-							case "L&M":
-								fpsi.Company = "PH. MORRIS";
+							case "L & M":
+								 fpsi.Company = "PH. MORRIS";
 								 fpsi.LastWeekShare = 3.168;
 								 break;
 							case "MARLBORO":
@@ -556,86 +557,200 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 								 break;
 						}
 
-						accountMsScenarios1.fpsi.push(fpsi);
+						accountMsScenarios.fpsi.push(fpsi);
+						// var SDate = new Date(new Date(SDate).setDate(SDate.getDate()+7));
 						var SDate = new Date(new Date(SDate).setDate(SDate.getDate()+7));
+						// console.log(SDate)
 					}
 				}
 
-				tabledata.accountMsScenarios.push(accountMsScenarios1);
+				tabledata.accountMsScenarios.push(accountMsScenarios);
 		}
+		
+		async.series([
+		        //Delete and insert in FPSI2
+				function(callback) {
+					for(var i in tabledata.accountMsScenarios){
+						if(tabledata.accountMsScenarios[i].scenario == 'S1'){
 
-//		for(var i in tabledata.accountMsScenarios){
-//			if(tabledata.accountMsScenarios[i].scenario == 'S1'){
-//
-//				var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = 3';
-//				conn.querySync(stmt1);
-//				var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = 3';
-//				conn.querySync(stmt2);
-//
-//				for(var j in tabledata.accountMsScenarios[i].fpsi){
-//					var stmt3 = 'INSERT into "FPSI2" ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values ("p1","p2","p3","p4","p5","p6","p7")';
-//						stmt3 = stmt3.replace("p1", tabledata.accountMsScenarios[i].fpsi[j].brandSegment);
-//						stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
-//						stmt3 = stmt3.replace("p3", tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate);
-//						stmt3 = stmt3.replace("p4", tabledata.accountMsScenarios[i].fpsi[j].Account);
-//						stmt3 = stmt3.replace("p5", tabledata.accountMsScenarios[i].fpsi[j].Company);
-//						stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
-//						scenarioType
-//						stmt3 = stmt3.replace("p7", 3);
-//
-//						console.log("Insert query: "+stmt3);
-//						conn.querySync(stmt3);
-//				}
-//			}
-//
-//			else if(tabledata.accountMsScenarios[i].scenario == 'S2'){
-//
-//				var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = 4';
-//				conn.querySync(stmt1);
-//				var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = 4';
-//				conn.querySync(stmt2);
-//
-//				for(var j in tabledata.accountMsScenarios[i].fpsi){
-//					var stmt3 = 'INSERT into "FPSI2" (BrandSegment,Price_Mean,WeekEndingDate,Account,Company,LastWeeksShare,TYPE) values ("p1","p2","p3","p4","p5","p6","p7")';
-//						stmt3 = stmt3.replace("p1", tabledata.accountMsScenarios[i].fpsi[j].brandSegment);
-//						stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
-//						stmt3 = stmt3.replace("p3", tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate);
-//						stmt3 = stmt3.replace("p4", tabledata.accountMsScenarios[i].fpsi[j].Account);
-//						stmt3 = stmt3.replace("p5", tabledata.accountMsScenarios[i].fpsi[j].Company);
-//						stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
-//						scenarioType
-//						stmt3 = stmt3.replace("p7", 4);
-//
-//						console.log("Insert query: "+stmt3);
-//						conn.querySync(stmt3);
-//				}
-//			}
-//
-//			else if(tabledata.accountMsScenarios[i].scenario == 'S3'){
-//
-//				var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = 5';
-//				conn.querySync(stmt1);
-//				var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = 5';
-//				conn.querySync(stmt2);
-//
-//				for(var j in tabledata.accountMsScenarios[i].fpsi){
-//					var stmt3 = 'INSERT into "FPSI2" (BrandSegment,Price_Mean,WeekEndingDate,Account,Company,LastWeeksShare,TYPE) values ("p1","p2","p3","p4","p5","p6","p7")';
-//						stmt3 = stmt3.replace("p1", tabledata.accountMsScenarios[i].fpsi[j].brandSegment);
-//						stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
-//						stmt3 = stmt3.replace("p3", tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate);
-//						stmt3 = stmt3.replace("p4", tabledata.accountMsScenarios[i].fpsi[j].Account);
-//						stmt3 = stmt3.replace("p5", tabledata.accountMsScenarios[i].fpsi[j].Company);
-//						stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
-//						scenarioType
-//						stmt3 = stmt3.replace("p7", 5);
-//
-//						console.log("Insert query: "+stmt3);
-//						conn.querySync(stmt3);
-//				}
-//			}
-//		}
+							var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = 3';
+							console.log("Delete query: "+stmt1);
+							conn.querySync(stmt1);
+							var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = 3';
+							console.log("Delete query: "+stmt2);
+							conn.querySync(stmt2);
+
+							for(var j in tabledata.accountMsScenarios[i].fpsi){
+								if(typeof(tabledata.accountMsScenarios[i].fpsi[j].PriceMean) != undefined){
+									var stmt3 = 'INSERT into FPSI2 ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values (p1,p2,p3,p4,p5,p6,p7)';
+										stmt3 = stmt3.replace("p1", "'" + tabledata.accountMsScenarios[i].fpsi[j].brandSegment + "'");
+										stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
+										stmt3 = stmt3.replace("p3", "'" + tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate + "'");
+										stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
+										stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
+										stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
+										stmt3 = stmt3.replace("p7", 3);   
+
+										console.log("Insert query: "+stmt3);
+										conn.querySync(stmt3);
+								}
+							}
+						}
+
+						else if(tabledata.accountMsScenarios[i].scenario == 'S2'){
+
+							var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = 4';
+							conn.querySync(stmt1);
+							var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = 4';
+							conn.querySync(stmt2);
+
+							for(var j in tabledata.accountMsScenarios[i].fpsi){
+								if(typeof(tabledata.accountMsScenarios[i].fpsi[j].PriceMean) != undefined){
+									var stmt3 = 'INSERT into FPSI2 ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values (p1,p2,p3,p4,p5,p6,p7)';
+										stmt3 = stmt3.replace("p1", "'" + tabledata.accountMsScenarios[i].fpsi[j].brandSegment + "'");
+										stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
+										stmt3 = stmt3.replace("p3", "'" + tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate + "'");
+										stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
+										stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
+										stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
+										stmt3 = stmt3.replace("p7", 4);
+
+										console.log("Insert query: "+stmt3);
+										conn.querySync(stmt3);
+								}
+							}
+						}
+
+						else if(tabledata.accountMsScenarios[i].scenario == 'S3'){
+
+							var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = 5';
+							conn.querySync(stmt1);
+							var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = 5';
+							conn.querySync(stmt2);
+
+							for(var j in tabledata.accountMsScenarios[i].fpsi){
+								if(typeof(tabledata.accountMsScenarios[i].fpsi[j].PriceMean) != undefined){
+									var stmt3 = 'INSERT into FPSI2 ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values (p1,p2,p3,p4,p5,p6,p7)';
+										stmt3 = stmt3.replace("p1", "'" + tabledata.accountMsScenarios[i].fpsi[j].brandSegment + "'");
+										stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
+										stmt3 = stmt3.replace("p3", "'" + tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate + "'");
+										stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
+										stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
+										stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
+										stmt3 = stmt3.replace("p7", 5);
+
+										console.log("Insert query: "+stmt3);
+										conn.querySync(stmt3);
+								}
+							}
+						}
+					}
+				callback(null, 1);
+				}, 
+
+				//Calling webservice model
+				function(callback) {
+					var data = {
+								"action": "RUN_STREAM",
+								"model": {
+									"id": "Test700",
+									"name": "Forecast500.str"
+								},
+								"dbDefinitions": {
+									"db": {
+										"type": "DashDB",
+										"host": "awh-yp-small02.services.dal.bluemix.net",
+										"port": 50000,
+										"db": "BLUDB",
+										"username": "dash111694",
+										"password": "rCQLbpEUsJ2y",
+										"options": ""
+									}
+								},
+
+								"setting": {
+									"inputs": [{
+										"node": "DASH111694.FDI2",
+										"odbc": {
+											"dbRef": "db",
+											"table": "FDI2"
+										}
+									}, {
+										"node": "DASH111694.FPSI",
+										"odbc": {
+											"dbRef": "db",
+											"table": "FPSI"
+										}
+									}],
+
+									"exports": [
+
+										{
+											"node": "PRICINGZ",
+											"odbc": {
+												"dbRef": "db",
+												"table": "PRICINGZ",
+												"insertMode": "Drop"
+											}
+										}
+									]
+								}
+							}
+
+					var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
+					request({
+						    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test700',
+						    qs: {accesskey: accesskeyparam},
+						    headers: {
+				                    'Content-Type': 'application/json'
+				            },
+						    // timeout: 100000,
+			  				body: data,
+			  				method: 'PUT',
+			  				json: true
+						    
+						}, function (error, response, body) {
+							if(!error)
+								console.log(JSON.stringify(body));
+							else
+								console.log(error);
+					});
+					callback(null, 2);	
+				},
+
+				//Check status of webservice
+				function(callback) {
+
+					var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
+					request({
+						    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test700',
+						    qs: {accesskey: accesskeyparam},
+						    timeout: 100000,
+			  				method: 'GET',
+			  				json: true
+						    
+						}, function (error, response, body) {
+							if(!error)
+								console.log(JSON.stringify(body));
+							else
+								console.log(error);
+					});
+					callback(null, 3);	
+
+				}], function(err) {
+					if (!err) {
+						console.log(tabledata);
+					} else {
+						console.log(JSON.stringify(err));
+					}
+
+				});
+
 		console.log(tabledata);
-		viewData.Data = tabledata;
+		var success = {
+			"Alert": "Run Scenario Succesfull"
+		}
+		viewData.Data = success;
 
 	} catch (err) {
 			console.log("Error in getRunscenarioDetails :: "
