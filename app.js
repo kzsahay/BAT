@@ -86,6 +86,10 @@ function GetDBCon() {
 //loading db tables slide 6
 app.get('/loadtable', function(req, res) {
 	console.log(req.headers['Access-Control-Allow-Headers'])
+	if(typeof(req.headers['Access-Control-Allow-Headers']) === 'undefined'){
+        req.headers['Access-Control-Allow-Headers'] = "Origin, X-Requested-With, Content-Type, Accept";
+    }
+	console.log(req.headers['Access-Control-Allow-Headers'])
 	var error_msg = "";
 	var conn = util.getDBConn();
 	try {
