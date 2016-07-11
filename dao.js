@@ -1,6 +1,7 @@
 
 var daoConst = require('./constants.js');
 var async = require('async');
+var request = require('request');
 
 
 //loading db tables slide 6

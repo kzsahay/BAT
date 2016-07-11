@@ -10,6 +10,7 @@ var express = require('express');
 var async = require('async');
 var bodyParser = require('body-parser');
 var ibmdb = require('ibm_db');
+var request = require('request');
 var util = require('./util.js');
 var vcapCredential = require('./vcapCredentialExtraction.js');
 var dao = require('./dao.js');
