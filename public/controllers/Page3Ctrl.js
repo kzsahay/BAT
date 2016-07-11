@@ -177,7 +177,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 				"priceScenario": thrdContents
 		};
 		changMarkObj.marketPrices.push(thrdPrice);		
-		console.log("changMarkObj::  "+JSON.stringify(changMarkObj));
+		
+		var runMrkObj = {"accountMsScenarios": changMarkObj};
+		console.log("runMrkObj::  "+JSON.stringify(runMrkObj));
 		
 		$scope.mask_page = true;
 		$http({
@@ -285,7 +287,6 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			url: "https://batobacco.mybluemix.net/finalize",
 			data: inputFnJSON
 		}).success(function(data) {
-			
 			
 			$scope.finalservice.finalizeDt = data;
 			console.log("finalize JSON::  "+JSON.stringify($scope.finalservice.finalizeDt));
