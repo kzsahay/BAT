@@ -8,10 +8,13 @@
 // for more info, see: http://expressjs.com
 var express = require('express');
 var async = require('async');
-
+var bodyParser = require('body-parser');
 var ibmdb = require('ibm_db');
 var util = require('./util.js');
 var vcapCredential = require('./vcapCredentialExtraction.js');
+var dao = require('./dao.js');
+
+
 
 
 // cfenv provides access to your Cloud Foundry environment
@@ -20,7 +23,11 @@ var cfenv = require('cfenv');
 
 // create a new express server
 var app = express();
-var dao = require('./dao.js');
+app.use(bodyParser.urlencoded({
+	extended : true
+}));
+
+app.use(bodyParser.json());
 
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
