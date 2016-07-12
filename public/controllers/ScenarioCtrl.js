@@ -231,7 +231,7 @@ ScenarioCtrl.controller('ScenarioCtrl', [ '$scope', '$location', '$http',
 								var marsVal = mshareScenario[j].mshare * 1;
 								scenarioObj.data.push([wkNum, marsVal]);
 							}
-							//console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
+							console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
 							final_scenario_json.push(scenarioObj);
 							radioElm.push(radioObj);
 						}
