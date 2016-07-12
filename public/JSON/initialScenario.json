@@ -1,79 +1,91 @@
 {
   "Data": {
-    "accountName": "Velora",
+    "accountName": "VALORA",
     "marketshareForecasts": [
       {
         "scenario": "B",
         "priceScenario": [
           {
-            "brandName": "PALL MALL",
-            "brandPrice": "5.4"
-          },
-          {
-            "brandName": "PARISIENNE",
-            "brandPrice": "5.1"
-          },
-          {
-            "brandName": "MARLBORO",
-            "brandPrice": "4.4"
+            "brandName": "WINSTON",
+            "brandPrice": "7.212"
           },
           {
             "brandName": "CHESTERFIELD",
-            "brandPrice": "3.4"
+            "brandPrice": "5.424"
+          },
+          {
+            "brandName": "L&M",
+            "brandPrice": "6.73"
+          },
+          {
+            "brandName": "PALL MALL",
+            "brandPrice": "6.726"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": "7.325"
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": "8.16"
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": "8.132"
           }
         ],
         "mshareTrend": [
           {
             "weekNum": "1",
-            "mshare": "12"
+            "mshare": "39.03"
           },
           {
             "weekNum": "2",
-            "mshare": "12"
+            "mshare": "38.92"
           },
           {
             "weekNum": "3",
-            "mshare": "12"
+            "mshare": "38.85"
           },
           {
             "weekNum": "4",
-            "mshare": "12"
+            "mshare": "38.74"
           },
           {
             "weekNum": "5",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "6",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "7",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "8",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "9",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "10",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "11",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "12",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "13",
-            "mshare": "12"
+            "mshare": "38.66"
           }
         ]
       },
@@ -81,74 +93,86 @@
         "scenario": "C",
         "priceScenario": [
           {
-            "brandName": "PALL MALL",
-            "brandPrice": "5.9"
-          },
-          {
-            "brandName": "PARISIENNE",
-            "brandPrice": "5.2"
-          },
-          {
-            "brandName": "MARLBORO",
-            "brandPrice": "4.3"
+            "brandName": "WINSTON",
+            "brandPrice": "7.384"
           },
           {
             "brandName": "CHESTERFIELD",
-            "brandPrice": "3.5"
+            "brandPrice": "7.453"
+          },
+          {
+            "brandName": "L&M",
+            "brandPrice": "6.753"
+          },
+          {
+            "brandName": "PALL MALL",
+            "brandPrice": "6.722"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": "7.119"
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": "7.861"
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": "7.658"
           }
         ],
         "mshareTrend": [
           {
             "weekNum": "1",
-            "mshare": "11"
+            "mshare": "39.03"
           },
           {
             "weekNum": "2",
-            "mshare": "10"
+            "mshare": "38.92"
           },
           {
             "weekNum": "3",
-            "mshare": "9"
+            "mshare": "38.66"
           },
           {
             "weekNum": "4",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "5",
-            "mshare": "6"
+            "mshare": "38.66"
           },
           {
             "weekNum": "6",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "7",
-            "mshare": "5"
+            "mshare": "38.66"
           },
           {
             "weekNum": "8",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "9",
-            "mshare": "3"
+            "mshare": "38.66"
           },
           {
             "weekNum": "10",
-            "mshare": "5"
+            "mshare": "38.66"
           },
           {
             "weekNum": "11",
-            "mshare": "5"
+            "mshare": "38.66"
           },
           {
             "weekNum": "12",
-            "mshare": "5"
+            "mshare": "38.66"
           },
           {
             "weekNum": "13",
-            "mshare": "5"
+            "mshare": "38.66"
           }
         ]
       }
