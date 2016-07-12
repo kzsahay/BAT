@@ -541,7 +541,6 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 		}
 		
 		async.series([
-				        //Delete and insert in FPSI2
 						function(callback) {
 							for(var i in tabledata.accountMsScenarios){
 								if(tabledata.accountMsScenarios[i].scenario == 'S1'){
@@ -570,112 +569,118 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 									}
 								}
 							}
-							callback(null, 1);
+						callback(null, 1);
 						},
 						//Calling webservice model
 						function(callback) {
 							setTimeout(function() {
-								var data = { 
-										     "action": "RUN_STREAM", 
-										     "model": { 
-										          "id": "Test500",
-											   "name": "Forecast500.str" 
-										     },
-										     "dbDefinitions":{
-										          "db":{        
-										                    "type":"DashDB",
-										                    "host":"awh-yp-small02.services.dal.bluemix.net",        
-										                    "port":50000,        
-										                    "db":"BLUDB", 
-										                    "username":"dash111694",  
-										                    "password":"rCQLbpEUsJ2y", 
-										                    "options":""      
-										               	}
-										     		},
+							var data = { 
+									     "action": "RUN_STREAM", 
+									     "model": { 
+									          "id": "Test500",
+										   "name": "Forecast500.str" 
+									     },
+									     "dbDefinitions":{
+									          "db":{        
+									                    "type":"DashDB",
+									                    "host":"awh-yp-small02.services.dal.bluemix.net",        
+									                    "port":50000,        
+									                    "db":"BLUDB", 
+									                    "username":"dash111694",  
+									                    "password":"rCQLbpEUsJ2y", 
+									                    "options":""      
+									               	}
+									     		},
 
-												"setting": {          
-										          "inputs": [
-										                    {
-										                        "node":"DASH111694.FDI2",
-										                        "odbc": {
-										                                   "dbRef":"db",
-										                                   "table":"FDI2"
-										                        }         
-										                    },
-										                     {
-										                        "node":"DASH111694.FPSI2",
-										                        "odbc": {
-										                                   "dbRef":"db",
-										                                   "table":"FPSI2"
-										                        }         
-										                    }
-										         	     ],	
+											"setting": {          
+									          "inputs": [
+									                    {
+									                        "node":"DASH111694.FDI2",
+									                        "odbc": {
+									                                   "dbRef":"db",
+									                                   "table":"FDI2"
+									                        }         
+									                    },
+									                     {
+									                        "node":"DASH111694.FPSI2",
+									                        "odbc": {
+									                                   "dbRef":"db",
+									                                   "table":"FPSI2"
+									                        }         
+									                    }
+									         	     ],	
 
-												"exports": [
+											"exports": [
 
-												{
-										          		"node":"PRICINGA",
-										          		"odbc": {
-										               			"dbRef": "db",
-										               			"table": "PRICINGA",
-										               			"insertMode":"Append"
-										          			}
-												}
-												]
-										    	}
-										}
-								var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
-								request({
-									    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
-									    qs: {accesskey: accesskeyparam},
-									    headers: {
-							                    'Content-Type': 'application/json'
-							            },
-									    // timeout: 500,
-						  				body: data,
-						  				method: 'PUT',
-						  				json: true
-									    
-									}, function (error, response, body) {
-										if(!error)
-											console.log(JSON.stringify(body));
-										else
-											console.log(error);
-								});
-								callback(null, 2);	
-							},15000);
+											{
+									          		"node":"PRICINGA",
+									          		"odbc": {
+									               			"dbRef": "db",
+									               			"table": "PRICINGA",
+									               			"insertMode":"Append"
+									          			}
+											}
+											]
+									    	}
+									}
+							var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
+							request({
+								    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
+								    qs: {accesskey: accesskeyparam},
+								    headers: {
+						                    'Content-Type': 'application/json'
+						            },
+								    // timeout: 100000,
+					  				body: data,
+					  				method: 'PUT',
+					  				json: true
+								    
+								}, function (error, response, body) {
+									if(!error)
+										console.log(JSON.stringify(body));
+									else
+										console.log(error);
+							});
+						callback(null, 2);	
+						},5000);
 						},
 						//Check status of webservice
 						function(callback) {
-							setTimeout(function() {
+							setTimeout(function(){
 								var status;
-								var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
-								request({
-									    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
-									    qs: {accesskey: accesskeyparam},
-									    // timeout: 1000,
-						  				method: 'GET',
-						  				json: true
-									    
-									}, function (error, response, body) {
-										if(!error){
-											console.log(JSON.stringify(body));
-											// status = body.result.jobStatus;
-										}
-										else
-											console.log(error);
-								});
-								// if(status != "SUCCESS"){
-									var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 3 WHERE "TYPE" IS NULL';		
-									console.log("Update query: "+stmt1);
-									conn.querySync(stmt1);
-								// }
-								// if(status != "SUCCESS"){
-								// 	callback(null, 2);
-								// }
-								// else
-								callback(null, 3);
-							},25000);	
+								var refreshId = setInterval(function(){	
+									var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
+									request({
+										    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
+										    qs: {accesskey: accesskeyparam},
+										    // timeout: 1000,
+							  				method: 'GET',
+							  				json: true
+										    
+										}, function (error, response, body) {
+											if(!error){
+												console.log(JSON.stringify(body));
+												// if(typeof(body)!= undefined){
+												if(body.hasOwnProperty('result')){
+													status = body.result.jobStatus;
+													console.log("jobStatus:: "+status);
+													if(status == "SUCCESS"){
+														clearInterval(refreshId);
+														var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 3 WHERE "TYPE" IS NULL';		
+														console.log("Update query: "+stmt1);
+														conn.querySync(stmt1);
+													}
+												}
+											}
+											else
+												console.log(error);
+									});
+									
+									
+								}, 5000);
+		
+								callback(null, 3);	
+							},5000);
 						},
 						function(callback) {
 							setTimeout(function() {
@@ -698,7 +703,7 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 												stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
 												stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
 												stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
-												stmt3 = stmt3.replace("p7", 4);
+												stmt3 = stmt3.replace("p7", 4);   
 
 												console.log("Insert query: "+stmt3);
 												conn.querySync(stmt3);
@@ -706,112 +711,118 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 									}
 								}
 							}
-							},35000);
-							callback(null, 4);
+						callback(null, 4);
+						}, 10000); 
 						},
 						//Calling webservice model
 						function(callback) {
 							setTimeout(function() {
-								var data = { 
-										     "action": "RUN_STREAM", 
-										     "model": { 
-										          "id": "Test500",
-											   "name": "Forecast500.str" 
-										     },
-										     "dbDefinitions":{
-										          "db":{        
-										                    "type":"DashDB",
-										                    "host":"awh-yp-small02.services.dal.bluemix.net",        
-										                    "port":50000,        
-										                    "db":"BLUDB", 
-										                    "username":"dash111694",  
-										                    "password":"rCQLbpEUsJ2y", 
-										                    "options":""      
-										               	}
-										     		},
+							var data = { 
+									     "action": "RUN_STREAM", 
+									     "model": { 
+									          "id": "Test500",
+										   "name": "Forecast500.str" 
+									     },
+									     "dbDefinitions":{
+									          "db":{        
+									                    "type":"DashDB",
+									                    "host":"awh-yp-small02.services.dal.bluemix.net",        
+									                    "port":50000,        
+									                    "db":"BLUDB", 
+									                    "username":"dash111694",  
+									                    "password":"rCQLbpEUsJ2y", 
+									                    "options":""      
+									               	}
+									     		},
 
-												"setting": {          
-										          "inputs": [
-										                    {
-										                        "node":"DASH111694.FDI2",
-										                        "odbc": {
-										                                   "dbRef":"db",
-										                                   "table":"FDI2"
-										                        }         
-										                    },
-										                     {
-										                        "node":"DASH111694.FPSI2",
-										                        "odbc": {
-										                                   "dbRef":"db",
-										                                   "table":"FPSI2"
-										                        }         
-										                    }
-										         	     ],	
+											"setting": {          
+									          "inputs": [
+									                    {
+									                        "node":"DASH111694.FDI2",
+									                        "odbc": {
+									                                   "dbRef":"db",
+									                                   "table":"FDI2"
+									                        }         
+									                    },
+									                     {
+									                        "node":"DASH111694.FPSI2",
+									                        "odbc": {
+									                                   "dbRef":"db",
+									                                   "table":"FPSI2"
+									                        }         
+									                    }
+									         	     ],	
 
-												"exports": [
+											"exports": [
 
-												{
-										          		"node":"PRICINGA",
-										          		"odbc": {
-										               			"dbRef": "db",
-										               			"table": "PRICINGA",
-										               			"insertMode":"Append"
-										          			}
-												}
-												]
-										    	}
-										}
-								var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
-								request({
-									    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
-									    qs: {accesskey: accesskeyparam},
-									    headers: {
-							                    'Content-Type': 'application/json'
-							            },
-									    // timeout: 100000,
-						  				body: data,
-						  				method: 'PUT',
-						  				json: true
-									    
-									}, function (error, response, body) {
-										if(!error)
-											console.log(JSON.stringify(body));
-										else
-											console.log(error);
-								});
-							callback(null, 5);
-							},40000);	
+											{
+									          		"node":"PRICINGA",
+									          		"odbc": {
+									               			"dbRef": "db",
+									               			"table": "PRICINGA",
+									               			"insertMode":"Append"
+									          			}
+											}
+											]
+									    	}
+									}
+							var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
+							request({
+								    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
+								    qs: {accesskey: accesskeyparam},
+								    headers: {
+						                    'Content-Type': 'application/json'
+						            },
+								    // timeout: 100000,
+					  				body: data,
+					  				method: 'PUT',
+					  				json: true
+								    
+								}, function (error, response, body) {
+									if(!error)
+										console.log(JSON.stringify(body));
+									else
+										console.log(error);
+							});
+						callback(null, 5);	
+						},5000);
 						},
 						//Check status of webservice
 						function(callback) {
-							setTimeout(function() {
+							setTimeout(function(){
 								var status;
-								var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
-								request({
-									    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
-									    qs: {accesskey: accesskeyparam},
-									    timeout: 100000,
-						  				method: 'GET',
-						  				json: true
-									    
-									}, function (error, response, body) {
-										if(!error){
-											console.log(JSON.stringify(body));
-											// status = body.result.jobStatus;
-										}
-										else
-											console.log(error);
-								});
-
-								var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 4 WHERE "TYPE" IS NULL';		
-								console.log("Update query: "+stmt1);
-								conn.querySync(stmt1);
-								// if(status != "SUCCESS"){
-								// 	callback(null, 2);
-								// }
-								// else
-								callback(null, 6);
-							},50000);	
+								var refreshId = setInterval(function(){	
+									var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
+									request({
+										    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
+										    qs: {accesskey: accesskeyparam},
+										    // timeout: 1000,
+							  				method: 'GET',
+							  				json: true
+										    
+										}, function (error, response, body) {
+											if(!error){
+												console.log(JSON.stringify(body));
+												if(body.hasOwnProperty('result')){
+													status = body.result.jobStatus;
+													console.log("jobStatus:: "+status);
+													if(status == "SUCCESS"){
+														clearInterval(refreshId);
+														var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 4 WHERE "TYPE" IS NULL';		
+														console.log("Update query: "+stmt1);
+														conn.querySync(stmt1);
+													}
+												}
+											}
+											else
+												console.log(error);
+									});
+									
+									
+								}, 5000);
+		
+								callback(null, 6);	
+							},5000);
 						},
 						function(callback) {
 							setTimeout(function() {
@@ -843,111 +854,117 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 									}
 								}
 							callback(null, 7);
-							}, 60000);
+							}, 10000);
 						},
 						//Calling webservice model
 						function(callback) {
 							setTimeout(function() {
-								var data = { 
-										     "action": "RUN_STREAM", 
-										     "model": { 
-										          "id": "Test500",
-											   "name": "Forecast500.str" 
-										     },
-										     "dbDefinitions":{
-										          "db":{        
-										                    "type":"DashDB",
-										                    "host":"awh-yp-small02.services.dal.bluemix.net",        
-										                    "port":50000,        
-										                    "db":"BLUDB", 
-										                    "username":"dash111694",  
-										                    "password":"rCQLbpEUsJ2y", 
-										                    "options":""      
-										               	}
-										     		},
+							var data = { 
+									     "action": "RUN_STREAM", 
+									     "model": { 
+									          "id": "Test500",
+										   "name": "Forecast500.str" 
+									     },
+									     "dbDefinitions":{
+									          "db":{        
+									                    "type":"DashDB",
+									                    "host":"awh-yp-small02.services.dal.bluemix.net",        
+									                    "port":50000,        
+									                    "db":"BLUDB", 
+									                    "username":"dash111694",  
+									                    "password":"rCQLbpEUsJ2y", 
+									                    "options":""      
+									               	}
+									     		},
 
-												"setting": {          
-										          "inputs": [
-										                    {
-										                        "node":"DASH111694.FDI2",
-										                        "odbc": {
-										                                   "dbRef":"db",
-										                                   "table":"FDI2"
-										                        }         
-										                    },
-										                     {
-										                        "node":"DASH111694.FPSI2",
-										                        "odbc": {
-										                                   "dbRef":"db",
-										                                   "table":"FPSI2"
-										                        }         
-										                    }
-										         	     ],	
+											"setting": {          
+									          "inputs": [
+									                    {
+									                        "node":"DASH111694.FDI2",
+									                        "odbc": {
+									                                   "dbRef":"db",
+									                                   "table":"FDI2"
+									                        }         
+									                    },
+									                     {
+									                        "node":"DASH111694.FPSI2",
+									                        "odbc": {
+									                                   "dbRef":"db",
+									                                   "table":"FPSI2"
+									                        }         
+									                    }
+									         	     ],	
 
-												"exports": [
+											"exports": [
 
-												{
-										          		"node":"PRICINGA",
-										          		"odbc": {
-										               			"dbRef": "db",
-										               			"table": "PRICINGA",
-										               			"insertMode":"Append"
-										          			}
-												}
-												]
-										    	}
-										}
-								var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
-								request({
-									    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
-									    qs: {accesskey: accesskeyparam},
-									    headers: {
-							                    'Content-Type': 'application/json'
-							            },
-									    // timeout: 100000,
-						  				body: data,
-						  				method: 'PUT',
-						  				json: true
-									    
-									}, function (error, response, body) {
-										if(!error)
-											console.log(JSON.stringify(body));
-										else
-											console.log(error);
-								});
-							callback(null, 8);
-							},70000);	
+											{
+									          		"node":"PRICINGA",
+									          		"odbc": {
+									               			"dbRef": "db",
+									               			"table": "PRICINGA",
+									               			"insertMode":"Append"
+									          			}
+											}
+											]
+									    	}
+									}
+							var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
+							request({
+								    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
+								    qs: {accesskey: accesskeyparam},
+								    headers: {
+						                    'Content-Type': 'application/json'
+						            },
+								    // timeout: 100000,
+					  				body: data,
+					  				method: 'PUT',
+					  				json: true
+								    
+								}, function (error, response, body) {
+									if(!error)
+										console.log(JSON.stringify(body));
+									else
+										console.log(error);
+							});
+						callback(null, 8);	
+						},5000);
 						},
 						//Check status of webservice
 						function(callback) {
-							setTimeout(function() {
+							setTimeout(function(){
 								var status;
-								var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
-								request({
-									    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
-									    qs: {accesskey: accesskeyparam},
-									    timeout: 100000,
-						  				method: 'GET',
-						  				json: true
-									    
-									}, function (error, response, body) {
-										if(!error){
-											console.log(JSON.stringify(body));
-											// status = body.result.jobStatus;
-										}
-										else
-											console.log(error);
-								});
-
-								var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 5 WHERE "TYPE" IS NULL';		
-								console.log("Update query: "+stmt1);
-								conn.querySync(stmt1);
-								// if(status != "SUCCESS"){
-								// 	callback(null, 2);
-								// }
-								// else
-							callback(null, 9);
-							}, 85000);	
+								var refreshId = setInterval(function(){	
+									var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
+									request({
+										    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
+										    qs: {accesskey: accesskeyparam},
+										    // timeout: 1000,
+							  				method: 'GET',
+							  				json: true
+										    
+										}, function (error, response, body) {
+											if(!error){
+												console.log(JSON.stringify(body));
+												if(body.hasOwnProperty('result')){
+													status = body.result.jobStatus;
+													console.log("jobStatus:: "+status);
+													if(status == "SUCCESS"){
+														clearInterval(refreshId);
+														var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 5 WHERE "TYPE" IS NULL';		
+														console.log("Update query: "+stmt1);
+														conn.querySync(stmt1);
+													}
+												}
+											}
+											else
+												console.log(error);
+									});
+									
+									
+								}, 5000);
+								
+								callback(null, 9);	
+							},5000);
 						}
 						], function(err) {
 							if (!err) {
