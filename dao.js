@@ -969,6 +969,22 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 								
 								callback(null, 9);	
 							},5000);
+						},
+						function(callback) {
+							setTimeout(function() {
+							request({
+								    url: 'https://BATobacco.mybluemix.net/loadtable',
+					  				method: 'GET',
+					  				json: true
+								    
+								}, function (error, response, body) {
+									if(!error)
+										console.log(JSON.stringify(body));
+									else
+										console.log(error);
+							});
+						callback(null, 10);	
+						},5000);
 						}
 						], function(err) {
 							if (!err) {
