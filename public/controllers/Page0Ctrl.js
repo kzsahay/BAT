@@ -15,31 +15,48 @@ $scope.linechart=$(function () {
                     // draw chart
                     $('#container0').highcharts({
                     chart: {
-                        type: "line",
-                        color:"#FFA500"
-                    },
-                    title: {
-                        text: "BAT market ",
-                        color:"#483D8B"
-                    },
-                    xAxis: {
-                        type: 'category',
-                        //allowDecimals: false,
-                        title: {
-                            text: ""
-                        }
-                    },
-                    yAxis: {
-                        title: {
-                            text: "Market Share",
-                            color:"#FFA500"
-                        }
-                    },
-                    series: [{
-	                    name: 'Account',
-                        data: processed_json,
-                        color:"#FFA500"
-                    }]
+            type: 'column'
+        },
+        title: {
+            text: 'ACCOUNT WISE CONTRIBUTION'
+        },
+        subtitle: {
+          
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: 'Total percent market share',
+                 gridLineWidth: 0
+            }
+
+        },
+        legend: {
+			align: "centre",
+            enabled: true
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y:.1f}%'
+                }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+        },
+
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: processed_json
+        }]
                 }); 
             });
         });
@@ -154,8 +171,8 @@ $scope.linechart=$(function () {
             }
         },
         series: [{
-            name: 'Brands',
-            colorByPoint: true,
+            //name: 'Brands',
+            //;colorByPoint: true,
             data: [{
                 name: 'Others',
                 y: 10,
