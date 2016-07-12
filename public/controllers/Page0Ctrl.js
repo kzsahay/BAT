@@ -15,10 +15,12 @@ $scope.linechart=$(function () {
                     // draw chart
                     $('#container0').highcharts({
                     chart: {
-                        type: "line"
+                        type: "line",
+                        color:"#FFA500"
                     },
                     title: {
-                        text: "BAT market "
+                        text: "BAT market ",
+                        color:"#483D8B"
                     },
                     xAxis: {
                         type: 'category',
@@ -29,12 +31,14 @@ $scope.linechart=$(function () {
                     },
                     yAxis: {
                         title: {
-                            text: "Market Share"
+                            text: "Market Share",
+                            color:"#FFA500"
                         }
                     },
                     series: [{
 	                    name: 'Account',
-                        data: processed_json
+                        data: processed_json,
+                        color:"#FFA500"
                     }]
                 }); 
             });
@@ -51,7 +55,7 @@ $scope.linechart=$(function () {
             type: 'pie'
         },
         title: {
-            text: 'Brand XYZ'
+            text: 'Parisienne'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -60,7 +64,7 @@ $scope.linechart=$(function () {
             pie: {
                 allowPointSelect: true,
                 cursor: 'pointer',
-                 innerSize: '50%',
+                 innerSize: '70%',
                 dataLabels: {
                     enabled: false
                 },
@@ -72,12 +76,14 @@ $scope.linechart=$(function () {
             colorByPoint: true,
             data: [{
                 name: 'Others',
-                y: 40
+                y: 40,
+                color:"#483D8B"
             }, {
                 name: 'Brand Share',
                 y: 60,
                 sliced: true,
-                selected: true
+                selected: true,
+                color:"#FFA500"
             }]
         }]
     });
@@ -90,7 +96,7 @@ $scope.linechart=$(function () {
             type: 'pie'
         },
         title: {
-            text: 'Brand ABC'
+            text: 'Pall Mall'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -99,7 +105,7 @@ $scope.linechart=$(function () {
             pie: {
                 allowPointSelect: true,
                 cursor: 'pointer',
-                 innerSize: '50%',
+                 innerSize: '70%',
                 dataLabels: {
                     enabled: false
                 },
@@ -111,12 +117,14 @@ $scope.linechart=$(function () {
             colorByPoint: true,
             data: [{
                 name: 'Others',
-                y: 30
+                y: 30,
+                color:"#483D8B"
             }, {
                 name: 'Brand Share',
                 y: 70,
                 sliced: true,
-                selected: true
+                selected: true,
+                color:"#FFA500"
             }]
         }]
     });
@@ -129,7 +137,7 @@ $scope.linechart=$(function () {
             type: 'pie'
         },
         title: {
-            text: 'Brand ASD'
+            text: 'Lucky Strike'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -138,7 +146,7 @@ $scope.linechart=$(function () {
             pie: {
                 allowPointSelect: true,
                 cursor: 'pointer',
-                 innerSize: '50%',
+                 innerSize: '70%',
                 dataLabels: {
                     enabled: false
                 },
@@ -150,12 +158,14 @@ $scope.linechart=$(function () {
             colorByPoint: true,
             data: [{
                 name: 'Others',
-                y: 10
+                y: 10,
+                color:"#483D8B"
             }, {
                 name: 'Brand Share',
                 y: 90,
                 sliced: true,
-                selected: true
+                selected: true,
+                color:"#FFA500"
             }]
         }]
     });
@@ -168,7 +178,7 @@ $scope.linechart=$(function () {
             type: 'pie'
         },
         title: {
-            text: 'Brand QWE'
+            text: 'Kent'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -177,7 +187,7 @@ $scope.linechart=$(function () {
             pie: {
                 allowPointSelect: true,
                 cursor: 'pointer',
-                 innerSize: '50%',
+                 innerSize: '70%',
                 dataLabels: {
                     enabled: false
                 },
@@ -189,12 +199,15 @@ $scope.linechart=$(function () {
             colorByPoint: true,
             data: [{
                 name: 'Others',
-                y: 20
+                y: 20,
+                
+                color:"#483D8B"
             }, {
                 name: 'Brand Share',
                 y: 80,
                 sliced: true,
-                selected: true
+                selected: true,
+                color:"#FFA500"
             }]
         }]
     });

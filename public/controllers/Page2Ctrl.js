@@ -27,57 +27,47 @@ Page2Ctrl.controller('Page2Ctrl', ['$scope','$location','$rootScope','$http',
 
         series: [{
 			  name: 'Old Price',
-			   color: '#000000',
+			   color: '#FFA500',
             data: [
-                [9, 81, 63],
-                [98, 5, 89],
-                [51, 50, 73],
-                [41, 22, 14],
-                [58, 24, 20],
-                [78, 37, 34],
-                [55, 56, 53],
-                [18, 45, 70],
-                [42, 44, 28],
-                [3, 52, 59],
-                [31, 18, 97],
-                [79, 91, 63],
-                [93, 23, 23],
-                [44, 83, 22]
+                [1, 0.5, 33],
+                [2, 0.6, 33],
+                [3, 0.32, 33],
+                [4, 0.3, 33],
+                [5, 0.5, 33],
+                [6, 0.3, 33],
+                [7, 0.4, 33],
+                [8, 0.34, 33],
+               
             ],
             marker: {
                 fillColor: {
-                    
+                	 radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
                     stops: [
-                        [0, '#000000'],
-                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0.5).get('rgba')]
+                        [0, '#FFA500']
+                      
                     ]
                 }
             }
         }, {
 			 name: 'New Price',
-			  color: '#2C3539',
+			  color: '#483D8B',
             data: [
-                [42, 38, 20],
-                [6, 18, 1],
-                [1, 93, 55],
-                [57, 2, 90],
-                [80, 76, 22],
-                [11, 74, 96],
-                [88, 56, 10],
-                [30, 47, 49],
-                [57, 62, 98],
-                [4, 16, 16],
-                [46, 10, 11],
-                [22, 87, 89],
-                [57, 91, 82],
-                [45, 15, 98]
+                [1, 0.3, 33],
+                [2, 0.7, 33],
+                [3, 0.34, 33],
+                [4, 0.4, 33],
+                [5, 0.7, 33],
+                [6, 0.2, 33],
+                [7, 0.5, 33],
+                [8, 0.32, 33],
+             
             ],
             marker: {
                 fillColor: {
                     radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
                     stops: [
-                        [0, '#2C3539'],
-                        [1, Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0.5).get('rgba')]
+                        [0, '#483D8B']
+                        
                     ]
                 }
             }
@@ -101,10 +91,11 @@ $(function () {
             startAngle: -90,
             endAngle: 90,
             background: {
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                backgroundColor: "#483D8B",
                 innerRadius: '60%',
                 outerRadius: '100%',
                 shape: 'arc'
+               
             }
         },
 
@@ -115,9 +106,9 @@ $(function () {
         // the value axis
         yAxis: {
             stops: [
-                [0.1, '#55BF3B'], // green
-                [0.5, '#DDDF0D'], // yellow
-                [0.9, '#DF5353'] // red
+                [0.1, '#FFA500'], // green
+                [0.5, '#FFA500'], // yellow
+                [0.9, '#FFA500'] // red
             ],
             lineWidth: 0,
             minorTickInterval: null,
@@ -219,21 +210,24 @@ $(function () {
             data: [{
                 name: 'Account 1',
                 y: 56.33,
-                drilldown: 'Account 1'
+                drilldown: 'Account 1',
+                color:"#483D8B"
             }, {
                 name: 'Account 2',
                 y: 24.03,
-                drilldown: 'Account 2'
+                drilldown: 'Account 2',
+                color:"#483D8B"
             }, {
                 name: 'Account 3',
                 y: 10.38,
-                drilldown: 'Account 3'
+                drilldown: 'Account 3',
+                color:"#483D8B"
             }]
         }],
         drilldown: {
             series: [{
-                name: 'Microsoft Internet Explorer',
-                id: 'Microsoft Internet Explorer',
+                name: 'Acoount1',
+                id: 'Acoount1',
                 data: [
                     [
                         'v11.0',
@@ -261,8 +255,8 @@ $(function () {
                     ]
                 ]
             }, {
-                name: 'Chrome',
-                id: 'Chrome',
+                name: 'Acoount2',
+                id: 'Acoount2',
                 data: [
                     [
                         'v40.0',
@@ -322,8 +316,8 @@ $(function () {
                     ]
                 ]
             }, {
-                name: 'Firefox',
-                id: 'Firefox',
+                name: 'Acoount3',
+                id: 'Acoount3',
                 data: [
                     [
                         'v35',
@@ -356,60 +350,6 @@ $(function () {
                     [
                         'v32',
                         0.15
-                    ]
-                ]
-            }, {
-                name: 'Safari',
-                id: 'Safari',
-                data: [
-                    [
-                        'v8.0',
-                        2.56
-                    ],
-                    [
-                        'v7.1',
-                        0.77
-                    ],
-                    [
-                        'v5.1',
-                        0.42
-                    ],
-                    [
-                        'v5.0',
-                        0.3
-                    ],
-                    [
-                        'v6.1',
-                        0.29
-                    ],
-                    [
-                        'v7.0',
-                        0.26
-                    ],
-                    [
-                        'v6.2',
-                        0.17
-                    ]
-                ]
-            }, {
-                name: 'Opera',
-                id: 'Opera',
-                data: [
-                    [
-                        'v12.x',
-                        0.34
-                    ],
-                    [
-                        'v28',
-                        0.24
-                    ],
-                    [
-                        'v27',
-                        0.17
-                    ],
-                    [
-                        'v29',
-                        0.16
                     ]
                 ]
             }]

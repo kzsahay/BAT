@@ -57,7 +57,7 @@ deutscheDemo.config(['$routeProvider', '$locationProvider',
                         
 }]);
 
-deutscheDemo.controller('logincontroller', ['$scope','$http','$resource','$location','AuthenticationService', function($scope,$http,$resource,$location,AuthenticationService){
+deutscheDemo.controller('logincontroller', ['$scope','$http','$resource','$location','AuthenticationService','$rootScope', function($scope,$http,$resource,$location,AuthenticationService,$rootScope){
 	$scope.login = function() {
 		/*    	$http({
             method: "POST",
@@ -84,10 +84,12 @@ deutscheDemo.controller('logincontroller', ['$scope','$http','$resource','$locat
         });	
 		 */    	
 		//To Bypass Login
+		$rootScope.dashboard = false;
 		if ($scope.username==="nextgen" && $scope.password==="nextgen"){
 			AuthenticationService.SetCredentials($scope.username, $scope.password);
 			userid=$scope.username;
 			$location.path('/page0');
+			$rootScope.dashboard=true;
 		}else
 		{
 			alert("Invalid Username/Password. Please try again.");

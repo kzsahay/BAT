@@ -2,7 +2,8 @@
 <html ng-app="BatDemo">
 <head>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <!--link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"-->
@@ -31,19 +32,45 @@
 
 </head>
 
-<body style="height: 100%; width: 100%; position: absolute; color:darkblue;">	
-<div ng-controller="IndexCtrl" class="leftPannel">
-	<ul>
-		<!--li> <a href="javascript:void(0);" class="flower"> &nbsp;</a> </li-->
-		<li> <a href="javascript:void(0);" class="flower" ng-class="{'selected':selectedClass === 'target'}" ng-click="gotoPage0()"> &nbsp;</a> </li>
-		<li> <a href="javascript:void(0);" class="clock" ng-class="{'selected':selectedClass === 'target'}" ng-click="gotoPage1()"> &nbsp;</a> </li>
-		<li> <a href="javascript:void(0);" class="new" ng-class="{'selected':selectedClass === 'pricing'}" ng-click="gotoPage2()"> &nbsp;</a> </li>
-		<li> <a href="javascript:void(0);" class="pig" ng-class="{'selected':selectedClass === 'account'}" ng-click="gotoPage3()"> &nbsp;</a> </li>
-		<!--<li> <a href="javascript:void(0);" class="chick" ng-class="{'selected':selectedClass === 'competitor'}" ng-click="gotoPage4()"> &nbsp;</a> </li>-->
-		<li> <a href="javascript:void(0);" class="chick1" ng-class="{'selected':selectedClass === 'sim'}" ng-click="gotoPage5()"> &nbsp;</a> </li>
-	</ul>
-	
-</div>
+<body
+	style="height: 100%; width: 100%; position: absolute; color: darkblue;">
+	<div ng-show="dashboard"
+		style="height: 10%; width: 100%; z-index: 1000; position: fixed; background-color: white; border-radius: 20px;">
+		<div style="width: 50%; position: absolute;">
+			<img src="images/bat.png">
+		</div>
+		<div style="width: 50%; float: right; text-align: right;">
+			<span style="font-size: 15px; margin-right: 5%;">Bob Macintosh</span><img
+				src="images/Bob.png" style="width: 10%;    border-radius: 40px;margin: 2%;">
+		</div>
+	</div>
+	<div ng-controller="IndexCtrl" class="leftPannel" ng-show="dashboard"
+		style="margin-top: 5%;">
+
+		<div>
+			<ul>
+				<!--li> <a href="javascript:void(0);" class="flower"> &nbsp;</a> </li-->
+				<li><a href="javascript:void(0);" class="flower"
+					ng-class="{'selected':selectedClass === 'target'}"
+					ng-click="gotoPage0()"> &nbsp;</a></li>
+				<li><a href="javascript:void(0);" class="clock"
+					ng-class="{'selected':selectedClass === 'target'}"
+					ng-click="gotoPage1()"> &nbsp;</a></li>
+				<li><a href="javascript:void(0);" class="new"
+					ng-class="{'selected':selectedClass === 'pricing'}"
+					ng-click="gotoPage2()"> &nbsp;</a></li>
+				<li><a href="javascript:void(0);" class="pig"
+					ng-class="{'selected':selectedClass === 'account'}"
+					ng-click="gotoPage3()"> &nbsp;</a></li>
+				<!--li><a href="javascript:void(0);" class="chick"
+					ng-class="{'selected':selectedClass === 'competitor'}"
+					ng-click="gotoPage4()"> &nbsp;</a></li-->
+				<li><a href="javascript:void(0);" class="chick1"
+					ng-class="{'selected':selectedClass === 'sim'}"
+					ng-click="gotoPage5()"> &nbsp;</a></li>
+			</ul>
+		</div>
+	</div>
 	<!-- ngView:  -->
 	<div ng-view="" class="ng-scope scopeClass"></div>
 </body>

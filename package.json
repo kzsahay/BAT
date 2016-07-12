@@ -10,7 +10,8 @@
 		"cfenv": "1.0.x",
 		"ibm_db": "*",
 		"async": "*",
-		"body-parser": "*"
+		"body-parser": "*",
+		"request": "*"
 	},
 	"repository": {},
 	"engines": {

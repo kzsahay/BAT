@@ -17,6 +17,7 @@ $scope.linechart=$(function () {
                     chart: {
                         type: "line"
                     },
+                    color: '#FFA500',
                     title: {
                         text: "BAT market "
                     },
@@ -34,6 +35,7 @@ $scope.linechart=$(function () {
                     },
                     series: [{
 	                    name: 'Date',
+	                    color:'#FFA500',
                         data: processed_json
                     }]
                 }); 
@@ -122,6 +124,66 @@ var processedpie_json = new Array();
                 });
 
 });
+});
+
+$scope.productbullet=$(function () {
+    $('#container3').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Products'
+        },
+        
+        xAxis: {
+            categories: ['Product1', 'Product2', 'Product3', 'Product4'],
+            title: {
+                text: 'Name'
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Sales',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+		legend: {
+            enabled: false
+        },
+        tooltip: {
+            valueSuffix: ''
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: false
+                }
+            }
+        },
+       /*legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: 0,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'black'),
+            shadow: true,
+			text:''
+        },*/
+        credits: {
+            enabled: false
+        },
+        series: [{
+		color:'#FFA500',
+            data: [50, 70, 60, 30]
+        }]
+    });
 });
 
 
