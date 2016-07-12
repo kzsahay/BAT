@@ -596,11 +596,14 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 				function(callback) {
 					for(var i in tabledata.accountMsScenarios){
 						if(tabledata.accountMsScenarios[i].scenario == 'S1'){
-
-							var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = "3"';
+							
+							var type3 = "3"
+							var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = p1';
+							stmt1 = stmt1.replace("p1", "'" + type3 + "'");
 							console.log("Delete query: "+stmt1);
 							conn.querySync(stmt1);
-							var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = "3"';
+							var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = p1';
+							stmt2 = stmt2.replace("p1", "'" + type3 + "'");
 							console.log("Delete query: "+stmt2);
 							conn.querySync(stmt2);
 
