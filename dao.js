@@ -694,7 +694,7 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 											console.log(error);
 								});
 								callback(null, 2);	
-							},500);
+							},15000);
 						},
 						//Check status of webservice
 						function(callback) {
@@ -726,7 +726,7 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 								// }
 								// else
 								callback(null, 3);
-							},1000);	
+							},25000);	
 						},
 						function(callback) {
 							setTimeout(function() {
@@ -757,7 +757,7 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 									}
 								}
 							}
-							},2000);
+							},35000);
 							callback(null, 4);
 						},
 						//Calling webservice model
@@ -831,7 +831,7 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 											console.log(error);
 								});
 							callback(null, 5);
-							},2500);	
+							},40000);	
 						},
 						//Check status of webservice
 						function(callback) {
@@ -862,7 +862,7 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 								// }
 								// else
 								callback(null, 6);
-							},3500);	
+							},50000);	
 						},
 						function(callback) {
 							setTimeout(function() {
@@ -894,7 +894,7 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 									}
 								}
 							callback(null, 7);
-							}, 4000);
+							}, 60000);
 						},
 						//Calling webservice model
 						function(callback) {
@@ -967,7 +967,7 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 											console.log(error);
 								});
 							callback(null, 8);
-							},5000);	
+							},70000);	
 						},
 						//Check status of webservice
 						function(callback) {
@@ -998,7 +998,7 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 								// }
 								// else
 							callback(null, 9);
-							}, 6000);	
+							}, 85000);	
 						}
 						], function(err) {
 							if (!err) {
