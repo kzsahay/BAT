@@ -26,7 +26,7 @@
 		</tbody>
 	</table>
 	
-	<div class="row" style="clear: both;">
+	<div style="clear: both;">
 		<a href="javascript:void(0);" class="runScenario"  ng-click="run_scenario();">Run Scenario</a>
 	</div>
 	
@@ -35,10 +35,10 @@
 		  <input type="radio" name="rdoResult" ng-value="'{{itm.val}}'" ng-model="radioSelect" ng-change="change_radioVal(itm.val)">{{itm.name}}
 		</label>
    	 </div>
-   	 <div class="row" style="clear: both;">
-		<div id="scenario" style="min-width: 310px; height: 400px; max-width: 1170px; margin: 0 auto" ng-model="scenarioLineChart"></div>
-	</div>
-	<div class="row" style="clear: both;">
+   	 
+    <div id="scenario" style="width: 1120px; height: 350px; float: left" ng-model="scenarioLineChart"></div>
+   	
+	<div style="clear: both;">
 		<a href="javascript:void(0);" class="runScenario" ng-click="gotoFinalize()">Finalize</a>
 	</div>	
 </div>
