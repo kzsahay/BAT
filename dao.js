@@ -724,28 +724,30 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 						callback(null, 3);	
 						},
 						function(callback) {
-							if(tabledata.accountMsScenarios[i].scenario == 'S2'){
-
-								var stmt1 = "DELETE from FPSI2 where 'TYPE' = '4'";
-								console.log("Delete query: "+stmt1);
-								conn.querySync(stmt1);
-								var stmt2 = "DELETE from PRICINGA where 'TYPE' = '4'";
-								console.log("Delete query: "+stmt2);
-								conn.querySync(stmt2);
-
-								for(var j in tabledata.accountMsScenarios[i].fpsi){
-									if(typeof(tabledata.accountMsScenarios[i].fpsi[j].PriceMean) != undefined){
-										var stmt3 = 'INSERT into FPSI2 ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values (p1,p2,p3,p4,p5,p6,p7)';
-											stmt3 = stmt3.replace("p1", "'" + tabledata.accountMsScenarios[i].fpsi[j].brandSegment + "'");
-											stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
-											stmt3 = stmt3.replace("p3", "'" + tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate + "'");
-											stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
-											stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
-											stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
-											stmt3 = stmt3.replace("p7", 4);
-
-											console.log("Insert query: "+stmt3);
-											conn.querySync(stmt3);
+							for(var i in tabledata.accountMsScenarios){
+								if(tabledata.accountMsScenarios[i].scenario == 'S2'){
+	
+									var stmt1 = "DELETE from FPSI2 where 'TYPE' = '4'";
+									console.log("Delete query: "+stmt1);
+									conn.querySync(stmt1);
+									var stmt2 = "DELETE from PRICINGA where 'TYPE' = '4'";
+									console.log("Delete query: "+stmt2);
+									conn.querySync(stmt2);
+	
+									for(var j in tabledata.accountMsScenarios[i].fpsi){
+										if(typeof(tabledata.accountMsScenarios[i].fpsi[j].PriceMean) != undefined){
+											var stmt3 = 'INSERT into FPSI2 ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values (p1,p2,p3,p4,p5,p6,p7)';
+												stmt3 = stmt3.replace("p1", "'" + tabledata.accountMsScenarios[i].fpsi[j].brandSegment + "'");
+												stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
+												stmt3 = stmt3.replace("p3", "'" + tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate + "'");
+												stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
+												stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
+												stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
+												stmt3 = stmt3.replace("p7", 4);
+	
+												console.log("Insert query: "+stmt3);
+												conn.querySync(stmt3);
+										}
 									}
 								}
 							}
@@ -852,28 +854,30 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 						callback(null, 6);	
 						},
 						function(callback) {
-							if(tabledata.accountMsScenarios[i].scenario == 'S3'){
-
-								var stmt1 = "DELETE from FPSI2 where 'TYPE' = '5'";
-								console.log("Delete query: "+stmt1);
-								conn.querySync(stmt1);
-								var stmt2 = "DELETE from PRICINGA where 'TYPE' = '5'";
-								console.log("Delete query: "+stmt2);
-								conn.querySync(stmt2);
-
-								for(var j in tabledata.accountMsScenarios[i].fpsi){
-									if(typeof(tabledata.accountMsScenarios[i].fpsi[j].PriceMean) != undefined){
-										var stmt3 = 'INSERT into FPSI2 ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values (p1,p2,p3,p4,p5,p6,p7)';
-											stmt3 = stmt3.replace("p1", "'" + tabledata.accountMsScenarios[i].fpsi[j].brandSegment + "'");
-											stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
-											stmt3 = stmt3.replace("p3", "'" + tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate + "'");
-											stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
-											stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
-											stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
-											stmt3 = stmt3.replace("p7", 5);
-
-											console.log("Insert query: "+stmt3);
-											conn.querySync(stmt3);
+							for(var i in tabledata.accountMsScenarios){
+								if(tabledata.accountMsScenarios[i].scenario == 'S3'){
+	
+									var stmt1 = "DELETE from FPSI2 where 'TYPE' = '5'";
+									console.log("Delete query: "+stmt1);
+									conn.querySync(stmt1);
+									var stmt2 = "DELETE from PRICINGA where 'TYPE' = '5'";
+									console.log("Delete query: "+stmt2);
+									conn.querySync(stmt2);
+	
+									for(var j in tabledata.accountMsScenarios[i].fpsi){
+										if(typeof(tabledata.accountMsScenarios[i].fpsi[j].PriceMean) != undefined){
+											var stmt3 = 'INSERT into FPSI2 ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values (p1,p2,p3,p4,p5,p6,p7)';
+												stmt3 = stmt3.replace("p1", "'" + tabledata.accountMsScenarios[i].fpsi[j].brandSegment + "'");
+												stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
+												stmt3 = stmt3.replace("p3", "'" + tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate + "'");
+												stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
+												stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
+												stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
+												stmt3 = stmt3.replace("p7", 5);
+	
+												console.log("Insert query: "+stmt3);
+												conn.querySync(stmt3);
+										}
 									}
 								}
 							}
