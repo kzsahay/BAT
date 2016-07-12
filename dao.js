@@ -508,6 +508,10 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 								 fpsi.Company = "PH. MORRIS";
 								 fpsi.LastWeekShare = 3.168;
 								 break;
+							case "L&M":
+								 fpsi.Company = "PH. MORRIS";
+								 fpsi.LastWeekShare = 3.168;
+								 break;
 							case "MARLBORO":
 								fpsi.Company = "PH. MORRIS";
 								 fpsi.LastWeekShare = 21.813;
