@@ -220,10 +220,11 @@ ScenarioCtrl.controller('ScenarioCtrl', [ '$scope', '$location', '$http',
 								radioObj.name = scenarioObj.name;
 								radioObj.val = data.Data.marketshareForecasts[i].scenario;
 							}else {
-								scenarioObj.name = data.Data.marketshareForecasts[i].scenario;
-								var snNum = scenarioObj.name.slice(-1)*1 + 2;
+								var sceName = data.Data.marketshareForecasts[i].scenario;
+								var snNum = sceName.slice(-1)*1 + 2;
 								radioObj.name = "Scenario " + snNum;
-								radioObj.val = scenarioObj.name;
+								radioObj.val = sceName;
+								scenarioObj.name = sceName;
 							}					
 							for (var j = 0; j < mshareScenario.length; j++) {
 								var wkNum = "Wk" + mshareScenario[j].weekNum;

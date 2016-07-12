@@ -22,7 +22,8 @@ finalizeCtrl.controller('finalizeCtrl', ['$scope','$location','$rootScope','$htt
 			}else if(finalizeVal.marketshareForecasts[i].scenario == "C"){
 				finalizeObj.name = "Corporate";
 			}else if(finalizeVal.marketshareForecasts[i].scenario.charAt(0) == "S"){
-				finalizeObj.name = $scope.finalservice.selectRd;
+				var snNum = $scope.finalservice.selectRd.slice(-1)*1 + 2; 
+				finalizeObj.name = "Scenario " + snNum;
 			}
 			for (var j = 0; j < mshareFinalize.length; j++) {
 				var sumVal = mshareFinalize[j].sum_share * 1;
