@@ -3,6 +3,25 @@ var daoConst = require('./constants.js');
 var async = require('async');
 var request = require('request');
 
+//function to choose company
+function getCompanyForBrand(brandName) {
+    var company;
+    switch(brandName.toUpperCase()) {
+        case "CHESTERFIELD":
+        case "L&M":
+        case "MARLBORO":
+            company = "PH. MORRIS";
+            break;
+        case "PALL MALL":
+        case "PARISIENNE":
+            company = "BAT";
+            break
+        default:
+            company = "JTI";
+    }
+    return company;    
+}
+
 
 //loading db tables slide 6
 exports.getTableDetails = function(conn, viewData, req) {
@@ -71,7 +90,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 						for (var i in priceS_data){
 							if(priceS_data[i].Account == "VALORA    "){
 								if(priceS_data[i].TYPE == 1){
-									if(priceS_data[i].WeekEndingDate == weekdata[p]){
+									if(priceS_data[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(priceS_data[i].BrandSegment) == "BAT"){
 //										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
 										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
 									}
@@ -139,7 +158,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 						for (var i in priceS_data){
 							if(priceS_data[i].Account == "VALORA    "){
 								if(priceS_data[i].TYPE == 2){
-									if(priceS_data[i].WeekEndingDate == weekdata[p]){
+									if(priceS_data[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(priceS_data[i].BrandSegment) == "BAT"){
 //										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
 										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
 									}
@@ -206,7 +225,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 						for (var i in priceS_data){
 							if(priceS_data[i].Account == "VALORA    "){
 								if(priceS_data[i].TYPE == 3){
-									if(priceS_data[i].WeekEndingDate == weekdata[p]){
+									if(priceS_data[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(priceS_data[i].BrandSegment) == "BAT"){
 //										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
 										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
 									}
@@ -273,7 +292,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 						for (var i in priceS_data){
 							if(priceS_data[i].Account == "VALORA    "){
 								if(priceS_data[i].TYPE == 4){
-									if(priceS_data[i].WeekEndingDate == weekdata[p]){
+									if(priceS_data[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(priceS_data[i].BrandSegment) == "BAT"){
 //										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
 										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
 									}
@@ -340,7 +359,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 						for (var i in priceS_data){
 							if(priceS_data[i].Account == "VALORA    "){
 								if(priceS_data[i].TYPE == 5){
-									if(priceS_data[i].WeekEndingDate == weekdata[p]){
+									if(priceS_data[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(priceS_data[i].BrandSegment) == "BAT"){
 //										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
 										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
 									}
@@ -387,7 +406,11 @@ exports.getfinalizeDetails = function(conn, viewData, req) {
 	var type = 0;
 	try {
 		
-		if(scenario == "S1")
+		if(scenario == "B")
+			type = 1; 
+		else if(scenario == "C")
+			type = 2;
+		else if(scenario == "S1")
 			type = 3;
 		else if(scenario == "S2")
 			type = 4;
@@ -425,7 +448,7 @@ exports.getfinalizeDetails = function(conn, viewData, req) {
 								var forecasts = {"brandName": "", "sum_share": ""};
 
 								forecasts.brandName = priceS_data[i].BrandSegment;
-								forecasts.sum_share = priceS_data[i].Share_Sum;
+								forecasts.sum_share = priceS_data[i].TS_Share_Sum;
 								arraynew[k++] = forecasts;
 								if(i>0){
 									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment)
@@ -460,7 +483,7 @@ exports.getfinalizeDetails = function(conn, viewData, req) {
 								var forecasts = {"brandName": "", "sum_share": ""};
 
 								forecasts.brandName = priceS_data[i].BrandSegment;
-								forecasts.sum_share = priceS_data[i].Share_Sum;
+								forecasts.sum_share = priceS_data[i].TS_Share_Sum;
 								arraynew[k++] = forecasts;
 								if(i>0){
 									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment)
