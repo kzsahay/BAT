@@ -28,75 +28,58 @@ exports.getTableDetails = function(conn, viewData, req) {
 	try {
 
 		var tabledata = {"accountName": "", "marketshareForecasts": []};
-		var priceS_data = []; var t = 0;
-		
-		var stmt1 = daoConst.PRICEFETCH;
-		var priceS = conn.querySync(stmt1);
-		var priceS_data_raw = JSON.parse(JSON.stringify(priceS));
-		
-		for(var i in priceS_data_raw){
-			if(priceS_data_raw[i].Forecast == 1)
-				priceS_data[t++] = priceS_data_raw[i];
-		}
-		// console.log("pricescenario -->" + JSON.stringify(priceS_data));
-		
+		var t = 0;
 
+		var data22 = [];
 		async.series([
 		        //Scenario: Base
 				function(callback) {
 					var arraynew = [];
 					var marketshareForecasts = {"scenario":"", "priceScenario": [], "mshareTrend": []};
 					var k = 0; m =0; n = 0; j=1;
-					marketshareForecasts.scenario = "B"
+					marketshareForecasts.scenario = "B";
 
-					for (var i in priceS_data){
-						if(priceS_data[i].Account == "VALORA    "){
-							tabledata.accountName = "VALORA";
+					var fore = 1; typ = "1";
+					var acc = "VALORA";
+					var stmt1 = 'SELECT "BrandSegment", "Price_Mean", "WeekEndingDate", "TS_Share_Sum" FROM PRICINGA WHERE "Forecast" = 1 and "Account" = p2 and "TYPE" = p3';
+					stmt1 = stmt1.replace("p1", fore); 
+					stmt1 = stmt1.replace("p2", "'" + acc + "'"); 
+					stmt1 = stmt1.replace("p3", "'" + typ + "'"); 
+					console.log("Select query: "+stmt1);
+					data22 = conn.querySync(stmt1);
+					console.log("query result: "+JSON.stringify(data22));
 
-							if(priceS_data[i].TYPE == 1){
-								
-								var pricescenario = {"brandName": "", "brandPrice": ""};
+					for (var i in data22){
+						var pricescenario = {"brandName": "", "brandPrice": ""};
 
-								pricescenario.brandName = priceS_data[i].BrandSegment;
-								pricescenario.brandPrice = priceS_data[i].Price_Mean;
-								arraynew[k++] = pricescenario;
-								if(i>0){
-									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment)
+						pricescenario.brandName = data22[i].BrandSegment;
+						pricescenario.brandPrice = data22[i].Price_Mean;
+						arraynew[k++] = pricescenario;
+						if(i>0){
+									if(data22[i].BrandSegment == data22[i-1].BrandSegment)
 										arraynew.splice(k-1, 1);	
 								}
-							}
-						}
 					}
-
 					for(var i in arraynew){
 						if(arraynew[i]!= undefined)
 							marketshareForecasts.priceScenario[n++] = arraynew[i];
 					}
-						
+
 					var weekdata= []; s=0;
-					for (var i in priceS_data){
-						if(priceS_data[i].Account == "VALORA    "){
-							if(priceS_data[i].TYPE == 1){
-								if(priceS_data[i].BrandSegment == "CHESTERFIELD"){
-									// console.log("Inside week:: "+priceS_data[i].WeekEndingDate)
-									weekdata[s++]= priceS_data[i].WeekEndingDate;
-								}
-							}
-						}
+
+					for (var i in data22){
+						if(data22[i].BrandSegment == "CHESTERFIELD"){
+							weekdata[s++]= data22[i].WeekEndingDate;
+						}		
 					}
 
 					for(var p in weekdata){
 						var marketshare = 0.0;
-						for (var i in priceS_data){
-							if(priceS_data[i].Account == "VALORA    "){
-								if(priceS_data[i].TYPE == 1){
-									if(priceS_data[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(priceS_data[i].BrandSegment) == "BAT"){
-//										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
-										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
-									}
-							
-								}
-							}
+						for (var i in data22){
+							if(data22[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(data22[i].BrandSegment) == "BAT"){
+								console.log("Share ::"+data22[i].TS_Share_Sum);
+								marketshare = marketshare + data22[i].TS_Share_Sum;
+							}			
 						}
 						var mshareTrend = {"weekNum": "", "mshare": ""};
 						mshareTrend.weekNum = parseInt(p)+1;
@@ -105,287 +88,253 @@ exports.getTableDetails = function(conn, viewData, req) {
 						marketshareForecasts.mshareTrend[m++] = mshareTrend;
 					}		
 
-
 					tabledata.marketshareForecasts.push(marketshareForecasts);
 					callback(null, 1);
-				}, 
-				
+				},
 				//Scenario: Corporate Price
 				function(callback) {
 					var arraynew = [];
 					var marketshareForecasts = {"scenario":"", "priceScenario": [], "mshareTrend": []};
 					var k = 0; m =0; n = 0; j=1;
-					marketshareForecasts.scenario = "C"
-					
-					for (var i in priceS_data){
-						if(priceS_data[i].Account == "VALORA    "){
-							tabledata.accountName = "VALORA";
+					marketshareForecasts.scenario = "C";
 
-							if(priceS_data[i].TYPE == 2){
-								
-								var pricescenario = {"brandName": "", "brandPrice": ""};
+					var fore = 1; typ = "2";
+					var acc = "VALORA";
+					var stmt1 = 'SELECT "BrandSegment", "Price_Mean", "WeekEndingDate", "TS_Share_Sum" FROM PRICINGA WHERE "Forecast" = 1 and "Account" = p2 and "TYPE" = p3';
+					stmt1 = stmt1.replace("p1", fore); 
+					stmt1 = stmt1.replace("p2", "'" + acc + "'"); 
+					stmt1 = stmt1.replace("p3", "'" + typ + "'"); 
+					console.log("Select query: "+stmt1);
+					data22 = conn.querySync(stmt1);
+					console.log("query result: "+JSON.stringify(data22));
 
-								pricescenario.brandName = priceS_data[i].BrandSegment;
-								pricescenario.brandPrice = priceS_data[i].Price_Mean;
-								arraynew[k++] = pricescenario;
-								if(i>0){
-									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment)
+					for (var i in data22){
+						var pricescenario = {"brandName": "", "brandPrice": ""};
+
+						pricescenario.brandName = data22[i].BrandSegment;
+						pricescenario.brandPrice = data22[i].Price_Mean;
+						arraynew[k++] = pricescenario;
+						if(i>0){
+									if(data22[i].BrandSegment == data22[i-1].BrandSegment)
 										arraynew.splice(k-1, 1);	
 								}
-							}
-						}
 					}
-
 					for(var i in arraynew){
 						if(arraynew[i]!= undefined)
 							marketshareForecasts.priceScenario[n++] = arraynew[i];
 					}
-						
+
 					var weekdata= []; s=0;
-					for (var i in priceS_data){
-						if(priceS_data[i].Account == "VALORA    "){
-							if(priceS_data[i].TYPE == 2){
-								if(priceS_data[i].BrandSegment == "CHESTERFIELD"){
-									// console.log("Inside week:: "+priceS_data[i].WeekEndingDate)
-									weekdata[s++]= priceS_data[i].WeekEndingDate;
-								}
-							}
-						}
+
+					for (var i in data22){
+						if(data22[i].BrandSegment == "CHESTERFIELD"){
+							weekdata[s++]= data22[i].WeekEndingDate;
+						}		
 					}
 
 					for(var p in weekdata){
 						var marketshare = 0.0;
-						for (var i in priceS_data){
-							if(priceS_data[i].Account == "VALORA    "){
-								if(priceS_data[i].TYPE == 2){
-									if(priceS_data[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(priceS_data[i].BrandSegment) == "BAT"){
-//										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
-										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
-									}
-							
-								}
-							}
+						for (var i in data22){
+							if(data22[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(data22[i].BrandSegment) == "BAT"){
+								console.log("Share ::"+data22[i].TS_Share_Sum);
+								marketshare = marketshare + data22[i].TS_Share_Sum;
+							}			
 						}
 						var mshareTrend = {"weekNum": "", "mshare": ""};
 						mshareTrend.weekNum = parseInt(p)+1;
 						mshareTrend.mshare = marketshare;
 						console.log("Sum market share:: "+JSON.stringify(mshareTrend));
 						marketshareForecasts.mshareTrend[m++] = mshareTrend;
-					}	
-						
+					}		
+
 					tabledata.marketshareForecasts.push(marketshareForecasts);
-					callback(null, 2);	
+					callback(null, 1);
 				},
-				
 				//Scenario: S1
 				function(callback) {
 					var arraynew = [];
 					var marketshareForecasts = {"scenario":"", "priceScenario": [], "mshareTrend": []};
 					var k = 0; m =0; n = 0; j=1;
-					marketshareForecasts.scenario = "S1"
-					
-					for (var i in priceS_data){
-						if(priceS_data[i].Account == "VALORA    "){
-							tabledata.accountName = "VALORA";
+					marketshareForecasts.scenario = "S1";
 
-							if(priceS_data[i].TYPE == 3){
-								
-								var pricescenario = {"brandName": "", "brandPrice": ""};
+					var fore = 1; typ = "3";
+					var acc = "VALORA";
+					var stmt1 = 'SELECT "BrandSegment", "Price_Mean", "WeekEndingDate", "TS_Share_Sum" FROM PRICINGA WHERE "Forecast" = 1 and "Account" = p2 and "TYPE" = p3';
+					stmt1 = stmt1.replace("p1", fore); 
+					stmt1 = stmt1.replace("p2", "'" + acc + "'"); 
+					stmt1 = stmt1.replace("p3", "'" + typ + "'"); 
+					console.log("Select query: "+stmt1);
+					data22 = conn.querySync(stmt1);
+					console.log("query result: "+JSON.stringify(data22));
 
-								pricescenario.brandName = priceS_data[i].BrandSegment;
-								pricescenario.brandPrice = priceS_data[i].Price_Mean;
-								arraynew[k++] = pricescenario;
-								if(i>0){
-									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment)
+					for (var i in data22){
+						var pricescenario = {"brandName": "", "brandPrice": ""};
+
+						pricescenario.brandName = data22[i].BrandSegment;
+						pricescenario.brandPrice = data22[i].Price_Mean;
+						arraynew[k++] = pricescenario;
+						if(i>0){
+									if(data22[i].BrandSegment == data22[i-1].BrandSegment)
 										arraynew.splice(k-1, 1);	
 								}
-							}
-						}
 					}
-
 					for(var i in arraynew){
 						if(arraynew[i]!= undefined)
 							marketshareForecasts.priceScenario[n++] = arraynew[i];
 					}
-						
+
 					var weekdata= []; s=0;
-					for (var i in priceS_data){
-						if(priceS_data[i].Account == "VALORA    "){
-							if(priceS_data[i].TYPE == 3){
-								if(priceS_data[i].BrandSegment == "CHESTERFIELD"){
-									// console.log("Inside week:: "+priceS_data[i].WeekEndingDate)
-									weekdata[s++]= priceS_data[i].WeekEndingDate;
-								}
-							}
-						}
+
+					for (var i in data22){
+						if(data22[i].BrandSegment == "CHESTERFIELD"){
+							weekdata[s++]= data22[i].WeekEndingDate;
+						}		
 					}
 
 					for(var p in weekdata){
 						var marketshare = 0.0;
-						for (var i in priceS_data){
-							if(priceS_data[i].Account == "VALORA    "){
-								if(priceS_data[i].TYPE == 3){
-									if(priceS_data[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(priceS_data[i].BrandSegment) == "BAT"){
-//										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
-										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
-									}
-							
-								}
-							}
+						for (var i in data22){
+							if(data22[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(data22[i].BrandSegment) == "BAT"){
+								console.log("Share ::"+data22[i].TS_Share_Sum);
+								marketshare = marketshare + data22[i].TS_Share_Sum;
+							}			
 						}
 						var mshareTrend = {"weekNum": "", "mshare": ""};
 						mshareTrend.weekNum = parseInt(p)+1;
 						mshareTrend.mshare = marketshare;
 						console.log("Sum market share:: "+JSON.stringify(mshareTrend));
 						marketshareForecasts.mshareTrend[m++] = mshareTrend;
-					}
-						
+					}		
+
 					tabledata.marketshareForecasts.push(marketshareForecasts);
-					callback(null, 3);	
+					callback(null, 1);
 				},
-				
 				//Scenario: S2
 				function(callback) {
 					var arraynew = [];
 					var marketshareForecasts = {"scenario":"", "priceScenario": [], "mshareTrend": []};
 					var k = 0; m =0; n = 0; j=1;
-					marketshareForecasts.scenario = "S2"
-					
-					for (var i in priceS_data){
-						if(priceS_data[i].Account == "VALORA    "){
-							tabledata.accountName = "VALORA";
+					marketshareForecasts.scenario = "S2";
 
-							if(priceS_data[i].TYPE == 4){
-								
-								var pricescenario = {"brandName": "", "brandPrice": ""};
+					var fore = 1; typ = "4";
+					var acc = "VALORA";
+					var stmt1 = 'SELECT "BrandSegment", "Price_Mean", "WeekEndingDate", "TS_Share_Sum" FROM PRICINGA WHERE "Forecast" = 1 and "Account" = p2 and "TYPE" = p3';
+					stmt1 = stmt1.replace("p1", fore); 
+					stmt1 = stmt1.replace("p2", "'" + acc + "'"); 
+					stmt1 = stmt1.replace("p3", "'" + typ + "'"); 
+					console.log("Select query: "+stmt1);
+					data22 = conn.querySync(stmt1);
+					console.log("query result: "+JSON.stringify(data22));
 
-								pricescenario.brandName = priceS_data[i].BrandSegment;
-								pricescenario.brandPrice = priceS_data[i].Price_Mean;
-								arraynew[k++] = pricescenario;
-								if(i>0){
-									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment)
+					for (var i in data22){
+						var pricescenario = {"brandName": "", "brandPrice": ""};
+
+						pricescenario.brandName = data22[i].BrandSegment;
+						pricescenario.brandPrice = data22[i].Price_Mean;
+						arraynew[k++] = pricescenario;
+						if(i>0){
+									if(data22[i].BrandSegment == data22[i-1].BrandSegment)
 										arraynew.splice(k-1, 1);	
 								}
-							}
-						}
 					}
-
 					for(var i in arraynew){
 						if(arraynew[i]!= undefined)
 							marketshareForecasts.priceScenario[n++] = arraynew[i];
 					}
-						
+
 					var weekdata= []; s=0;
-					for (var i in priceS_data){
-						if(priceS_data[i].Account == "VALORA    "){
-							if(priceS_data[i].TYPE == 4){
-								if(priceS_data[i].BrandSegment == "CHESTERFIELD"){
-									// console.log("Inside week:: "+priceS_data[i].WeekEndingDate)
-									weekdata[s++]= priceS_data[i].WeekEndingDate;
-								}
-							}
-						}
+
+					for (var i in data22){
+						if(data22[i].BrandSegment == "CHESTERFIELD"){
+							weekdata[s++]= data22[i].WeekEndingDate;
+						}		
 					}
 
 					for(var p in weekdata){
 						var marketshare = 0.0;
-						for (var i in priceS_data){
-							if(priceS_data[i].Account == "VALORA    "){
-								if(priceS_data[i].TYPE == 4){
-									if(priceS_data[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(priceS_data[i].BrandSegment) == "BAT"){
-//										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
-										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
-									}
-							
-								}
-							}
+						for (var i in data22){
+							if(data22[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(data22[i].BrandSegment) == "BAT"){
+								console.log("Share ::"+data22[i].TS_Share_Sum);
+								marketshare = marketshare + data22[i].TS_Share_Sum;
+							}			
 						}
 						var mshareTrend = {"weekNum": "", "mshare": ""};
 						mshareTrend.weekNum = parseInt(p)+1;
 						mshareTrend.mshare = marketshare;
 						console.log("Sum market share:: "+JSON.stringify(mshareTrend));
 						marketshareForecasts.mshareTrend[m++] = mshareTrend;
-					}
-						
+					}		
+
 					tabledata.marketshareForecasts.push(marketshareForecasts);
-					callback(null, 4);			
+					callback(null, 1);
 				},
-				
-				//Scenario: S3
+				//Scenario: Corporate Price
 				function(callback) {
 					var arraynew = [];
 					var marketshareForecasts = {"scenario":"", "priceScenario": [], "mshareTrend": []};
 					var k = 0; m =0; n = 0; j=1;
-					marketshareForecasts.scenario = "S3"
-					
-					for (var i in priceS_data){
-						if(priceS_data[i].Account == "VALORA    "){
-							tabledata.accountName = "VALORA";
+					marketshareForecasts.scenario = "S3";
 
-							if(priceS_data[i].TYPE == 5){
-								
-								var pricescenario = {"brandName": "", "brandPrice": ""};
+					var fore = 1; typ = "5";
+					var acc = "VALORA";
+					var stmt1 = 'SELECT "BrandSegment", "Price_Mean", "WeekEndingDate", "TS_Share_Sum" FROM PRICINGA WHERE "Forecast" = 1 and "Account" = p2 and "TYPE" = p3';
+					stmt1 = stmt1.replace("p1", fore); 
+					stmt1 = stmt1.replace("p2", "'" + acc + "'"); 
+					stmt1 = stmt1.replace("p3", "'" + typ + "'"); 
+					console.log("Select query: "+stmt1);
+					data22 = conn.querySync(stmt1);
+					console.log("query result: "+JSON.stringify(data22));
 
-								pricescenario.brandName = priceS_data[i].BrandSegment;
-								pricescenario.brandPrice = priceS_data[i].Price_Mean;
-								arraynew[k++] = pricescenario;
-								if(i>0){
-									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment)
+					for (var i in data22){
+						var pricescenario = {"brandName": "", "brandPrice": ""};
+
+						pricescenario.brandName = data22[i].BrandSegment;
+						pricescenario.brandPrice = data22[i].Price_Mean;
+						arraynew[k++] = pricescenario;
+						if(i>0){
+									if(data22[i].BrandSegment == data22[i-1].BrandSegment)
 										arraynew.splice(k-1, 1);	
 								}
-							}
-						}
 					}
-
 					for(var i in arraynew){
 						if(arraynew[i]!= undefined)
 							marketshareForecasts.priceScenario[n++] = arraynew[i];
 					}
-						
+
 					var weekdata= []; s=0;
-					for (var i in priceS_data){
-						if(priceS_data[i].Account == "VALORA    "){
-							if(priceS_data[i].TYPE == 5){
-								if(priceS_data[i].BrandSegment == "CHESTERFIELD"){
-									// console.log("Inside week:: "+priceS_data[i].WeekEndingDate)
-									weekdata[s++]= priceS_data[i].WeekEndingDate;
-								}
-							}
-						}
+
+					for (var i in data22){
+						if(data22[i].BrandSegment == "CHESTERFIELD"){
+							weekdata[s++]= data22[i].WeekEndingDate;
+						}		
 					}
 
 					for(var p in weekdata){
 						var marketshare = 0.0;
-						for (var i in priceS_data){
-							if(priceS_data[i].Account == "VALORA    "){
-								if(priceS_data[i].TYPE == 5){
-									if(priceS_data[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(priceS_data[i].BrandSegment) == "BAT"){
-//										console.log("Share ::"+priceS_data[i].TS_Share_Sum);
-										marketshare = marketshare + priceS_data[i].TS_Share_Sum;
-									}
-							
-								}
-							}
+						for (var i in data22){
+							if(data22[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(data22[i].BrandSegment) == "BAT"){
+								console.log("Share ::"+data22[i].TS_Share_Sum);
+								marketshare = marketshare + data22[i].TS_Share_Sum;
+							}			
 						}
 						var mshareTrend = {"weekNum": "", "mshare": ""};
 						mshareTrend.weekNum = parseInt(p)+1;
 						mshareTrend.mshare = marketshare;
 						console.log("Sum market share:: "+JSON.stringify(mshareTrend));
 						marketshareForecasts.mshareTrend[m++] = mshareTrend;
-					}
-						
+					}		
+
 					tabledata.marketshareForecasts.push(marketshareForecasts);
-					callback(null, 5);	
+					callback(null, 1);
 				}
-
 				], function(err) {
-			if (!err) {
-				console.log(tabledata);
-			} else {
-				console.log(JSON.stringify(err));
-			}
-		});
-
+					if (!err) {
+						console.log(tabledata);
+					} else {
+						console.log(JSON.stringify(err));
+					}
+			});
+		
 		viewData.Data = tabledata;
 
 	} catch (err) {
