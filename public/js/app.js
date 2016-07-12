@@ -85,7 +85,7 @@ deutscheDemo.controller('logincontroller', ['$scope','$http','$resource','$locat
 		 */    	
 		//To Bypass Login
 		$rootScope.dashboard = false;
-		if ($scope.username==="nextgen" && $scope.password==="nextgen"){
+		if (($scope.username==="nextgen" && $scope.password==="nextgen") || ($scope.username==="bobm" && $scope.password==="bobm")){
 			AuthenticationService.SetCredentials($scope.username, $scope.password);
 			userid=$scope.username;
 			$location.path('/page0');
