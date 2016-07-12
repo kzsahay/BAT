@@ -302,7 +302,7 @@ ScenarioCtrl.controller('ScenarioCtrl', [ '$scope', '$location', '$http',
 		$scope.finalservice = finalservice;
 		$scope.finalservice.selectRd = selsctedRadio;
 		$http({
-			method: "POST",
+			method: "GET",
 			url: "JSON/finalize.json"
 			//url: "https://batobacco.mybluemix.net/finalize",
 			//data: inputFnJSON
