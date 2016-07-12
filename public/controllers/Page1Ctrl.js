@@ -136,7 +136,7 @@ $scope.productbullet=$(function () {
         },
         
         xAxis: {
-            categories: ['Product1', 'Product2', 'Product3', 'Product4'],
+            categories: ['Parisienne', 'Pall Mall', 'Lucky Strike', 'Kent'],
             title: {
                 text: 'Name'
             }
