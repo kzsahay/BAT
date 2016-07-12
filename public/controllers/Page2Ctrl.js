@@ -16,7 +16,8 @@ Page2Ctrl.controller('Page2Ctrl', ['$scope','$location','$rootScope','$http',
         },
 
         xAxis: {
-            gridLineWidth: 0
+            gridLineWidth: 0,
+			type: 'category'
         },
 
         yAxis: {
@@ -29,14 +30,12 @@ Page2Ctrl.controller('Page2Ctrl', ['$scope','$location','$rootScope','$http',
 			  name: 'Old Price',
 			   color: '#FFA500',
             data: [
-                [1, 0.5, 33],
-                [2, 0.6, 33],
-                [3, 0.32, 33],
-                [4, 0.3, 33],
-                [5, 0.5, 33],
-                [6, 0.3, 33],
-                [7, 0.4, 33],
-                [8, 0.34, 33],
+                ['WINSTON', 7.212, 33],
+                ['CHESTERFIELD', 7.453, 33],
+                ['L&M', 7.355, 33],
+                ['MARLBORO', 7.889, 33],
+                ['PALLMALL', 6.726, 33],
+                ['PARISIENNE', 7.119, 33],
                
             ],
             marker: {
@@ -52,14 +51,12 @@ Page2Ctrl.controller('Page2Ctrl', ['$scope','$location','$rootScope','$http',
 			 name: 'New Price',
 			  color: '#483D8B',
             data: [
-                [1, 0.3, 33],
-                [2, 0.7, 33],
-                [3, 0.34, 33],
-                [4, 0.4, 33],
-                [5, 0.7, 33],
-                [6, 0.2, 33],
-                [7, 0.5, 33],
-                [8, 0.32, 33],
+                ['WINSTON', 7.5, 33],
+                ['CHESTERFIELD', 8, 33],
+                ['L&M', 7, 33],
+                ['MARLBORO', 9, 33],
+                ['PALLMALL', 6.2, 33],
+                ['PARISIENNE', 7.9, 33],
              
             ],
             marker: {
