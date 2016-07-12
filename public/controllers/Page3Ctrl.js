@@ -8,8 +8,8 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	
 	$http({
 		method: "GET",
-		url: "JSON/initialScenario.json",
-		//url: "https://BATobacco.mybluemix.net/loadtable"
+		//url: "JSON/initialScenario.json"
+		url: "https://BATobacco.mybluemix.net/loadtable"
 		
 	}).success(function(data) {
 		
@@ -181,62 +181,76 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		
 		$scope.mask_page = true;
 		$http({
-			method: "GET",
-			url: "JSON/finalScenario.json"			
-//			method: "POST",	
-//			url: "https://BATobacco.mybluemix.net/runscenario",
-//			data: runMrkObj
-		}).success(function(data) {			
-			$scope.mask_page = false;
-			var final_scenario_json = []; 
-			var radioElm = [];
-			console.log("marketshareForecasts:==  "+JSON.stringify(data.Data.marketshareForecasts));
-			
-			for (var i = 0; i < data.Data.marketshareForecasts.length; i++) {
-				var mshareScenario = data.Data.marketshareForecasts[i].mshareTrend;
-				
-				if (mshareScenario.length > 0){
-					var scenarioObj = {
-							name: "",
-							data: []
-					};
-					var radioObj = {
-							name: "",
-							val: ""
-					};
-					if(data.Data.marketshareForecasts[i].scenario == "B"){
-						scenarioObj.name = "Base Case";
-						radioObj.name = scenarioObj.name;
-						radioObj.val = data.Data.marketshareForecasts[i].scenario;
-					}else if(data.Data.marketshareForecasts[i].scenario == "C"){
-						scenarioObj.name = "Corporate";
-						radioObj.name = scenarioObj.name;
-						radioObj.val = data.Data.marketshareForecasts[i].scenario;
-					}else {
-						scenarioObj.name = data.Data.marketshareForecasts[i].scenario;
-						var snNum = scenarioObj.name.slice(-1)*1 + 2;
-						radioObj.name = "Series " + snNum;
-						radioObj.val = scenarioObj.name;
-					}					
-					for (var j = 0; j < mshareScenario.length; j++) {
-						var wkNum = "Wk" + mshareScenario[j].weekNum;
-						var marsVal = mshareScenario[j].mshare * 1;
-						scenarioObj.data.push([wkNum, marsVal]);
+//			method: "GET",
+//			url: "JSON/scenario.json"			
+			method: "POST",	
+			url: "https://BATobacco.mybluemix.net/runscenario",
+			data: runMrkObj
+		}).success(function(respData) {		
+			if(respData.Data.Alert != null || respData.Data.Alert != ""){
+				$http({
+					method: "GET",
+					//url: "JSON/finalScenario.json"
+					url: "https://BATobacco.mybluemix.net/loadtable"
+				}).success(function(data) {			
+					$scope.mask_page = false;
+					var final_scenario_json = []; 
+					var radioElm = [];
+					console.log("marketshareForecasts:==  "+JSON.stringify(data.Data.marketshareForecasts));
+					
+					for (var i = 0; i < data.Data.marketshareForecasts.length; i++) {
+						var mshareScenario = data.Data.marketshareForecasts[i].mshareTrend;
+						
+						if (mshareScenario.length > 0){
+							var scenarioObj = {
+									name: "",
+									data: []
+							};
+							var radioObj = {
+									name: "",
+									val: ""
+							};
+							if(data.Data.marketshareForecasts[i].scenario == "B"){
+								scenarioObj.name = "Base Case";
+								radioObj.name = scenarioObj.name;
+								radioObj.val = data.Data.marketshareForecasts[i].scenario;
+							}else if(data.Data.marketshareForecasts[i].scenario == "C"){
+								scenarioObj.name = "Corporate";
+								radioObj.name = scenarioObj.name;
+								radioObj.val = data.Data.marketshareForecasts[i].scenario;
+							}else {
+								scenarioObj.name = data.Data.marketshareForecasts[i].scenario;
+								var snNum = scenarioObj.name.slice(-1)*1 + 2;
+								radioObj.name = "Series " + snNum;
+								radioObj.val = scenarioObj.name;
+							}					
+							for (var j = 0; j < mshareScenario.length; j++) {
+								var wkNum = "Wk" + mshareScenario[j].weekNum;
+								var marsVal = mshareScenario[j].mshare * 1;
+								scenarioObj.data.push([wkNum, marsVal]);
+							}
+							//console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
+							final_scenario_json.push(scenarioObj);
+							radioElm.push(radioObj);
+						}
 					}
-					//console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
-					final_scenario_json.push(scenarioObj);
-					radioElm.push(radioObj);
-				}
+					console.log("final_scenario_json:==  "+JSON.stringify(final_scenario_json));			
+					$scope.populateLineChart(final_scenario_json);
+					$scope.radioList = radioElm;
+					//alert("$scope.radioList:==  "+JSON.stringify($scope.radioList));
+				})
+			    .error(function(data) {
+			    	alert("The run scenario service is not available!");
+			    	$scope.mask_page = false;
+			    	console.log('Error '+data);
+			    });
+				
 			}
-			console.log("final_scenario_json:==  "+JSON.stringify(final_scenario_json));			
-			$scope.populateLineChart(final_scenario_json);
-			$scope.radioList = radioElm;
-			//alert("$scope.radioList:==  "+JSON.stringify($scope.radioList));
 		})
-	    .error(function(data) {
+	    .error(function(respData) {
 	    	alert("The run scenario service is not available!");
 	    	$scope.mask_page = false;
-	    	console.log('Error '+data);
+	    	console.log('Error '+respData);
 	    });
 	};
 	
