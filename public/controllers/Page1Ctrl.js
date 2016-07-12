@@ -25,16 +25,16 @@ $scope.linechart=$(function () {
                         type: 'category',
                         //allowDecimals: false,
                         title: {
-                            text: ""
+                            text: "Date"
                         }
                     },
                     yAxis: {
                         title: {
-                            text: "Sale figures"
+                            text: "Market Share"
                         }
                     },
                     series: [{
-	                    name: 'Date',
+	                    name: 'Market Share',
 	                    color:'#FFA500',
                         data: processed_json
                     }]
