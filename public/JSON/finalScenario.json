@@ -6,74 +6,86 @@
         "scenario": "B",
         "priceScenario": [
           {
-            "brandName": "abc",
-            "brandPrice": "5.4"
+            "brandName": "WINSTON",
+            "brandPrice": "7.212"
           },
           {
-            "brandName": "def",
-            "brandPrice": "5.1"
+            "brandName": "CHESTERFIELD",
+            "brandPrice": "5.424"
           },
           {
-            "brandName": "ghi",
-            "brandPrice": "4.4"
+            "brandName": "L&M",
+            "brandPrice": "6.73"
           },
           {
-            "brandName": "jkl",
-            "brandPrice": "3.4"
+            "brandName": "PALL MALL",
+            "brandPrice": "6.726"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": "7.325"
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": "8.16"
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": "8.132"
           }
         ],
         "mshareTrend": [
           {
             "weekNum": "1",
-            "mshare": "12"
+            "mshare": "39.03"
           },
           {
             "weekNum": "2",
-            "mshare": "12"
+            "mshare": "38.92"
           },
           {
             "weekNum": "3",
-            "mshare": "12"
+            "mshare": "38.85"
           },
           {
             "weekNum": "4",
-            "mshare": "12"
+            "mshare": "38.74"
           },
           {
             "weekNum": "5",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "6",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "7",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "8",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "9",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "10",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "11",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "12",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "13",
-            "mshare": "12"
+            "mshare": "38.66"
           }
         ]
       },
@@ -81,74 +93,86 @@
         "scenario": "C",
         "priceScenario": [
           {
-            "brandName": "abc",
-            "brandPrice": "5.9"
+            "brandName": "WINSTON",
+            "brandPrice": "7.384"
           },
           {
-            "brandName": "def",
-            "brandPrice": "5.2"
+            "brandName": "CHESTERFIELD",
+            "brandPrice": "7.453"
           },
           {
-            "brandName": "ghi",
-            "brandPrice": "4.3"
+            "brandName": "L&M",
+            "brandPrice": "6.753"
           },
           {
-            "brandName": "jkl",
-            "brandPrice": "3.5"
+            "brandName": "PALL MALL",
+            "brandPrice": "6.722"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": "7.119"
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": "7.861"
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": "7.658"
           }
         ],
         "mshareTrend": [
           {
             "weekNum": "1",
-            "mshare": "11"
+            "mshare": "39.03"
           },
           {
             "weekNum": "2",
-            "mshare": "10"
+            "mshare": "38.92"
           },
           {
             "weekNum": "3",
-            "mshare": "9"
+            "mshare": "38.66"
           },
           {
             "weekNum": "4",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "5",
-            "mshare": "6"
+            "mshare": "38.66"
           },
           {
             "weekNum": "6",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "7",
-            "mshare": "5"
+            "mshare": "38.66"
           },
           {
             "weekNum": "8",
-            "mshare": "12"
+            "mshare": "38.66"
           },
           {
             "weekNum": "9",
-            "mshare": "3"
+            "mshare": "38.66"
           },
           {
             "weekNum": "10",
-            "mshare": "5"
+            "mshare": "38.66"
           },
           {
             "weekNum": "11",
-            "mshare": "5"
+            "mshare": "38.66"
           },
           {
             "weekNum": "12",
-            "mshare": "5"
+            "mshare": "38.66"
           },
           {
             "weekNum": "13",
-            "mshare": "5"
+            "mshare": "38.66"
           }
         ]
       },
@@ -156,74 +180,86 @@
         "scenario": "S1",
         "priceScenario": [
           {
-            "brandName": "abc",
-            "brandPrice": "5.8"
+            "brandName": "WINSTON",
+            "brandPrice": "7.334"
           },
           {
-            "brandName": "def",
-            "brandPrice": "5.1"
+            "brandName": "CHESTERFIELD",
+            "brandPrice": "7.453"
           },
           {
-            "brandName": "ghi",
-            "brandPrice": "4.4"
+            "brandName": "L&M",
+            "brandPrice": "6.753"
           },
           {
-            "brandName": "jkl",
-            "brandPrice": "3.6"
+            "brandName": "PALL MALL",
+            "brandPrice": "6.726"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": "7.119"
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": "7.861"
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": "7.658"
           }
         ],
         "mshareTrend": [
           {
             "weekNum": "1",
-            "mshare": "13"
+            "mshare": "50.79"
           },
           {
             "weekNum": "2",
-            "mshare": "13"
+            "mshare": "48.24"
           },
           {
             "weekNum": "3",
-            "mshare": "12"
+            "mshare": "46.42"
           },
           {
             "weekNum": "4",
-            "mshare": "12"
+            "mshare": "43.46"
           },
           {
             "weekNum": "5",
-            "mshare": "11"
+            "mshare": "41.33"
           },
           {
             "weekNum": "6",
-            "mshare": "12"
+            "mshare": "41.33"
           },
           {
             "weekNum": "7",
-            "mshare": "7"
+            "mshare": "41.33"
           },
           {
             "weekNum": "8",
-            "mshare": "10"
+            "mshare": "41.33"
           },
           {
             "weekNum": "9",
-            "mshare": "3"
+            "mshare": "41.33"
           },
           {
             "weekNum": "10",
-            "mshare": "4"
+            "mshare": "41.33"
           },
           {
             "weekNum": "11",
-            "mshare": "6"
+            "mshare": "41.33"
           },
           {
             "weekNum": "12",
-            "mshare": "8"
+            "mshare": "41.33"
           },
           {
             "weekNum": "13",
-            "mshare": "4"
+            "mshare": "41.33"
           }
         ]
       },
@@ -231,74 +267,86 @@
         "scenario": "S2",
         "priceScenario": [
           {
-            "brandName": "abc",
-            "brandPrice": "5.8"
+            "brandName": "WINSTON",
+            "brandPrice": "7.212"
           },
           {
-            "brandName": "def",
-            "brandPrice": "5.1"
+            "brandName": "CHESTERFIELD",
+            "brandPrice": "7.453"
           },
           {
-            "brandName": "ghi",
-            "brandPrice": "4.4"
+            "brandName": "L&M",
+            "brandPrice": "6.753"
           },
           {
-            "brandName": "jkl",
-            "brandPrice": "3.6"
+            "brandName": "PALL MALL",
+            "brandPrice": "6.726"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": "7.119"
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": "7.861"
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": "7.658"
           }
         ],
         "mshareTrend": [
           {
             "weekNum": "1",
-            "mshare": "13"
+            "mshare": "50.79"
           },
           {
             "weekNum": "2",
-            "mshare": "13"
+            "mshare": "48.244"
           },
           {
             "weekNum": "3",
-            "mshare": "13"
+            "mshare": "46.428"
           },
           {
             "weekNum": "4",
-            "mshare": "12"
+            "mshare": "43.464"
           },
           {
             "weekNum": "5",
-            "mshare": "5"
+            "mshare": "41.335"
           },
           {
             "weekNum": "6",
-            "mshare": "12"
+            "mshare": "41.334"
           },
           {
             "weekNum": "7",
-            "mshare": "7"
+            "mshare": "41.336"
           },
           {
             "weekNum": "8",
-            "mshare": "13"
+            "mshare": "41.337"
           },
           {
             "weekNum": "9",
-            "mshare": "3"
+            "mshare": "41.33"
           },
           {
             "weekNum": "10",
-            "mshare": "4"
+            "mshare": "41.336"
           },
           {
             "weekNum": "11",
-            "mshare": "4"
+            "mshare": "41.336"
           },
           {
             "weekNum": "12",
-            "mshare": "4"
+            "mshare": "41.335"
           },
           {
             "weekNum": "13",
-            "mshare": "4"
+            "mshare": "41.334"
           }
         ]
       },      
@@ -306,74 +354,86 @@
         "scenario": "S3",
         "priceScenario": [
           {
-            "brandName": "abc",
-            "brandPrice": "5.5"
+            "brandName": "WINSTON",
+            "brandPrice": "7.212"
           },
           {
-            "brandName": "def",
-            "brandPrice": "5.9"
+            "brandName": "CHESTERFIELD",
+            "brandPrice": "7.453"
           },
           {
-            "brandName": "ghi",
-            "brandPrice": "4.3"
+            "brandName": "L&M",
+            "brandPrice": "6.753"
           },
           {
-            "brandName": "jkl",
-            "brandPrice": "3.8"
+            "brandName": "PALL MALL",
+            "brandPrice": "6.722"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": "7.119"
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": "7.861"
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": "7.658"
           }
         ],
         "mshareTrend": [
           {
             "weekNum": "1",
-            "mshare": "9"
+            "mshare": "50.79"
           },
           {
             "weekNum": "2",
-            "mshare": "9"
+            "mshare": "48.244"
           },
           {
             "weekNum": "3",
-            "mshare": "9"
+            "mshare": "46.428"
           },
           {
             "weekNum": "4",
-            "mshare": "9"
+            "mshare": "43.464"
           },
           {
             "weekNum": "5",
-            "mshare": "9"
+            "mshare": "41.335"
           },
           {
             "weekNum": "6",
-            "mshare": "12"
+            "mshare": "41.336"
           },
           {
             "weekNum": "7",
-            "mshare": "8"
+            "mshare": "41.337"
           },
           {
             "weekNum": "8",
-            "mshare": "12"
+            "mshare": "41.336"
           },
           {
             "weekNum": "9",
-            "mshare": "10"
+            "mshare": "41.336"
           },
           {
             "weekNum": "10",
-            "mshare": "10"
+            "mshare": "41.336"
           },
           {
             "weekNum": "11",
-            "mshare": "10"
+            "mshare": "41.336"
           },
           {
             "weekNum": "12",
-            "mshare": "10"
+            "mshare": "41.335"
           },
           {
             "weekNum": "13",
-            "mshare": "10"
+            "mshare": "41.334"
           }
         ]
       }
