@@ -597,13 +597,10 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 					for(var i in tabledata.accountMsScenarios){
 						if(tabledata.accountMsScenarios[i].scenario == 'S1'){
 							
-							var type3 = "3"
-							var stmt1 = 'DELETE FROM FPSI2 WHERE TYPE = p1';
-							stmt1 = stmt1.replace("p1", "'" + type3 + "'");
+							var stmt1 = "DELETE from FPSI2 where 'TYPE' = '3'";
 							console.log("Delete query: "+stmt1);
 							conn.querySync(stmt1);
-							var stmt2 = 'DELETE FROM PRICINGA WHERE TYPE = p1';
-							stmt2 = stmt2.replace("p1", "'" + type3 + "'");
+							var stmt2 = "DELETE from PRICINGA where 'TYPE' = '3'";
 							console.log("Delete query: "+stmt2);
 							conn.querySync(stmt2);
 
@@ -626,12 +623,12 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 
 						else if(tabledata.accountMsScenarios[i].scenario == 'S2'){
 
-							var type4 = "4"
-							var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = p1';
-							stmt1 = stmt1.replace("p1", "'" + type4 + "'");
+							
+							var stmt1 = "DELETE from FPSI2 where 'TYPE' = '4'";
+							console.log("Delete query: "+stmt1);
 							conn.querySync(stmt1);
-							var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = p1';
-							stmt2 = stmt2.replace("p1", "'" + type4 + "'");
+							var stmt2 = "DELETE from PRICINGA where 'TYPE' = '4'";
+							console.log("Delete query: "+stmt2);
 							conn.querySync(stmt2);
 
 							for(var j in tabledata.accountMsScenarios[i].fpsi){
@@ -653,12 +650,12 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 
 						else if(tabledata.accountMsScenarios[i].scenario == 'S3'){
 
-							var type5 = "5"
-							var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = p1';
-							stmt1 = stmt1.replace("p1", "'" + type5 + "'");
+							
+							var stmt1 = "DELETE from FPSI2 where 'TYPE' = '5'";
+							console.log("Delete query: "+stmt1);
 							conn.querySync(stmt1);
-							var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = p1';
-							stmt2 = stmt2.replace("p1", "'" + type5 + "'");
+							var stmt2 = "DELETE from PRICINGA where 'TYPE' = '5'";
+							console.log("Delete query: "+stmt2);
 							conn.querySync(stmt2);
 
 							for(var j in tabledata.accountMsScenarios[i].fpsi){
