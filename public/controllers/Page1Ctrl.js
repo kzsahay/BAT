@@ -138,14 +138,14 @@ $scope.productbullet=$(function () {
         xAxis: {
             categories: ['Parisienne', 'Pall Mall', 'Lucky Strike', 'Kent'],
             title: {
-                text: 'Name'
+                text: 'Brand Name'
             }
         },
         yAxis: {
             min: 0,
             title: {
                 text: 'Sales',
-                align: 'high'
+                align: 'middle'
             },
             labels: {
                 overflow: 'justify'

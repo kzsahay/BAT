@@ -152,8 +152,83 @@
           }
         ]
       },
-      {
+			{
         "scenario": "S1",
+        "priceScenario": [
+          {
+            "brandName": "abc",
+            "brandPrice": "5.8"
+          },
+          {
+            "brandName": "def",
+            "brandPrice": "5.1"
+          },
+          {
+            "brandName": "ghi",
+            "brandPrice": "4.4"
+          },
+          {
+            "brandName": "jkl",
+            "brandPrice": "3.6"
+          }
+        ],
+        "mshareTrend": [
+          {
+            "weekNum": "1",
+            "mshare": "13"
+          },
+          {
+            "weekNum": "2",
+            "mshare": "13"
+          },
+          {
+            "weekNum": "3",
+            "mshare": "12"
+          },
+          {
+            "weekNum": "4",
+            "mshare": "12"
+          },
+          {
+            "weekNum": "5",
+            "mshare": "11"
+          },
+          {
+            "weekNum": "6",
+            "mshare": "12"
+          },
+          {
+            "weekNum": "7",
+            "mshare": "7"
+          },
+          {
+            "weekNum": "8",
+            "mshare": "10"
+          },
+          {
+            "weekNum": "9",
+            "mshare": "3"
+          },
+          {
+            "weekNum": "10",
+            "mshare": "4"
+          },
+          {
+            "weekNum": "11",
+            "mshare": "6"
+          },
+          {
+            "weekNum": "12",
+            "mshare": "8"
+          },
+          {
+            "weekNum": "13",
+            "mshare": "4"
+          }
+        ]
+      },
+      {
+        "scenario": "S2",
         "priceScenario": [
           {
             "brandName": "abc",
@@ -226,7 +301,7 @@
             "mshare": "4"
           }
         ]
-      },
+      },      
       {
         "scenario": "S3",
         "priceScenario": [

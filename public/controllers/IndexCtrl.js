@@ -2,7 +2,7 @@ var IndexCtrl = angular.module('IndexCtrl', []);
 
 IndexCtrl.controller('IndexCtrl', ['$scope','$location','$http','$rootScope',
   function ($scope, $location,$http,$rootScope) {
-	$scope.selectedClass = 'target';
+	$scope.selectedClass = 'account';
 	
 	$scope.gotoPage1 = function() {
 		$scope.selectedClass = 'target';

@@ -38,10 +38,8 @@
 	height: 100%;
 }
 
-/********  Start Left Navigation  **********/
-
 .leftPannel {
-	background-color: darkslateblue; 
+	background-color: grey; 
 	width: 10%; 
 	height: 100%; 
 	position: fixed;
@@ -100,23 +98,19 @@
 	background-size: 100% auto;    
 }
 
-.leftPannel li a.chick1 {
-	background: url(../images/chick3.png) no-repeat;
-	background-size: 100% auto;    
+
+.leftPannel li a.active {
+	background: #c1c0be;
+	color: #fff;
 }
-.leftPannel li a.chick1.selected {
-	background: url(../images/chick4.png) no-repeat;
-	background-size: 100% auto;    
-}
-/********  End Left Navigation  **********/
 
 .tabelCls {
     background: #F3F2F0;
     border-left: 1px solid #333;
     border-top: 1px solid #333;
     float: left;
-    margin: 1em 1.3em;
-    width: 96%;
+    margin: 3em 2.5em 1em;
+    width: 94%;
 }
 .tabelCls th, .tabelCls td {
 	border-right: 1px solid #333;
@@ -134,7 +128,7 @@
     padding: 1em;
     text-align: center;
     text-decoration: none !important;
-    width: 8%;	
+    width: 12%;	
 }
 .canvas {
 	width: 70%;
@@ -145,7 +139,7 @@
 .radioDiv {
 	clear: both;
     margin: 1em auto;
-    width: 35%;
+    width: 45%;
 }
 .maskPage {
     position: absolute;
@@ -159,4 +153,3 @@
     opacity:.80;
     filter: alpha(opacity=80);
 }
-

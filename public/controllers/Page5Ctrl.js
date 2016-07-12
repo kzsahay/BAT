@@ -13,7 +13,7 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             type: 'pie'
         },
         title: {
-            text: 'BAT'
+            text: 'BAT 60%'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -34,14 +34,13 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             colorByPoint: true,
             data: [{
                 name: 'BAT',
-                y: 40,
+                y: 60,
 				color:'#483D8B'
             }, {
-                name: ' ',
-                y: 60,
-                sliced: true,
-				color:'#FFA500',
-                selected: true
+                name: 'Competitors ',
+                y: 40,
+               color:'#FFA500'
+               
             }]
         }]
     });
@@ -54,7 +53,7 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             type: 'pie'
         },
         title: {
-            text: 'PMI'
+            text: 'PMI 70%'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -76,13 +75,12 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             data: [{
                 name: 'PMI',
 				color:'#483D8B',
-                y: 30
+                y: 70
             }, {
-                name: 'Chrome',
+                name: 'Competitors',
 				color:'#FFA500',
-                y: 70,
-                sliced: true,
-                selected: true
+                y: 30
+               
             }]
         }]
     });
@@ -95,7 +93,7 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             type: 'pie'
         },
         title: {
-            text: 'JTI'
+            text: 'JTI 30%' 
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -117,13 +115,12 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             data: [{
                 name: 'JTI',
 				color:'#483D8B',
-                y: 10
+                y: 30
             }, {
-                name: '',
-                y: 90,
-                sliced: true,
-				color:'#FFA500',
-                selected: true
+                name: 'Competitors',
+                y: 70,
+               color:'#FFA500',
+                
             }]
         }]
     });
@@ -136,7 +133,7 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             type: 'pie'
         },
         title: {
-            text: 'Others'
+            text: 'Others 23%'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -158,13 +155,12 @@ Page5Ctrl.controller('Page5Ctrl', [ '$scope', '$location', '$http',
             data: [{
                 name: 'Others',
 				color:'#483D8B',
-                y: 20
+                y: 23
             }, {
-                name: '',
-                y: 80,
-                sliced: true,
-				color:'#FFA500',
-                selected: true
+                name: 'Competitors',
+                y: 77,
+               color:'#FFA500'
+               
             }]
         }]
     });

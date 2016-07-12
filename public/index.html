@@ -28,6 +28,7 @@
 <script type="text/javascript" src="controllers/IndexCtrl.js"></script>
 <script type="text/javascript" src="controllers/Page4Ctrl.js"></script>
 <script type="text/javascript" src="controllers/Page5Ctrl.js"></script>
+<script type="text/javascript" src="controllers/ScenarioCtrl.js"></script>
 <script type="text/javascript" src="controllers/finalizeCtrl.js"></script>
 
 </head>
@@ -37,41 +38,71 @@
 	<div ng-show="dashboard"
 		style="height: 10%; width: 100%; z-index: 1000; position: fixed; background-color: white; border-radius: 20px;">
 		<div style="width: 50%; position: absolute;">
-			<img src="images/bat.png">
+			<img src="images/bat.png" style="margin-left: 5%;">
 		</div>
 		<div style="width: 50%; float: right; text-align: right;">
 			<span style="font-size: 15px; margin-right: 5%;">Bob Macintosh</span><img
-				src="images/Bob.png" style="width: 10%;    border-radius: 40px;margin: 2%;">
+				src="images/Bob.png"
+				style="width: 15%; border-radius: 40px; padding: 10px;">
 		</div>
 	</div>
-	<div ng-controller="IndexCtrl" class="leftPannel" ng-show="dashboard"
-		style="margin-top: 5%;">
+	<div ng-controller="IndexCtrl" ng-show="dashboard"
+		style="background-color: white; width: 15%; position: fixed; margin-top: 5%;"
+		class="ng-scope">
 
-		<div>
-			<ul>
-				<!--li> <a href="javascript:void(0);" class="flower"> &nbsp;</a> </li-->
-				<li><a href="javascript:void(0);" class="flower"
-					ng-class="{'selected':selectedClass === 'target'}"
-					ng-click="gotoPage0()"> &nbsp;</a></li>
-				<li><a href="javascript:void(0);" class="clock"
-					ng-class="{'selected':selectedClass === 'target'}"
-					ng-click="gotoPage1()"> &nbsp;</a></li>
-				<li><a href="javascript:void(0);" class="new"
-					ng-class="{'selected':selectedClass === 'pricing'}"
-					ng-click="gotoPage2()"> &nbsp;</a></li>
-				<li><a href="javascript:void(0);" class="pig"
-					ng-class="{'selected':selectedClass === 'account'}"
-					ng-click="gotoPage3()"> &nbsp;</a></li>
-				<!--li><a href="javascript:void(0);" class="chick"
-					ng-class="{'selected':selectedClass === 'competitor'}"
-					ng-click="gotoPage4()"> &nbsp;</a></li-->
-				<li><a href="javascript:void(0);" class="chick1"
-					ng-class="{'selected':selectedClass === 'sim'}"
-					ng-click="gotoPage5()"> &nbsp;</a></li>
-			</ul>
+		<div style="width: 100%;">
+			<br> <br>
+			<table>
+				<tbody style="">
+					<tr ng-click="gotoPage0()"
+						style="width: 100%; background-color: darkslateblue; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white;    z-index: 100;">
+						<td style="width: 70%; padding-left: 5%;"><span
+							style="color: #FFA500; font-weight: bold;">Home</span></td>
+						<td style="width: 30%; padding: 3%; text-align: end;"><img
+							alt="" src="images/flower.png" style="width: 75%;"></td>
+					</tr>
+					<tr ng-click="gotoPage1()"
+						style="width: 100%; background-color: darkslateblue; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white;">
+						<td style="width: 70%; padding-left: 5%;"><span
+							style="color: #FFA500; font-weight: bold;">Dashboard</span></td>
+						<td style="width: 30%; padding: 3%; text-align: end;"><img
+							alt="" src="images/clock2.png" style="width: 75%;"></td>
+					</tr>
+					<tr ng-click="gotoPage2()"
+						style="width: 100%; background-color: darkslateblue; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white;">
+						<td style="width: 70%; padding-left: 5%;"><span
+							style="color: #FFA500; font-weight: bold;">New Pricing</span></td>
+						<td style="text-align: end; padding: 2%; width: 30%;"><img
+							alt="" src="images/new2.png" style="width: 75%;"></td>
+					</tr>
+					<tr ng-click="gotoPage3()"
+						style="width: 100%; background-color: darkslateblue; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white;">
+						<td style="width: 70%; padding-left: 5%;"><span
+							style="color: #FFA500; font-weight: bold;">Pricing Impact</span></td>
+						<td style="width: 30%; padding: 3%; text-align: end;"><img
+							alt="" src="images/pig2.png" style="width: 75%;"></td>
+					</tr>
+					<tr ng-click="gotoPage5()"
+						style="width: 100%; background-color: darkslateblue; padding-top: 10% !important; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white;">
+						<td style="width: 70%; padding-left: 5%;"><span
+							style="color: #FFA500; font-weight: bold;">Competitor</span></td>
+						<td style="width: 30%; text-align: end; padding: 2%;"><img
+							alt="" src="images/chick2.png" style="width: 55%;"></td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- 	<ul> -->
+			<!-- 		<!--li> <a href="javascript:void(0);" class="flower"> &nbsp;</a> </li-->
+			<!-- 		<li> <a href="javascript:void(0);" class="flower" ng-class="{'selected':selectedClass === 'target'}" ng-click="gotoPage0()"> &nbsp;</a> </li> -->
+			<!-- 		<li> <a href="javascript:void(0);" class="clock" ng-class="{'selected':selectedClass === 'target'}" ng-click="gotoPage1()"> &nbsp;</a> </li> -->
+			<!-- 		<li> <a href="javascript:void(0);" class="new" ng-class="{'selected':selectedClass === 'pricing'}" ng-click="gotoPage2()"> &nbsp;</a> </li> -->
+			<!-- 		<li> <a href="javascript:void(0);" class="pig" ng-class="{'selected':selectedClass === 'account'}" ng-click="gotoPage3()"> &nbsp;</a> </li> -->
+			<!-- 		<li> <a href="javascript:void(0);" class="chick" ng-class="{'selected':selectedClass === 'competitor'}" ng-click="gotoPage4()"> &nbsp;</a> </li> -->
+			<!-- 		<li> <a href="javascript:void(0);" class="chick1" ng-class="{'selected':selectedClass === 'sim'}" ng-click="gotoPage5()"> &nbsp;</a> </li> -->
+			<!-- 	</ul> -->
 		</div>
 	</div>
 	<!-- ngView:  -->
-	<div ng-view="" class="ng-scope scopeClass"></div>
+	<div ng-view="" class="ng-scope scopeClass" style="margin-left: 15%;"></div>
 </body>
 </html>
