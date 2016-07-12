@@ -69,9 +69,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			initial_scenario_json.push(scenarioObj);
 			radioElm.push(radioObj);
 		}
-		$scope.baseHeader.header.push("Series 3");
-		$scope.baseHeader.header.push("Series 4");
-		$scope.baseHeader.header.push("Series 5");
+		$scope.baseHeader.header.push("Scenario 3");
+		$scope.baseHeader.header.push("Scenario 4");
+		$scope.baseHeader.header.push("Scenario 5");
 		$scope.radioList = radioElm;
 		
 		console.log("baseHeader::  "+JSON.stringify($scope.baseHeader));
@@ -114,7 +114,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			fastContents.push(fastBrand);
 		}
 		if(fstCount >0 && fstCount < fastClass.length){
-			alert("Please give all the brand data for Series 3");
+			alert("Please give all the brand data for Scenario 3");
 			return;
 		}
 		if(fstCount > 0){
@@ -141,7 +141,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			sendContents.push(sndBrand);
 		}
 		if(sndCount > 0 && sndCount < fastClass.length){
-			alert("Please give all the brand data for Series 4");
+			alert("Please give all the brand data for Scenario 4");
 			return;
 		}
 		if(sndCount > 0){
@@ -166,7 +166,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			thrdContents.push(trdBrand);
 		}
 		if(trdCount >0 && trdCount < fastClass.length){
-			alert("Please give all the brand data for Series 5");
+			alert("Please give all the brand data for Scenario 5");
 			return;
 		}
 		if(trdCount > 0){
@@ -221,7 +221,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 							}else {
 								scenarioObj.name = data.Data.marketshareForecasts[i].scenario;
 								var snNum = scenarioObj.name.slice(-1)*1 + 2;
-								radioObj.name = "Series " + snNum;
+								radioObj.name = "Scenario " + snNum;
 								radioObj.val = scenarioObj.name;
 							}					
 							for (var j = 0; j < mshareScenario.length; j++) {
