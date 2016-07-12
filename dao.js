@@ -598,11 +598,11 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 						if(tabledata.accountMsScenarios[i].scenario == 'S1'){
 							
 							var type3 = "3"
-							var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = p1';
+							var stmt1 = 'DELETE FROM FPSI2 WHERE TYPE = p1';
 							stmt1 = stmt1.replace("p1", "'" + type3 + "'");
 							console.log("Delete query: "+stmt1);
 							conn.querySync(stmt1);
-							var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = p1';
+							var stmt2 = 'DELETE FROM PRICINGA WHERE TYPE = p1';
 							stmt2 = stmt2.replace("p1", "'" + type3 + "'");
 							console.log("Delete query: "+stmt2);
 							conn.querySync(stmt2);
@@ -626,9 +626,12 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 
 						else if(tabledata.accountMsScenarios[i].scenario == 'S2'){
 
-							var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = "4"';
+							var type4 = "4"
+							var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = p1';
+							stmt1 = stmt1.replace("p1", "'" + type4 + "'");
 							conn.querySync(stmt1);
-							var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = "4"';
+							var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = p1';
+							stmt2 = stmt2.replace("p1", "'" + type4 + "'");
 							conn.querySync(stmt2);
 
 							for(var j in tabledata.accountMsScenarios[i].fpsi){
@@ -650,9 +653,12 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 
 						else if(tabledata.accountMsScenarios[i].scenario == 'S3'){
 
-							var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = "5"';
+							var type5 = "5"
+							var stmt1 = 'DELETE FROM FPSI2 WHERE "TYPE" = p1';
+							stmt1 = stmt1.replace("p1", "'" + type5 + "'");
 							conn.querySync(stmt1);
-							var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = "5"';
+							var stmt2 = 'DELETE FROM PRICINGA WHERE "TYPE" = p1';
+							stmt2 = stmt2.replace("p1", "'" + type5 + "'");
 							conn.querySync(stmt2);
 
 							for(var j in tabledata.accountMsScenarios[i].fpsi){
