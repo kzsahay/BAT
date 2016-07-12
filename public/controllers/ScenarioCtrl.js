@@ -299,6 +299,7 @@ ScenarioCtrl.controller('ScenarioCtrl', [ '$scope', '$location', '$http',
 					"selectedScenario": selsctedRadio
 				}
 			};
+		
 		$scope.finalservice = finalservice;
 		$scope.finalservice.selectRd = selsctedRadio;
 		$http({
