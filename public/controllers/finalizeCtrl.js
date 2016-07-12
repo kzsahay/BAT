@@ -8,6 +8,7 @@ finalizeCtrl.controller('finalizeCtrl', ['$scope','$location','$rootScope','$htt
 	console.log("finalmarketshareForecasts:++  "+JSON.stringify($scope.finalservice.finalizeDt));
 	
 	var finalizeVal = $scope.finalservice.finalizeDt.Data;
+	$scope.accountName = finalizeVal.accountName;
 	
 	for (var i = 0; i < finalizeVal.marketshareForecasts.length; i++) {
 		var mshareFinalize = finalizeVal.marketshareForecasts[i].forecasts;
@@ -37,7 +38,7 @@ finalizeCtrl.controller('finalizeCtrl', ['$scope','$location','$rootScope','$htt
             type: 'column'
         },
         title: {
-            text: 'Account wise market share forecast'
+            text: 'Account wise BAT market share forecast'
         },
         xAxis: {
             crosshair: true,
@@ -46,7 +47,7 @@ finalizeCtrl.controller('finalizeCtrl', ['$scope','$location','$rootScope','$htt
         yAxis: {
             min: 0,
             title: {
-                text: 'Market Share'
+                text: 'BAT Market Share'
             }
         },
         tooltip: {

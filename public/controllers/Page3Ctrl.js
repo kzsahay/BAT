@@ -5,27 +5,23 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		'$rootScope', 'finalservice', function Page3Ctrl($scope, $location, $http, $rootScope, finalservice) {
 	
 	$scope.basePriceBody=[];
-	var dataArry = [];
-	
 	
 	$http({
 		method: "GET",
-		//url: "JSON/initialScenario.json",
-		url: "https://BATobacco.mybluemix.net/loadtable"
+		url: "JSON/initialScenario.json",
+		//url: "https://BATobacco.mybluemix.net/loadtable"
 		
 	}).success(function(data) {
 		
 		var tabelJson = data.Data.marketshareForecasts;	
-		console.log("tabelJson::  "+JSON.stringify(tabelJson));
-				
+		console.log("tabelJson::  "+JSON.stringify(tabelJson));				
 		$scope.basePriceBody = [];
 		$scope.baseHeader = {
 				"account": data.Data.accountName,
 				"header" : []
 		};
 		var initial_scenario_json = []; 
-		var radioElm = [];
-		
+		var radioElm = [];		
 		for (var i = 0; i < tabelJson.length; i++) {
 			var scenarioObj = {
 					name: "",
@@ -85,7 +81,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		$scope.populateLineChart(initial_scenario_json);
 	})
     .error(function(data) {
-    	alert("The loadtable service is not available ");
+    	alert("The loadtable service is not available!");
     	console.log('Error '+data);
     });
 	
@@ -98,8 +94,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	}
 	
 	$scope.run_scenario = function () {
-		console.log("accountName ++::  "+JSON.stringify($scope.baseHeader));
-		
+		//console.log("accountName ++::  "+JSON.stringify($scope.baseHeader));		
 		var changMarkObj = {
 				"accountName": $scope.baseHeader.account,
 				"marketPrices": []
@@ -122,12 +117,13 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			alert("Please give all the brand data for Series 3");
 			return;
 		}
-		
-		var fastPrice = {
-				"scenario": "S1",
-				"priceScenario": fastContents
-		};
-		changMarkObj.marketPrices.push(fastPrice);
+		if(fstCount > 0){
+			var fastPrice = {
+					"scenario": "S1",
+					"priceScenario": fastContents
+			};
+			changMarkObj.marketPrices.push(fastPrice);
+		}		
 		//alert("fastPrice::  "+JSON.stringify(fastPrice));
 		
 		var sendClass = $(".sendClass");
@@ -144,16 +140,17 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			}
 			sendContents.push(sndBrand);
 		}
-		if(sndCount >0 && sndCount < fastClass.length){
+		if(sndCount > 0 && sndCount < fastClass.length){
 			alert("Please give all the brand data for Series 4");
 			return;
 		}
-		var sendPrice = {
-				"scenario": "S2",
-				"priceScenario": sendContents
-		};
-		changMarkObj.marketPrices.push(sendPrice);
-		
+		if(sndCount > 0){
+			var sendPrice = {
+					"scenario": "S2",
+					"priceScenario": sendContents
+			};
+			changMarkObj.marketPrices.push(sendPrice);
+		}
 		var thrdClass = $(".thrdClass");
 		var thrdContents = [];
 		var trdCount = 0;
@@ -172,21 +169,24 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			alert("Please give all the brand data for Series 5");
 			return;
 		}
-		var thrdPrice = {
-				"scenario": "S3",
-				"priceScenario": thrdContents
-		};
-		changMarkObj.marketPrices.push(thrdPrice);		
-		
+		if(trdCount > 0){
+			var thrdPrice = {
+					"scenario": "S3",
+					"priceScenario": thrdContents
+			};
+			changMarkObj.marketPrices.push(thrdPrice);
+		}
 		var runMrkObj = {"accountMsScenarios": changMarkObj};
 		console.log("runMrkObj::  "+JSON.stringify(runMrkObj));
 		
 		$scope.mask_page = true;
 		$http({
 			method: "GET",
-			url: "JSON/finalScenario.json"
-		}).success(function(data) {	
-			$scope.radio_btn = true;
+			url: "JSON/finalScenario.json"			
+//			method: "POST",	
+//			url: "https://BATobacco.mybluemix.net/runscenario",
+//			data: runMrkObj
+		}).success(function(data) {			
 			$scope.mask_page = false;
 			var final_scenario_json = []; 
 			var radioElm = [];
@@ -234,7 +234,8 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			//alert("$scope.radioList:==  "+JSON.stringify($scope.radioList));
 		})
 	    .error(function(data) {
-	    	alert("The run scenario service is not available ");
+	    	alert("The run scenario service is not available!");
+	    	$scope.mask_page = false;
 	    	console.log('Error '+data);
 	    });
 	};
@@ -242,7 +243,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	$scope.populateLineChart = function (json_scenario) {
 		$('#scenario').highcharts({
 			title: {
-	            text: 'Overall Market Share Forecast',
+	            text: 'Overall BAT Market Share Forecast',
 	            x: -20 //center
 	        },
 	        xAxis: {
@@ -253,7 +254,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	        },
 	        yAxis: {
 	        	title: {
-                    text: "Overall Market Share"
+                    text: "Overall BAT Market Share"
                 }
 	        },
 	        legend: {
@@ -273,11 +274,14 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	
 	$scope.gotoFinalize = function () {
 		//alert($scope.baseHeader.account +"  ::  "+selsctedRadio);
-		
+		if(selsctedRadio == null || selsctedRadio == ""){
+			alert("Please select one option");
+			return;
+		}
 		var inputFnJSON = {
 				"finalizeInput": {
 					"account": $scope.baseHeader.account,
-					"selectedScenario": $scope.radioSelect
+					"selectedScenario": selsctedRadio
 				}
 			};
 		$scope.finalservice = finalservice;
@@ -287,13 +291,12 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			url: "https://batobacco.mybluemix.net/finalize",
 			data: inputFnJSON
 		}).success(function(data) {
-			
 			$scope.finalservice.finalizeDt = data;
 			console.log("finalize JSON::  "+JSON.stringify($scope.finalservice.finalizeDt));
 			$location.path('/finalize');
 		})
 	    .error(function(data) {
-	    	alert("Finalize Service is not avaible");
+	    	alert("Finalize Service is not avaible!");
 	    	console.log('Error '+data);
 	    });
 	};
