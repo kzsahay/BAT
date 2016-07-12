@@ -169,6 +169,7 @@ app.post('/runscenario', function(req, res) {
 	
 	if(typeof(req.headers['Access-Control-Allow-Headers']) === 'undefined'){
         req.headers['Access-Control-Allow-Headers'] = "Origin, X-Requested-With, Content-Type, Accept";
+        req.setHeader('Content-Type', 'application/json');
     }
 	console.log(req.headers['Access-Control-Allow-Headers'])
 	var error_msg = "";
