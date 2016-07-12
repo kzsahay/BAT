@@ -55,7 +55,7 @@ $scope.linechart=$(function () {
             type: 'pie'
         },
         title: {
-            text: 'Brand XYZ'
+            text: 'Parisienne'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -96,7 +96,7 @@ $scope.linechart=$(function () {
             type: 'pie'
         },
         title: {
-            text: 'Brand ABC'
+            text: 'Pall Mall'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -137,7 +137,7 @@ $scope.linechart=$(function () {
             type: 'pie'
         },
         title: {
-            text: 'Brand ASD'
+            text: 'Lucky Strike'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -178,7 +178,7 @@ $scope.linechart=$(function () {
             type: 'pie'
         },
         title: {
-            text: 'Brand QWE'
+            text: 'Kent'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
