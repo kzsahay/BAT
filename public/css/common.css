@@ -109,8 +109,8 @@
     border-left: 1px solid #333;
     border-top: 1px solid #333;
     float: left;
-    margin: 1em 1.3em;
-    width: 96%;
+    margin: 3em 2.5em 1em;
+    width: 94%;
 }
 .tabelCls th, .tabelCls td {
 	border-right: 1px solid #333;
@@ -128,7 +128,7 @@
     padding: 1em;
     text-align: center;
     text-decoration: none !important;
-    width: 8%;	
+    width: 12%;	
 }
 .canvas {
 	width: 70%;
@@ -139,7 +139,7 @@
 .radioDiv {
 	clear: both;
     margin: 1em auto;
-    width: 40%;
+    width: 45%;
 }
 .maskPage {
     position: absolute;
