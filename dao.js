@@ -29,7 +29,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 
 		var tabledata = {"accountName": "", "marketshareForecasts": []};
 		var t = 0;
-
+		tabledata.accountName = "VALORA";
 		var data22 = [];
 		async.series([
 		        //Scenario: Base
