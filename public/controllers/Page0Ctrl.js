@@ -35,7 +35,7 @@ $scope.linechart=$(function () {
         },
         legend: {
 			align: "centre",
-            enabled: true
+			enabled: false
         },
         plotOptions: {
             series: {
