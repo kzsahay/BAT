@@ -175,21 +175,19 @@ app.post('/runscenario', function(req, res) {
 	var error_msg = "";
 	var conn = util.getDBConn();
 	try {
-		var viewData = {
-			Data : []
-		};
-
+	
 		async.series([
 				function(callback) {
-					viewData = dao.getRunscenarioDetails(conn, viewData, req);
+					dao.getRunscenarioDetails(conn, req, res);
 					callback(null);
 				}, function(callback) {
 					util.closeDBConn(conn);
 					callback(null);
 				} ], function(err) {
 			if (!err) {
-				res.setHeader('Content-Type', 'application/json');
-				res.send(viewData);
+				console.log("In app");
+//				res.setHeader('Content-Type', 'application/json');
+//				res.send(viewData);
 			} else {
 				console.log(JSON.stringify(err));
 			}

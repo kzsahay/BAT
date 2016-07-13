@@ -478,6 +478,8 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 	var type = 0;
 	try {
 		
+		var viewData;
+		var t0 = performance();
 		var tabledata = {"accountMsScenarios": []};	
 		for(var k in bodydata.accountMsScenarios.marketPrices){
 			
@@ -545,461 +547,474 @@ exports.getRunscenarioDetails = function(conn, viewData, req) {
 		}
 		
 		async.series([
-						function(callback) {
-							for(var i in tabledata.accountMsScenarios){
-								if(tabledata.accountMsScenarios[i].scenario == 'S1'){
+				function(callback) {
+					setTimeout(function() {
+					for(var i in tabledata.accountMsScenarios){
+						if(tabledata.accountMsScenarios[i].scenario == 'S1'){
 
-									var stmt1 = "DELETE from FPSI2 where 'TYPE' = '3'";
-									console.log("Delete query: "+stmt1);
-									conn.querySync(stmt1);
-									var stmt2 = "DELETE from PRICINGA where 'TYPE' = '3'";
-									console.log("Delete query: "+stmt2);
-									conn.querySync(stmt2);
+							var stmt1 = "DELETE from FPSI2 where 'TYPE' = '3'";
+							console.log("Delete query: "+stmt1);
+							conn.querySync(stmt1);
+							var stmt2 = "DELETE from PRICINGA where 'TYPE' = '3'";
+							console.log("Delete query: "+stmt2);
+							conn.querySync(stmt2);
 
-									for(var j in tabledata.accountMsScenarios[i].fpsi){
-										if(typeof(tabledata.accountMsScenarios[i].fpsi[j].PriceMean) != undefined){
-											var stmt3 = 'INSERT into FPSI2 ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values (p1,p2,p3,p4,p5,p6,p7)';
-												stmt3 = stmt3.replace("p1", "'" + tabledata.accountMsScenarios[i].fpsi[j].brandSegment + "'");
-												stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
-												stmt3 = stmt3.replace("p3", "'" + tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate + "'");
-												stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
-												stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
-												stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
-												stmt3 = stmt3.replace("p7", 3);   
+							for(var j in tabledata.accountMsScenarios[i].fpsi){
+								if(typeof(tabledata.accountMsScenarios[i].fpsi[j].PriceMean) != undefined){
+									var stmt3 = 'INSERT into FPSI2 ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values (p1,p2,p3,p4,p5,p6,p7)';
+										stmt3 = stmt3.replace("p1", "'" + tabledata.accountMsScenarios[i].fpsi[j].brandSegment + "'");
+										stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
+										stmt3 = stmt3.replace("p3", "'" + tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate + "'");
+										stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
+										stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
+										stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
+										stmt3 = stmt3.replace("p7", 3);   
 
-												console.log("Insert query: "+stmt3);
-												conn.querySync(stmt3);
-										}
-									}
+										console.log("Insert query: "+stmt3);
+										conn.querySync(stmt3);
 								}
 							}
-						callback(null, 1);
-						},
-						//Calling webservice model
-						function(callback) {
-							setTimeout(function() {
-							var data = { 
-									     "action": "RUN_STREAM", 
-									     "model": { 
-									          "id": "Test500",
-										   "name": "Forecast500.str" 
-									     },
-									     "dbDefinitions":{
-									          "db":{        
-									                    "type":"DashDB",
-									                    "host":"awh-yp-small02.services.dal.bluemix.net",        
-									                    "port":50000,        
-									                    "db":"BLUDB", 
-									                    "username":"dash111694",  
-									                    "password":"rCQLbpEUsJ2y", 
-									                    "options":""      
-									               	}
-									     		},
+						}
+					}
+					console.log("in 1")
+				callback(null, 1);
+				}, 5000);
+				},
+				//Calling webservice model
+				function(callback) {
+					setTimeout(function() {
+					var data = { 
+							     "action": "RUN_STREAM", 
+							     "model": { 
+							          "id": "Test500",
+								   "name": "Forecast500.str" 
+							     },
+							     "dbDefinitions":{
+							          "db":{        
+							                    "type":"DashDB",
+							                    "host":"awh-yp-small02.services.dal.bluemix.net",        
+							                    "port":50000,        
+							                    "db":"BLUDB", 
+							                    "username":"dash111694",  
+							                    "password":"rCQLbpEUsJ2y", 
+							                    "options":""      
+							               	}
+							     		},
 
-											"setting": {          
-									          "inputs": [
-									                    {
-									                        "node":"DASH111694.FDI2",
-									                        "odbc": {
-									                                   "dbRef":"db",
-									                                   "table":"FDI2"
-									                        }         
-									                    },
-									                     {
-									                        "node":"DASH111694.FPSI2",
-									                        "odbc": {
-									                                   "dbRef":"db",
-									                                   "table":"FPSI2"
-									                        }         
-									                    }
-									         	     ],	
+									"setting": {          
+							          "inputs": [
+							                    {
+							                        "node":"DASH111694.FDI2",
+							                        "odbc": {
+							                                   "dbRef":"db",
+							                                   "table":"FDI2"
+							                        }         
+							                    },
+							                     {
+							                        "node":"DASH111694.FPSI2",
+							                        "odbc": {
+							                                   "dbRef":"db",
+							                                   "table":"FPSI2"
+							                        }         
+							                    }
+							         	     ],	
 
-											"exports": [
+									"exports": [
 
-											{
-									          		"node":"PRICINGA",
-									          		"odbc": {
-									               			"dbRef": "db",
-									               			"table": "PRICINGA",
-									               			"insertMode":"Append"
-									          			}
-											}
-											]
-									    	}
+									{
+							          		"node":"PRICINGA",
+							          		"odbc": {
+							               			"dbRef": "db",
+							               			"table": "PRICINGA",
+							               			"insertMode":"Append"
+							          			}
 									}
-							var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
-							request({
-								    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
-								    qs: {accesskey: accesskeyparam},
-								    headers: {
-						                    'Content-Type': 'application/json'
-						            },
-								    // timeout: 100000,
-					  				body: data,
-					  				method: 'PUT',
-					  				json: true
-								    
-								}, function (error, response, body) {
-									if(!error)
-										console.log(JSON.stringify(body));
-									else
-										console.log(error);
-							});
-						callback(null, 2);	
-						},5000);
-						},
-						//Check status of webservice
-						function(callback) {
-							setTimeout(function(){
-								var status;
-								var refreshId = setInterval(function(){	
-									var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
-									request({
-										    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
-										    qs: {accesskey: accesskeyparam},
-										    // timeout: 1000,
-							  				method: 'GET',
-							  				json: true
-										    
-										}, function (error, response, body) {
-											if(!error){
-												console.log(JSON.stringify(body));
-												// if(typeof(body)!= undefined){
-												if(body.hasOwnProperty('result')){
-													status = body.result.jobStatus;
-													console.log("jobStatus:: "+status);
-													if(status == "SUCCESS"){
-														clearInterval(refreshId);
-														var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 3 WHERE "TYPE" IS NULL';		
-														console.log("Update query: "+stmt1);
-														conn.querySync(stmt1);
-													}
-												}
-											}
-											else
-												console.log(error);
-									});
-									
-									
-								}, 5000);
-		
-								callback(null, 3);	
-							},5000);
-						},
-						function(callback) {
-							setTimeout(function() {
-							for(var i in tabledata.accountMsScenarios){
-								if(tabledata.accountMsScenarios[i].scenario == 'S2'){
-
-									var stmt1 = "DELETE from FPSI2 where 'TYPE' = '4'";
-									console.log("Delete query: "+stmt1);
-									conn.querySync(stmt1);
-									var stmt2 = "DELETE from PRICINGA where 'TYPE' = '4'";
-									console.log("Delete query: "+stmt2);
-									conn.querySync(stmt2);
-
-									for(var j in tabledata.accountMsScenarios[i].fpsi){
-										if(typeof(tabledata.accountMsScenarios[i].fpsi[j].PriceMean) != undefined){
-											var stmt3 = 'INSERT into FPSI2 ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values (p1,p2,p3,p4,p5,p6,p7)';
-												stmt3 = stmt3.replace("p1", "'" + tabledata.accountMsScenarios[i].fpsi[j].brandSegment + "'");
-												stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
-												stmt3 = stmt3.replace("p3", "'" + tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate + "'");
-												stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
-												stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
-												stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
-												stmt3 = stmt3.replace("p7", 4);   
-
-												console.log("Insert query: "+stmt3);
-												conn.querySync(stmt3);
-										}
-									}
-								}
+									]
+							    	}
 							}
-						callback(null, 4);
-						}, 10000); 
-						},
-						//Calling webservice model
-						function(callback) {
-							setTimeout(function() {
-							var data = { 
-									     "action": "RUN_STREAM", 
-									     "model": { 
-									          "id": "Test500",
-										   "name": "Forecast500.str" 
-									     },
-									     "dbDefinitions":{
-									          "db":{        
-									                    "type":"DashDB",
-									                    "host":"awh-yp-small02.services.dal.bluemix.net",        
-									                    "port":50000,        
-									                    "db":"BLUDB", 
-									                    "username":"dash111694",  
-									                    "password":"rCQLbpEUsJ2y", 
-									                    "options":""      
-									               	}
-									     		},
-
-											"setting": {          
-									          "inputs": [
-									                    {
-									                        "node":"DASH111694.FDI2",
-									                        "odbc": {
-									                                   "dbRef":"db",
-									                                   "table":"FDI2"
-									                        }         
-									                    },
-									                     {
-									                        "node":"DASH111694.FPSI2",
-									                        "odbc": {
-									                                   "dbRef":"db",
-									                                   "table":"FPSI2"
-									                        }         
-									                    }
-									         	     ],	
-
-											"exports": [
-
-											{
-									          		"node":"PRICINGA",
-									          		"odbc": {
-									               			"dbRef": "db",
-									               			"table": "PRICINGA",
-									               			"insertMode":"Append"
-									          			}
-											}
-											]
-									    	}
-									}
+					var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
+					request({
+						    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
+						    qs: {accesskey: accesskeyparam},
+						    headers: {
+				                    'Content-Type': 'application/json'
+				            },
+						    // timeout: 100000,
+			  				body: data,
+			  				method: 'PUT',
+			  				json: true
+						    
+						}, function (error, response, body) {
+							if(!error)
+								console.log(JSON.stringify(body));
+							else
+								console.log(error);
+					});
+					console.log("in 2")
+				callback(null, 2);	
+				},5000);
+				},
+				//Check status of webservice
+				function(callback) {
+					setTimeout(function(){
+						var status;
+						var refreshId = setInterval(function(){	
 							var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
 							request({
 								    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
 								    qs: {accesskey: accesskeyparam},
-								    headers: {
-						                    'Content-Type': 'application/json'
-						            },
-								    // timeout: 100000,
-					  				body: data,
-					  				method: 'PUT',
-					  				json: true
-								    
-								}, function (error, response, body) {
-									if(!error)
-										console.log(JSON.stringify(body));
-									else
-										console.log(error);
-							});
-						callback(null, 5);	
-						},5000);
-						},
-						//Check status of webservice
-						function(callback) {
-							setTimeout(function(){
-								var status;
-								var refreshId = setInterval(function(){	
-									var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
-									request({
-										    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
-										    qs: {accesskey: accesskeyparam},
-										    // timeout: 1000,
-							  				method: 'GET',
-							  				json: true
-										    
-										}, function (error, response, body) {
-											if(!error){
-												console.log(JSON.stringify(body));
-												if(body.hasOwnProperty('result')){
-													status = body.result.jobStatus;
-													console.log("jobStatus:: "+status);
-													if(status == "SUCCESS"){
-														clearInterval(refreshId);
-														var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 4 WHERE "TYPE" IS NULL';		
-														console.log("Update query: "+stmt1);
-														conn.querySync(stmt1);
-													}
-												}
-											}
-											else
-												console.log(error);
-									});
-									
-									
-								}, 5000);
-		
-								callback(null, 6);	
-							},5000);
-						},
-						function(callback) {
-							setTimeout(function() {
-								for(var i in tabledata.accountMsScenarios){
-									if(tabledata.accountMsScenarios[i].scenario == 'S3'){
-
-										var stmt1 = "DELETE from FPSI2 where 'TYPE' = '5'";
-										console.log("Delete query: "+stmt1);
-										conn.querySync(stmt1);
-										var stmt2 = "DELETE from PRICINGA where 'TYPE' = '5'";
-										console.log("Delete query: "+stmt2);
-										conn.querySync(stmt2);
-
-										for(var j in tabledata.accountMsScenarios[i].fpsi){
-											if(typeof(tabledata.accountMsScenarios[i].fpsi[j].PriceMean) != undefined){
-												var stmt3 = 'INSERT into FPSI2 ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values (p1,p2,p3,p4,p5,p6,p7)';
-													stmt3 = stmt3.replace("p1", "'" + tabledata.accountMsScenarios[i].fpsi[j].brandSegment + "'");
-													stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
-													stmt3 = stmt3.replace("p3", "'" + tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate + "'");
-													stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
-													stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
-													stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
-													stmt3 = stmt3.replace("p7", 5);
-
-													console.log("Insert query: "+stmt3);
-													conn.querySync(stmt3);
-											}
-										}
-									}
-								}
-							callback(null, 7);
-							}, 10000);
-						},
-						//Calling webservice model
-						function(callback) {
-							setTimeout(function() {
-							var data = { 
-									     "action": "RUN_STREAM", 
-									     "model": { 
-									          "id": "Test500",
-										   "name": "Forecast500.str" 
-									     },
-									     "dbDefinitions":{
-									          "db":{        
-									                    "type":"DashDB",
-									                    "host":"awh-yp-small02.services.dal.bluemix.net",        
-									                    "port":50000,        
-									                    "db":"BLUDB", 
-									                    "username":"dash111694",  
-									                    "password":"rCQLbpEUsJ2y", 
-									                    "options":""      
-									               	}
-									     		},
-
-											"setting": {          
-									          "inputs": [
-									                    {
-									                        "node":"DASH111694.FDI2",
-									                        "odbc": {
-									                                   "dbRef":"db",
-									                                   "table":"FDI2"
-									                        }         
-									                    },
-									                     {
-									                        "node":"DASH111694.FPSI2",
-									                        "odbc": {
-									                                   "dbRef":"db",
-									                                   "table":"FPSI2"
-									                        }         
-									                    }
-									         	     ],	
-
-											"exports": [
-
-											{
-									          		"node":"PRICINGA",
-									          		"odbc": {
-									               			"dbRef": "db",
-									               			"table": "PRICINGA",
-									               			"insertMode":"Append"
-									          			}
-											}
-											]
-									    	}
-									}
-							var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
-							request({
-								    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
-								    qs: {accesskey: accesskeyparam},
-								    headers: {
-						                    'Content-Type': 'application/json'
-						            },
-								    // timeout: 100000,
-					  				body: data,
-					  				method: 'PUT',
-					  				json: true
-								    
-								}, function (error, response, body) {
-									if(!error)
-										console.log(JSON.stringify(body));
-									else
-										console.log(error);
-							});
-						callback(null, 8);	
-						},5000);
-						},
-						//Check status of webservice
-						function(callback) {
-							setTimeout(function(){
-								var status;
-								var refreshId = setInterval(function(){	
-									var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
-									request({
-										    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
-										    qs: {accesskey: accesskeyparam},
-										    // timeout: 1000,
-							  				method: 'GET',
-							  				json: true
-										    
-										}, function (error, response, body) {
-											if(!error){
-												console.log(JSON.stringify(body));
-												if(body.hasOwnProperty('result')){
-													status = body.result.jobStatus;
-													console.log("jobStatus:: "+status);
-													if(status == "SUCCESS"){
-														clearInterval(refreshId);
-														var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 5 WHERE "TYPE" IS NULL';		
-														console.log("Update query: "+stmt1);
-														conn.querySync(stmt1);
-													}
-												}
-											}
-											else
-												console.log(error);
-									});
-									
-									
-								}, 5000);
-								
-								callback(null, 9);	
-							},5000);
-						},
-						function(callback) {
-							setTimeout(function() {
-							request({
-								    url: 'https://BATobacco.mybluemix.net/loadtable',
+								    // timeout: 1000,
 					  				method: 'GET',
 					  				json: true
 								    
 								}, function (error, response, body) {
-									if(!error)
+									if(!error){
 										console.log(JSON.stringify(body));
+										// if(typeof(body)!= undefined){
+										if(body.hasOwnProperty('result')){
+											status = body.result.jobStatus;
+											console.log("jobStatus:: "+status);
+											if(status == "SUCCESS"){
+												clearInterval(refreshId);
+												var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 3 WHERE "TYPE" IS NULL';		
+												console.log("Update query: "+stmt1);
+												conn.querySync(stmt1);
+											}
+										}
+									}
 									else
 										console.log(error);
 							});
-						callback(null, 10);	
-						},5000);
-						}
-						], function(err) {
-							if (!err) {
-								console.log(tabledata);
-							} else {
-								console.log(JSON.stringify(err));
+							
+							
+						}, 5000);
+						console.log("in 3")
+						callback(null, 3);	
+					},5000);
+				},
+				function(callback) {
+					setTimeout(function() {
+					for(var i in tabledata.accountMsScenarios){
+						if(tabledata.accountMsScenarios[i].scenario == 'S2'){
+
+							var stmt1 = "DELETE from FPSI2 where 'TYPE' = '4'";
+							console.log("Delete query: "+stmt1);
+							conn.querySync(stmt1);
+							var stmt2 = "DELETE from PRICINGA where 'TYPE' = '4'";
+							console.log("Delete query: "+stmt2);
+							conn.querySync(stmt2);
+
+							for(var j in tabledata.accountMsScenarios[i].fpsi){
+								if(typeof(tabledata.accountMsScenarios[i].fpsi[j].PriceMean) != undefined){
+									var stmt3 = 'INSERT into FPSI2 ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values (p1,p2,p3,p4,p5,p6,p7)';
+										stmt3 = stmt3.replace("p1", "'" + tabledata.accountMsScenarios[i].fpsi[j].brandSegment + "'");
+										stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
+										stmt3 = stmt3.replace("p3", "'" + tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate + "'");
+										stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
+										stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
+										stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
+										stmt3 = stmt3.replace("p7", 4);   
+
+										console.log("Insert query: "+stmt3);
+										conn.querySync(stmt3);
+								}
 							}
+						}
+					}
+					console.log("in 4")
+				callback(null, 4);
+				}, 10000); 
+				},
+				//Calling webservice model
+				function(callback) {
+					setTimeout(function() {
+					var data = { 
+							     "action": "RUN_STREAM", 
+							     "model": { 
+							          "id": "Test500",
+								   "name": "Forecast500.str" 
+							     },
+							     "dbDefinitions":{
+							          "db":{        
+							                    "type":"DashDB",
+							                    "host":"awh-yp-small02.services.dal.bluemix.net",        
+							                    "port":50000,        
+							                    "db":"BLUDB", 
+							                    "username":"dash111694",  
+							                    "password":"rCQLbpEUsJ2y", 
+							                    "options":""      
+							               	}
+							     		},
 
-						});
+									"setting": {          
+							          "inputs": [
+							                    {
+							                        "node":"DASH111694.FDI2",
+							                        "odbc": {
+							                                   "dbRef":"db",
+							                                   "table":"FDI2"
+							                        }         
+							                    },
+							                     {
+							                        "node":"DASH111694.FPSI2",
+							                        "odbc": {
+							                                   "dbRef":"db",
+							                                   "table":"FPSI2"
+							                        }         
+							                    }
+							         	     ],	
 
-		console.log(tabledata);
-		var success = {
-			"Alert": "Run Scenario Succesfull"
-		}
-		viewData.Data = success;
+									"exports": [
+
+									{
+							          		"node":"PRICINGA",
+							          		"odbc": {
+							               			"dbRef": "db",
+							               			"table": "PRICINGA",
+							               			"insertMode":"Append"
+							          			}
+									}
+									]
+							    	}
+							}
+					var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
+					request({
+						    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
+						    qs: {accesskey: accesskeyparam},
+						    headers: {
+				                    'Content-Type': 'application/json'
+				            },
+						    // timeout: 100000,
+			  				body: data,
+			  				method: 'PUT',
+			  				json: true
+						    
+						}, function (error, response, body) {
+							if(!error)
+								console.log(JSON.stringify(body));
+							else
+								console.log(error);
+					});
+					console.log("in 5")
+				callback(null, 5);	
+				},5000);
+				},
+				//Check status of webservice
+				function(callback) {
+					setTimeout(function(){
+						var status;
+						var refreshId = setInterval(function(){	
+							var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
+							request({
+								    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
+								    qs: {accesskey: accesskeyparam},
+								    // timeout: 1000,
+					  				method: 'GET',
+					  				json: true
+								    
+								}, function (error, response, body) {
+									if(!error){
+										console.log(JSON.stringify(body));
+										if(body.hasOwnProperty('result')){
+											status = body.result.jobStatus;
+											console.log("jobStatus:: "+status);
+											if(status == "SUCCESS"){
+												clearInterval(refreshId);
+												var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 4 WHERE "TYPE" IS NULL';		
+												console.log("Update query: "+stmt1);
+												conn.querySync(stmt1);
+											}
+										}
+									}
+									else
+										console.log(error);
+							});
+							
+							
+						}, 5000);
+						console.log("in 6")
+						callback(null, 6);	
+					},5000);
+				},
+				function(callback) {
+					setTimeout(function() {
+						for(var i in tabledata.accountMsScenarios){
+							if(tabledata.accountMsScenarios[i].scenario == 'S3'){
+
+								var stmt1 = "DELETE from FPSI2 where 'TYPE' = '5'";
+								console.log("Delete query: "+stmt1);
+								conn.querySync(stmt1);
+								var stmt2 = "DELETE from PRICINGA where 'TYPE' = '5'";
+								console.log("Delete query: "+stmt2);
+								conn.querySync(stmt2);
+
+								for(var j in tabledata.accountMsScenarios[i].fpsi){
+									if(typeof(tabledata.accountMsScenarios[i].fpsi[j].PriceMean) != undefined){
+										var stmt3 = 'INSERT into FPSI2 ("BrandSegment","Price_Mean","WeekEndingDate","Account","Company","LastWeeksShare","TYPE") values (p1,p2,p3,p4,p5,p6,p7)';
+											stmt3 = stmt3.replace("p1", "'" + tabledata.accountMsScenarios[i].fpsi[j].brandSegment + "'");
+											stmt3 = stmt3.replace("p2", tabledata.accountMsScenarios[i].fpsi[j].PriceMean);
+											stmt3 = stmt3.replace("p3", "'" + tabledata.accountMsScenarios[i].fpsi[j].WeekendingDate + "'");
+											stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
+											stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
+											stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
+											stmt3 = stmt3.replace("p7", 5);
+
+											console.log("Insert query: "+stmt3);
+											conn.querySync(stmt3);
+									}
+								}
+							}
+						}
+						console.log("in 7")
+					callback(null, 7);
+					}, 10000);
+				},
+				//Calling webservice model
+				function(callback) {
+					setTimeout(function() {
+					var data = { 
+							     "action": "RUN_STREAM", 
+							     "model": { 
+							          "id": "Test500",
+								   "name": "Forecast500.str" 
+							     },
+							     "dbDefinitions":{
+							          "db":{        
+							                    "type":"DashDB",
+							                    "host":"awh-yp-small02.services.dal.bluemix.net",        
+							                    "port":50000,        
+							                    "db":"BLUDB", 
+							                    "username":"dash111694",  
+							                    "password":"rCQLbpEUsJ2y", 
+							                    "options":""      
+							               	}
+							     		},
+
+									"setting": {          
+							          "inputs": [
+							                    {
+							                        "node":"DASH111694.FDI2",
+							                        "odbc": {
+							                                   "dbRef":"db",
+							                                   "table":"FDI2"
+							                        }         
+							                    },
+							                     {
+							                        "node":"DASH111694.FPSI2",
+							                        "odbc": {
+							                                   "dbRef":"db",
+							                                   "table":"FPSI2"
+							                        }         
+							                    }
+							         	     ],	
+
+									"exports": [
+
+									{
+							          		"node":"PRICINGA",
+							          		"odbc": {
+							               			"dbRef": "db",
+							               			"table": "PRICINGA",
+							               			"insertMode":"Append"
+							          			}
+									}
+									]
+							    	}
+							}
+					var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
+					request({
+						    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
+						    qs: {accesskey: accesskeyparam},
+						    headers: {
+				                    'Content-Type': 'application/json'
+				            },
+						    // timeout: 100000,
+			  				body: data,
+			  				method: 'PUT',
+			  				json: true
+						    
+						}, function (error, response, body) {
+							if(!error)
+								console.log(JSON.stringify(body));
+							else
+								console.log(error);
+					});
+					console.log("in 8")
+				callback(null, 8);	
+				},5000);
+				},
+				//Check status of webservice
+				function(callback) {
+					setTimeout(function(){
+						var status;
+						var refreshId = setInterval(function(){	
+							var accesskeyparam = "ZMhopLpoYOvYCCsYmJe9TBvQ2/rJ7aHQfAhuY+1TE61JoCHtLPTmpb44A4GbQXtuHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+GX9hfcutByXhZFQ1WwLmIYoKH4gpzPQFCvssG01JM6ebZljd7ba0U2jjCzctnklGw=";
+							request({
+								    url: 'https://palbyp.pmservice.ibmcloud.com/pm/v1/jobs/Test500',
+								    qs: {accesskey: accesskeyparam},
+								    // timeout: 1000,
+					  				method: 'GET',
+					  				json: true
+								    
+								}, function (error, response, body) {
+									if(!error){
+										console.log(JSON.stringify(body));
+										if(body.hasOwnProperty('result')){
+											status = body.result.jobStatus;
+											console.log("jobStatus:: "+status);
+											if(status == "SUCCESS"){
+												clearInterval(refreshId);
+												var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 5 WHERE "TYPE" IS NULL';		
+												console.log("Update query: "+stmt1);
+												conn.querySync(stmt1);
+												console.log("Completed finally");
+												var t1 = performance();
+												console.log("Call to do this took " + (t1 - t0) + " milliseconds.")
+												var success = {
+													"Alert": "Run Scenario Succesfull"
+												}
+												res.setHeader('Content-Type', 'application/json');
+												res.send(success);
+											}
+										}
+									}
+									else
+										console.log(error);
+							});
+							
+							
+						}, 5000);
+						console.log("in 9")
+						callback(null, 9);	
+					},5000);
+				},
+				function(callback) {
+					setTimeout(function() {
+					request({
+						    url: 'https://BATobacco.mybluemix.net/loadtable',
+			  				method: 'GET',
+			  				json: true
+						    
+						}, function (error, response, body) {
+							if(!error)
+								console.log(JSON.stringify(body));
+							else
+								console.log(error);
+					});
+					console.log("in 10")
+					
+					callback(null, 10);	
+					},5000);
+				}
+				], function(err) {
+					if (!err) {
+						// console.log(tabledata);
+						console.log("response");
+					} else {
+						console.log(JSON.stringify(err));
+					}
+
+				});
 
 	} catch (err) {
 			console.log("Error in getRunscenarioDetails :: "
