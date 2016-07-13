@@ -479,7 +479,7 @@ exports.getRunscenarioDetails = function(conn, viewData, req, res) {
 	try {
 		
 		var viewData;
-		var t0 = performance();
+//		var t0 = performance();
 		var tabledata = {"accountMsScenarios": []};	
 		for(var k in bodydata.accountMsScenarios.marketPrices){
 			
@@ -968,8 +968,8 @@ exports.getRunscenarioDetails = function(conn, viewData, req, res) {
 												console.log("Update query: "+stmt1);
 												conn.querySync(stmt1);
 												console.log("Completed finally");
-												var t1 = performance();
-												console.log("Call to do this took " + (t1 - t0) + " milliseconds.")
+//												var t1 = performance();
+//												console.log("Call to do this took " + (t1 - t0) + " milliseconds.")
 												var success = {
 													"Alert": "Run Scenario Succesfull"
 												}
