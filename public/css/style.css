@@ -1,0 +1,160 @@
+/* style.css
+ * This file provides css styles.
+ */
+
+body,html {
+	background-color: #3b4b54; width : 100%;
+	height: 100%;
+	margin: 0 auto;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	color: #ffffff;
+}
+a {
+	text-decoration: none;
+	color: #00aed1;
+}
+a:hover {
+	text-decoration: underline;
+}
+.newappIcon {
+	padding-top: 10%;
+	display: block;
+	margin: 0 auto;
+	padding-bottom: 2em;
+	max-width:200px;
+}
+h1 {
+	font-weight: bold;
+	font-size: 2em;
+}
+.leftHalf {
+	float: left;
+	background-color: #26343f;
+	width: 45%;
+	height: 100%;
+}
+.rightHalf {
+	float: right;
+	width: 55%;
+	background-color: #313f4a;
+	height: 100%;
+	overflow:auto;
+}
+.blue {
+	color: #00aed1;
+}
+table {
+	table-layout: fixed;
+	width: 800px;
+	margin: 0 auto;
+	word-wrap: break-word;
+	padding-top:10%;
+}
+th {
+	border-bottom: 1px solid #000;
+}
+th, td {
+	text-align: left;
+	padding: 2px 20px;
+}
+.env-var {
+	text-align: right;
+	border-right: 1px solid #000;
+	width: 30%;
+}
+pre {
+	padding: 0;
+	margin: 0;
+}
+
+
+.left-div {float:left;}
+.right-div {float:right;}
+.clear-div {clear: both;}
+.center-align {text-align: center;}
+.overflow {overflow: hidden;}
+
+.leftPannel {
+	bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 6%;
+    background: #A8A49F;
+}
+.bodyElement {
+	bottom: 0;
+    height: 100%;
+    left: 6%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 94%;
+}
+.leftPannel ul {
+	margin: 1em 0;
+	padding: 0;
+	list-style: none;
+}
+.leftPannel ul li {
+	padding: 1em;
+	text-align: center;
+}
+.leftPannel ul li a {
+	border: 1px solid #fff;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 0.7em;
+    text-decoration: none;
+    background: #fff;
+    color: #333;
+}
+.leftPannel ul li a.active {
+	background: #c1c0be;
+	color: #fff;
+}
+.formCls {margin: 2em 1em 1em;}
+.username span {
+	display: inline-block;
+    margin: 0.7em 1em;
+}
+.username a {
+	width: 40px;
+	height: 40px;
+	background: #A8A49F;
+	float: right;
+	text-decoration: none !important;
+	background: url(../images/user.png) no-repeat !important;
+}
+
+.tabelCls {
+	float: left;
+    margin: 1em 1.5em;
+    background: #F3F2F0;
+    border: 1px solid #333;
+}
+.tabelCls th, .tabelCls td {
+	border-right: 1px solid #333;
+	border-bottom: 1px solid #333;
+	 padding-left: 5px;
+}
+.runScenario {
+	background: #7f7c77;
+    border: 1px solid #7f7c77;
+    border-radius: 0.5em;
+    color: #fff;
+    float: right;
+    margin-right: 3em;
+    padding: 1em;
+    text-decoration: none !important;	
+}
+.canvas {
+	width: 70%;
+	height: 300px;
+	border: 1px solid;
+	margin: 1em 1.5em;
+}
+
+

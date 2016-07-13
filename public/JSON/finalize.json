@@ -1,0 +1,65 @@
+{
+  "Data": {
+    "accountName": "Velora",
+    "marketshareForecasts": [
+      {
+        "scenario": "C",
+        "forecasts": [
+          {
+            "brandName": "CHESTERFIELD",
+            "sum_share": "11.97"
+          },
+          {
+            "brandName": "MARLBORO",
+            "sum_share": "20.17"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "sum_share": "38.68"
+          },
+          {
+            "brandName": "WINSTON",
+            "sum_share": "29.29"
+          },
+		  {
+            "brandName": "L&M",
+            "sum_share": "59.43"
+          },
+		  {
+            "brandName": "OTHER",
+            "sum_share": "40.56"
+          }
+        ]
+      },
+      {
+        "scenario": "S1",
+        "forecasts": [
+         {
+            "brandName": "CHESTERFIELD",
+            "sum_share": "14.72"
+          },
+          {
+            "brandName": "MARLBORO",
+            "sum_share": "29.15"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "sum_share": "41.33"
+          },
+          {
+            "brandName": "WINSTON",
+            "sum_share": "39.30"
+          },
+		  {
+            "brandName": "L&M",
+            "sum_share": "-3.64"
+          },
+		  {
+            "brandName": "OTHER",
+            "sum_share": "-16.19"
+          }
+        ]
+      }
+    ]
+  }
+}

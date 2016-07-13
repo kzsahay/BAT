@@ -1,0 +1,442 @@
+{
+  "Data": {
+    "accountName": "Velora",
+    "marketshareForecasts": [
+      {
+        "scenario": "B",
+        "priceScenario": [
+          {
+            "brandName": "WINSTON",
+            "brandPrice": "7.21"
+          },
+          {
+            "brandName": "CHESTERFIELD",
+            "brandPrice": "5.42"
+          },
+          {
+            "brandName": "L&M",
+            "brandPrice": "6.73"
+          },
+          {
+            "brandName": "PALL MALL",
+            "brandPrice": "6.72"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": "7.32"
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": "8.16"
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": "8.13"
+          }
+        ],
+        "mshareTrend": [
+          {
+            "weekNum": "1",
+            "mshare": "39.03"
+          },
+          {
+            "weekNum": "2",
+            "mshare": "38.92"
+          },
+          {
+            "weekNum": "3",
+            "mshare": "38.85"
+          },
+          {
+            "weekNum": "4",
+            "mshare": "38.74"
+          },
+          {
+            "weekNum": "5",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "6",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "7",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "8",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "9",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "10",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "11",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "12",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "13",
+            "mshare": "38.66"
+          }
+        ]
+      },
+      {
+        "scenario": "C",
+        "priceScenario": [
+          {
+            "brandName": "WINSTON",
+            "brandPrice": "7.38"
+          },
+          {
+            "brandName": "CHESTERFIELD",
+            "brandPrice": "7.45"
+          },
+          {
+            "brandName": "L&M",
+            "brandPrice": "6.75"
+          },
+          {
+            "brandName": "PALL MALL",
+            "brandPrice": "6.72"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": "7.11"
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": "7.86"
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": "7.65"
+          }
+        ],
+        "mshareTrend": [
+          {
+            "weekNum": "1",
+            "mshare": "39.03"
+          },
+          {
+            "weekNum": "2",
+            "mshare": "38.92"
+          },
+          {
+            "weekNum": "3",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "4",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "5",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "6",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "7",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "8",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "9",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "10",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "11",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "12",
+            "mshare": "38.66"
+          },
+          {
+            "weekNum": "13",
+            "mshare": "38.66"
+          }
+        ]
+      },
+			{
+        "scenario": "S1",
+        "priceScenario": [
+          {
+            "brandName": "WINSTON",
+            "brandPrice": "7.33"
+          },
+          {
+            "brandName": "CHESTERFIELD",
+            "brandPrice": "7.45"
+          },
+          {
+            "brandName": "L&M",
+            "brandPrice": "6.75"
+          },
+          {
+            "brandName": "PALL MALL",
+            "brandPrice": "6.72"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": "7.11"
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": "7.86"
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": "7.65"
+          }
+        ],
+        "mshareTrend": [
+          {
+            "weekNum": "1",
+            "mshare": "50.79"
+          },
+          {
+            "weekNum": "2",
+            "mshare": "48.24"
+          },
+          {
+            "weekNum": "3",
+            "mshare": "46.42"
+          },
+          {
+            "weekNum": "4",
+            "mshare": "43.46"
+          },
+          {
+            "weekNum": "5",
+            "mshare": "41.33"
+          },
+          {
+            "weekNum": "6",
+            "mshare": "41.33"
+          },
+          {
+            "weekNum": "7",
+            "mshare": "41.33"
+          },
+          {
+            "weekNum": "8",
+            "mshare": "41.33"
+          },
+          {
+            "weekNum": "9",
+            "mshare": "41.33"
+          },
+          {
+            "weekNum": "10",
+            "mshare": "41.33"
+          },
+          {
+            "weekNum": "11",
+            "mshare": "41.33"
+          },
+          {
+            "weekNum": "12",
+            "mshare": "41.33"
+          },
+          {
+            "weekNum": "13",
+            "mshare": "41.33"
+          }
+        ]
+      },
+      {
+        "scenario": "S2",
+        "priceScenario": [
+          {
+            "brandName": "WINSTON",
+            "brandPrice": "7.21"
+          },
+          {
+            "brandName": "CHESTERFIELD",
+            "brandPrice": "7.45"
+          },
+          {
+            "brandName": "L&M",
+            "brandPrice": "6.75"
+          },
+          {
+            "brandName": "PALL MALL",
+            "brandPrice": "6.72"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": "7.11"
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": "7.86"
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": "7.65"
+          }
+        ],
+        "mshareTrend": [
+          {
+            "weekNum": "1",
+            "mshare": "59.79"
+          },
+          {
+            "weekNum": "2",
+            "mshare": "55.244"
+          },
+          {
+            "weekNum": "3",
+            "mshare": "51.428"
+          },
+          {
+            "weekNum": "4",
+            "mshare": "48.464"
+          },
+          {
+            "weekNum": "5",
+            "mshare": "41.335"
+          },
+          {
+            "weekNum": "6",
+            "mshare": "35.334"
+          },
+          {
+            "weekNum": "7",
+            "mshare": "35.336"
+          },
+          {
+            "weekNum": "8",
+            "mshare": "35.337"
+          },
+          {
+            "weekNum": "9",
+            "mshare": "38.33"
+          },
+          {
+            "weekNum": "10",
+            "mshare": "41.336"
+          },
+          {
+            "weekNum": "11",
+            "mshare": "41.336"
+          },
+          {
+            "weekNum": "12",
+            "mshare": "38.335"
+          },
+          {
+            "weekNum": "13",
+            "mshare": "41.334"
+          }
+        ]
+      },      
+      {
+        "scenario": "S3",
+        "priceScenario": [
+          {
+            "brandName": "WINSTON",
+            "brandPrice": "7.21"
+          },
+          {
+            "brandName": "CHESTERFIELD",
+            "brandPrice": "7.45"
+          },
+          {
+            "brandName": "L&M",
+            "brandPrice": "6.75"
+          },
+          {
+            "brandName": "PALL MALL",
+            "brandPrice": "6.72"
+          },
+          {
+            "brandName": "PARISIENNE",
+            "brandPrice": "7.11"
+          },
+          {
+            "brandName": "MARLBORO",
+            "brandPrice": "7.86"
+          },
+          {
+            "brandName": "OTHER",
+            "brandPrice": "7.65"
+          }
+        ],
+        "mshareTrend": [
+          {
+            "weekNum": "1",
+            "mshare": "53.79"
+          },
+          {
+            "weekNum": "2",
+            "mshare": "53.244"
+          },
+          {
+            "weekNum": "3",
+            "mshare": "49.428"
+          },
+          {
+            "weekNum": "4",
+            "mshare": "46.464"
+          },
+          {
+            "weekNum": "5",
+            "mshare": "43.335"
+          },
+          {
+            "weekNum": "6",
+            "mshare": "41.336"
+          },
+          {
+            "weekNum": "7",
+            "mshare": "43.337"
+          },
+          {
+            "weekNum": "8",
+            "mshare": "41.336"
+          },
+          {
+            "weekNum": "9",
+            "mshare": "41.336"
+          },
+          {
+            "weekNum": "10",
+            "mshare": "43.336"
+          },
+          {
+            "weekNum": "11",
+            "mshare": "41.336"
+          },
+          {
+            "weekNum": "12",
+            "mshare": "43.335"
+          },
+          {
+            "weekNum": "13",
+            "mshare": "41.334"
+          }
+        ]
+      }
+    ]
+  }
+}
