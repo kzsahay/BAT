@@ -223,7 +223,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 								var snNum = sceName.slice(-1)*1 + 2;
 								radioObj.name = "Scenario " + snNum;
 								radioObj.val = sceName;
-								scenarioObj.name = sceName;
+								scenarioObj.name = radioObj.name;
 							}					
 							for (var j = 0; j < mshareScenario.length; j++) {
 								var wkNum = "Wk" + mshareScenario[j].weekNum;
