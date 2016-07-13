@@ -1,54 +1,44 @@
-<div style="margin-top: 10%;;">
-
-<div>
-	<div class="formCls">
-		<div class="row">
-			<div class="col-md-9 col-xs-9 col-sm-9">
-				<h2 style="padding-left: 1em;">Brand wise Scenario input for {{ baseHeader.account }} </h2>
-			</div>
-			<table  cellspacing="0" cellpadding="0" class="tabelCls">
-				<thead>
-					<tr>
-						<th>Brand</th>
-						<th ng-repeat="item in baseHeader.header"> {{ item }}</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="itemCh in basePriceBody">
-						<td>{{itemCh.brandName}}</td>
-						<td>{{itemCh.brandPrice}}</td>
-						<td>{{itemCh.corporatePrice}}</td>
-						<td>
-							<input type="text" id="fst_{{$index}}" value="" field="{{itemCh.brandName}}" class="fastClass" />
-						</td>
-						<td>
-							<input type="text" id="snd_{{$index}}" value="" field="{{itemCh.brandName}}" class="sendClass" /> 
-						</td>
-						<td>
-							<input type="text" id="trd_{{$index}}" value="" field="{{itemCh.brandName}}" class="thrdClass" />
-						</td>
-					</tr>						
-				</tbody>
-			</table>
-		</div>
-		<div class="row" style="clear: both;">
-			<a href="javascript:void(0);" class="runScenario"  ng-click="run_scenario();">Run Scenario</a>
-		</div>
-		
- 		 <div class="radioDiv">
-    	 	<label class="radio-inline" ng-repeat="itm in radioList">
-			  <input type="radio" name="rdoResult" ng-value="'{{itm.val}}'" ng-model="radioSelect" ng-change="change_radioVal(itm.val)">{{itm.name}}
-			</label>
-    	 </div>
-    	 
-		<div class="row" style="clear: both;">
-			<div id="scenario" style="min-width: 310px; height: 400px; max-width: 900px; margin: 0 auto" ng-model="scenarioLineChart"></div>
-		</div>
-		<div class="row" style="clear: both;">
-			<a href="javascript:void(0);" class="runScenario" ng-click="gotoFinalize()">Finalize</a>
-		</div>
+<div style="margin-top: 10%;">
+	<div><center><span style="font-size:20px">Brand wise Scenario input for {{ baseHeader.account }}</span></center></div>
+	
+	<table  cellspacing="0" cellpadding="0" class="tabelCls">
+		<thead>
+			<tr>
+				<th>Brand</th>
+				<th ng-repeat="item in baseHeader.header"> {{ item }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="itemCh in basePriceBody">
+				<td>{{itemCh.brandName}}</td>
+				<td>{{itemCh.brandPrice}}</td>
+				<td>{{itemCh.corporatePrice}}</td>
+				<td>
+					<input type="text" id="fst_{{$index}}" value="" field="{{itemCh.brandName}}" class="fastClass" />
+				</td>
+				<td>
+					<input type="text" id="snd_{{$index}}" value="" field="{{itemCh.brandName}}" class="sendClass" /> 
+				</td>
+				<td>
+					<input type="text" id="trd_{{$index}}" value="" field="{{itemCh.brandName}}" class="thrdClass" />
+				</td>
+			</tr>						
+		</tbody>
+	</table>
+	<div style="clear: both;">
+		<a href="javascript:void(0);" class="runScenario"  ng-click="run_scenario();">Run Scenario</a>
 	</div>
+	<div class="radioDiv">
+   	 	<label class="radio-inline" ng-repeat="itm in radioList">
+		  <input type="radio" name="rdoResult" ng-value="'{{itm.val}}'" ng-model="radioSelect" ng-change="change_radioVal(itm.val)">{{itm.name}}
+		</label>
+   	 </div>
+   	 
+   	 <div id="scenario" style="width: 1120px; height: 350px; float: left" ng-model="scenarioLineChart"></div>
+   	
+	<div style="clear: both;">
+		<a href="javascript:void(0);" class="runScenario" ng-click="gotoFinalize()">Finalize</a>
+	</div>	
 	
 </div>
 <div class="maskPage" ng-show="mask_page">&nbsp;</div>
-</div>
