@@ -474,7 +474,7 @@ exports.getfinalizeDetails = function(conn, viewData, req) {
 //run scenario button slide 6
 exports.getRunscenarioDetails = function(conn, viewData, req, res) {
 	var bodydata = req.body;
-	// console.log(JSON.stringify(bodydata.accountMsScenarios.marketPrices));
+	console.log(JSON.stringify(bodydata));
 	var type = 0;
 	try {
 		
