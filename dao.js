@@ -481,45 +481,49 @@ exports.getfinalizeDetails = function(conn, viewData, req) {
 /*****************************************************************************************************************************************/
 
 //element existence in array
-Array.prototype.contains = function (v) {
-    return this.indexOf(v) > -1;
+function arrayContain(array, v){
+	for (var i in array) {
+	    if (array[i] == v) {
+	        return true;
+	    }
+	}
 }
-
     return this.indexOf(v) > -1;
+
 
 //set response position
 function getresponseScene(bodydata){
-	var scenes = []; j = 0; resScene = 0;
-		for(var i in bodydata.accountMsScenarios.marketPrices){
-			scenes[j++] = bodydata.accountMsScenarios.marketPrices[i].scenario;
-		}
-		console.log(scenes);
-
-		if(scenes.contains('S3')){
-			console.log("S3 is present")
-			resScene = 3;
-		}
-		if(scenes.contains('S2')){
-			console.log("S2 is present")
-			if(scenes.contains('S3')){
+		var scenes = []; j = 0; resScene = 0;
+			for(var i in bodydata.accountMsScenarios.marketPrices){
+				scenes[j++] = bodydata.accountMsScenarios.marketPrices[i].scenario;
+			}
+			console.log(scenes);
+			var s1 = 'S1'; s2 = 'S2'; s3 = 'S3';
+			if(arrayContain(scenes, s3)){
+				console.log("S3 is present")
 				resScene = 3;
 			}
-			else
-				resScene = 2;
-		}
-		if(scenes.contains('S1')){
-			console.log("S1 is present")
-			if(scenes.contains('S2')== true && scenes.contains('S3') == false){
-				resScene = 2
+			if(arrayContain(scenes, s2)){
+				console.log("S2 is present")
+				if(arrayContain(scenes, s3)){
+					resScene = 3;
+				}
+				else
+					resScene = 2;
 			}
-			else if(scenes.contains('S3')== true){
-				resScene = 3
+			if(arrayContain(scenes, s1)){
+				console.log("S1 is present")
+				if(arrayContain(scenes, s2)== true && arrayContain(scenes, s3) == false){
+					resScene = 2
+				}
+				else if(arrayContain(scenes, s3)== true){
+					resScene = 3
+				}
+				else
+					resScene = 1;
 			}
-			else
-				resScene = 1;
-		}
-		return resScene;
-}
+			return resScene;
+	}
 
 
 //run scenario button slide 6
