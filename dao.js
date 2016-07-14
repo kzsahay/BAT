@@ -482,13 +482,10 @@ exports.getfinalizeDetails = function(conn, viewData, req) {
 
 //element existence in array
 function arrayContain(array, v){
-	for (var i in array) {
-	    if (array[i] == v) {
-	        return true;
-	    }
+	if(array.indexOf(v)>=0){
+		return true
 	}
 }
-    return this.indexOf(v) > -1;
 
 
 //set response position
