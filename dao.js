@@ -22,8 +22,6 @@ function getCompanyForBrand(brandName) {
     return company;    
 }
 
-//loading db tables slide 6
-
 
 //loading db tables slide 6
 exports.getTableDetails = function(conn, viewData, req) {
@@ -350,12 +348,6 @@ exports.getTableDetails = function(conn, viewData, req) {
 /*****************************************************************************************************************************************/
 /*****************************************************************************************************************************************/
 
-
-//finalize button slide 6
-
-/*****************************************************************************************************************************************/
-/*****************************************************************************************************************************************/
-
 //finalize button slide 6
 exports.getfinalizeDetails = function(conn, viewData, req) {
 	var scenario = req.body.finalizeInput.selectedScenario;
@@ -608,10 +600,10 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 					for(var i in tabledata.accountMsScenarios){
 						if(tabledata.accountMsScenarios[i].scenario == 'S1'){
 							checkStatus = 1;
-							var stmt1 = "DELETE from FPSI2 where 'TYPE' = '3'";
+							var stmt1 = "DELETE from FPSI2 where TYPE = '3'";
 							console.log("Delete query: "+stmt1);
 							conn.querySync(stmt1);
-							var stmt2 = "DELETE from PRICINGA where 'TYPE' = '3'";
+							var stmt2 = "DELETE from PRICINGA where TYPE = 3";
 							console.log("Delete query: "+stmt2);
 							conn.querySync(stmt2);
 
@@ -624,7 +616,7 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 										stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
 										stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
 										stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
-										stmt3 = stmt3.replace("p7", 3);   
+										stmt3 = stmt3.replace("p7", "'" +3+ "'");      
 
 										console.log("Insert query: "+stmt3);
 										conn.querySync(stmt3);
@@ -738,7 +730,7 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 												console.log("jobStatus:: "+status);
 												if(status == "SUCCESS"){
 													clearInterval(refreshId);
-													var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 3 WHERE "TYPE" IS NULL';		
+													var stmt1 = 'UPDATE PRICINGA SET TYPE = 3 WHERE TYPE is null';			
 													console.log("Update query: "+stmt1);
 													conn.querySync(stmt1);
 													if(resScene == 1){
@@ -767,10 +759,10 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 					for(var i in tabledata.accountMsScenarios){
 						if(tabledata.accountMsScenarios[i].scenario == 'S2'){
 							checkStatus = 2;
-							var stmt1 = "DELETE from FPSI2 where 'TYPE' = '4'";
+							var stmt1 = "DELETE from FPSI2 where TYPE = '4'";
 							console.log("Delete query: "+stmt1);
 							conn.querySync(stmt1);
-							var stmt2 = "DELETE from PRICINGA where 'TYPE' = '4'";
+							var stmt2 = "DELETE from PRICINGA where TYPE = 4";
 							console.log("Delete query: "+stmt2);
 							conn.querySync(stmt2);
 
@@ -783,7 +775,7 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 										stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
 										stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
 										stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
-										stmt3 = stmt3.replace("p7", 4);   
+										stmt3 = stmt3.replace("p7", "'" +4+ "'");
 
 										console.log("Insert query: "+stmt3);
 										conn.querySync(stmt3);
@@ -896,7 +888,7 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 												console.log("jobStatus:: "+status);
 												if(status == "SUCCESS"){
 													clearInterval(refreshId);
-													var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 4 WHERE "TYPE" IS NULL';		
+													var stmt1 = 'UPDATE PRICINGA SET TYPE = 4 WHERE TYPE is null';		
 													console.log("Update query: "+stmt1);
 													conn.querySync(stmt1);
 													if(resScene == 2){
@@ -925,10 +917,10 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 						for(var i in tabledata.accountMsScenarios){
 							if(tabledata.accountMsScenarios[i].scenario == 'S3'){
 								checkStatus = 3;
-								var stmt1 = "DELETE from FPSI2 where 'TYPE' = '5'";
+								var stmt1 = "DELETE from FPSI2 where TYPE = '5'";
 								console.log("Delete query: "+stmt1);
 								conn.querySync(stmt1);
-								var stmt2 = "DELETE from PRICINGA where 'TYPE' = '5'";
+								var stmt2 = "DELETE from PRICINGA where TYPE = 5";
 								console.log("Delete query: "+stmt2);
 								conn.querySync(stmt2);
 
@@ -941,7 +933,7 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 											stmt3 = stmt3.replace("p4", "'" + tabledata.accountMsScenarios[i].fpsi[j].Account + "'");
 											stmt3 = stmt3.replace("p5", "'" + tabledata.accountMsScenarios[i].fpsi[j].Company + "'");
 											stmt3 = stmt3.replace("p6", tabledata.accountMsScenarios[i].fpsi[j].LastWeekShare);
-											stmt3 = stmt3.replace("p7", 5);
+											stmt3 = stmt3.replace("p7", "'" +5+ "'");
 
 											console.log("Insert query: "+stmt3);
 											conn.querySync(stmt3);
@@ -1049,7 +1041,7 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 												console.log("jobStatus:: "+status);
 												if(status == "SUCCESS"){
 													clearInterval(refreshId);
-													var stmt1 = 'UPDATE PRICINGA SET "TYPE" = 5 WHERE "TYPE" IS NULL';		
+													var stmt1 = 'UPDATE PRICINGA SET TYPE = 5 WHERE TYPE is null';			
 													console.log("Update query: "+stmt1);
 													conn.querySync(stmt1);
 													console.log("Completed finally");
