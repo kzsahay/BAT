@@ -213,18 +213,17 @@ exports.getTableDetails = function(conn, viewData, req) {
 				function(callback) {
 					var arraynew = [];
 					var marketshareForecasts = {"scenario":"", "priceScenario": [], "mshareTrend": []};
-					var k = 0; m =0; n = 0; j=1;
+					var k = 0; m =0; j=1;
 					marketshareForecasts.scenario = "S2";
 
-					var fore = 1; typ = "4";
+					var fore = 1; typ = 4;
 					var acc = "VALORA";
-					var stmt1 = 'SELECT "BrandSegment", "Price_Mean", "WeekEndingDate", "TS_Share_Sum" FROM PRICINGA WHERE "Forecast" = 1 and "Account" = p2 and "TYPE" = p3';
-					stmt1 = stmt1.replace("p1", fore); 
+					var stmt1 = 'SELECT * FROM PRICINGA WHERE "Forecast" = 1 and "Account" = p2 and "TYPE" = p3';
 					stmt1 = stmt1.replace("p2", "'" + acc + "'"); 
 					stmt1 = stmt1.replace("p3", "'" + typ + "'"); 
 					console.log("Select query: "+stmt1);
 					data22 = conn.querySync(stmt1);
-					console.log("query result: "+JSON.stringify(data22));
+					// console.log("query result: "+JSON.stringify(data22));
 
 					for (var i in data22){
 						var pricescenario = {"brandName": "", "brandPrice": ""};
@@ -233,52 +232,65 @@ exports.getTableDetails = function(conn, viewData, req) {
 						pricescenario.brandPrice = data22[i].Price_Mean;
 						arraynew[k++] = pricescenario;
 						if(i>0){
-									if(data22[i].BrandSegment == data22[i-1].BrandSegment)
-										arraynew.splice(k-1, 1);	
-								}
+								for(var np =0; np<i; np++){
+									if(data22[i].BrandSegment == data22[np].BrandSegment)
+										arraynew.splice(i, 1);
+								}	
+							}
 					}
+					
+					var n=0;
 					for(var i in arraynew){
-						if(arraynew[i]!= undefined)
+						if(typeof(arraynew[i])!= null){
 							marketshareForecasts.priceScenario[n++] = arraynew[i];
+						}
 					}
+					
+					var weekdataarray= [];
+
+					var acc = "VALORA"; brandy = "CHESTERFIELD"
+					var stmt1 = 'SELECT DISTINCT "WeekEndingDate" FROM PRICINGA WHERE "Forecast" = 1 and "Account" = p2 and "TYPE" = p3 and "BrandSegment" = p4' ;
+					stmt1 = stmt1.replace("p2", "'" + acc + "'"); 
+					stmt1 = stmt1.replace("p3", "'" + typ + "'"); 
+					stmt1 = stmt1.replace("p4", "'" + brandy + "'"); 
+					console.log("Select query: "+stmt1);
+					weekdataarray = conn.querySync(stmt1);
+					// console.log("Week: "+JSON.stringify(weekdataarray));
 
 					var weekdata= []; s=0;
-
-					for (var i in data22){
-						if(data22[i].BrandSegment == "CHESTERFIELD"){
-							weekdata[s++]= data22[i].WeekEndingDate;
-						}		
+					for (var i in weekdataarray){
+						weekdata[i]= weekdataarray[i].WeekEndingDate;		
 					}
 
 					for(var p in weekdata){
 						var marketshare = 0.0;
 						for (var i in data22){
 							if(data22[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(data22[i].BrandSegment) == "BAT"){
-								console.log("Share ::"+data22[i].TS_Share_Sum);
+								// console.log("Share ::"+data22[i].TS_Share_Sum);
 								marketshare = marketshare + data22[i].TS_Share_Sum;
 							}			
 						}
 						var mshareTrend = {"weekNum": "", "mshare": ""};
 						mshareTrend.weekNum = parseInt(p)+1;
 						mshareTrend.mshare = marketshare;
-						console.log("Sum market share:: "+JSON.stringify(mshareTrend));
+						// console.log("Sum market share:: "+JSON.stringify(mshareTrend));
 						marketshareForecasts.mshareTrend[m++] = mshareTrend;
 					}		
 
 					tabledata.marketshareForecasts.push(marketshareForecasts);
 					callback(null, 1);
 				},
-				//Scenario: Corporate Price
+				//Scenario: S3
 				function(callback) {
 					var arraynew = [];
 					var marketshareForecasts = {"scenario":"", "priceScenario": [], "mshareTrend": []};
-					var k = 0; m =0; n = 0; j=1;
+					var k = 0; m =0; j=1;
 					marketshareForecasts.scenario = "S3";
 
-					var fore = 1; typ = "5";
+					var fore = 1; typ = 5;
 					var acc = "VALORA";
-					var stmt1 = 'SELECT "BrandSegment", "Price_Mean", "WeekEndingDate", "TS_Share_Sum" FROM PRICINGA WHERE "Forecast" = 1 and "Account" = p2 and "TYPE" = p3';
-					stmt1 = stmt1.replace("p1", fore); 
+					var stmt1 = 'SELECT * FROM PRICINGA WHERE "Forecast" = 1 and "Account" = p2 and "TYPE" = p3';
+
 					stmt1 = stmt1.replace("p2", "'" + acc + "'"); 
 					stmt1 = stmt1.replace("p3", "'" + typ + "'"); 
 					console.log("Select query: "+stmt1);
@@ -292,28 +304,39 @@ exports.getTableDetails = function(conn, viewData, req) {
 						pricescenario.brandPrice = data22[i].Price_Mean;
 						arraynew[k++] = pricescenario;
 						if(i>0){
-									if(data22[i].BrandSegment == data22[i-1].BrandSegment)
-										arraynew.splice(k-1, 1);	
+								for(var np =0; np<i; np++){
+									if(data22[i].BrandSegment == data22[np].BrandSegment)
+										arraynew.splice(i, 1);
 								}
+							}
 					}
+					var n=0;
 					for(var i in arraynew){
 						if(arraynew[i]!= undefined)
 							marketshareForecasts.priceScenario[n++] = arraynew[i];
 					}
 
-					var weekdata= []; s=0;
+					var weekdataarray= [];
 
-					for (var i in data22){
-						if(data22[i].BrandSegment == "CHESTERFIELD"){
-							weekdata[s++]= data22[i].WeekEndingDate;
-						}		
+					var acc = "VALORA"; brandy = "CHESTERFIELD"
+					var stmt1 = 'SELECT DISTINCT "WeekEndingDate" FROM PRICINGA WHERE "Forecast" = 1 and "Account" = p2 and "TYPE" = p3 and "BrandSegment" = p4' ;
+					stmt1 = stmt1.replace("p2", "'" + acc + "'"); 
+					stmt1 = stmt1.replace("p3", "'" + typ + "'"); 
+					stmt1 = stmt1.replace("p4", "'" + brandy + "'"); 
+					console.log("Select query: "+stmt1);
+					weekdataarray = conn.querySync(stmt1);
+					// console.log("Week: "+JSON.stringify(weekdataarray));
+
+					var weekdata= []; s=0;
+					for (var i in weekdataarray){
+						weekdata[i]= weekdataarray[i].WeekEndingDate;		
 					}
 
 					for(var p in weekdata){
 						var marketshare = 0.0;
 						for (var i in data22){
 							if(data22[i].WeekEndingDate == weekdata[p] && getCompanyForBrand(data22[i].BrandSegment) == "BAT"){
-								console.log("Share ::"+data22[i].TS_Share_Sum);
+								// console.log("Share ::"+data22[i].TS_Share_Sum);
 								marketshare = marketshare + data22[i].TS_Share_Sum;
 							}			
 						}
