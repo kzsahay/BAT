@@ -13,14 +13,15 @@
 				<td>{{itemCh.brandName}}</td>
 				<td>{{itemCh.brandPrice}}</td>
 				<td>{{itemCh.corporatePrice}}</td>
+                                
 				<td>
-					<input type="text" id="fst_{{$index}}" value="" field="{{itemCh.brandName}}" class="fastClass" />
+					<input type="text" id="fst_{{$index}}" value="{{itemCh.S1Price}}" field="{{itemCh.brandName}}" class="fastClass" />
 				</td>
 				<td>
-					<input type="text" id="snd_{{$index}}" value="" field="{{itemCh.brandName}}" class="sendClass" /> 
+					<input type="text" id="snd_{{$index}}" value="{{itemCh.S2Price}}" field="{{itemCh.brandName}}" class="sendClass" /> 
 				</td>
 				<td>
-					<input type="text" id="trd_{{$index}}" value="" field="{{itemCh.brandName}}" class="thrdClass" />
+					<input type="text" id="trd_{{$index}}" value="{{itemCh.S3Price}}" field="{{itemCh.brandName}}" class="thrdClass" />
 				</td>
 			</tr>						
 		</tbody>
