@@ -11,6 +11,7 @@ function getCompanyForBrand(brandName) {
     switch(brandName.toUpperCase()) {
         case "CHESTERFIELD":
         case "L&M":
+        case "L & M":
         case "MARLBORO":
             company = "PH. MORRIS";
             break;
@@ -651,9 +652,24 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 
 		var resScene = getresponseScene(bodydata);
 		console.log("ResScene: "+resScene)
-
+                var lastWeekShare = {"lastWeekShare": []};
 		var checkStatus = 0;
 		var tabledata = {"accountMsScenarios": []};	
+                
+                //getting the last week's share of the brand
+                var lastWeekShareStmt = 'select * from fdi2 order by "BrandSegment", "WeekEndingDate" DESC';
+                var dataLastWkShare = conn.querySync(lastWeekShareStmt);
+                for(var i in dataLastWkShare) {
+                    if(i==0 || dataLastWkShare[i-1].BrandSegment != dataLastWkShare[i].BrandSegment) {// set the run scenario
+                        
+                        //reinititialize for new scenario
+                        var brandLastShare = {"brandName":"", "lastWkShare":""};
+                        brandLastShare.brandName = dataLastWkShare[i].BrandSegment;
+                        brandLastShare.lastWkShare = dataLastWkShare[i].LastWeeksShare;
+                        lastWeekShare.lastWeekShare.push(brandLastShare);
+                    }
+                }
+                
 		for(var k in bodydata.accountMsScenarios.marketPrices){
 			
 				var accountMsScenarios = {"scenario": "", "fpsi": []};
@@ -672,42 +688,44 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 						fpsi.Account = "VALORA";
 						fpsi.scenarioType = bodydata.accountMsScenarios.marketPrices[k].scenario;
 						fpsi.WeekendingDate = SDate.toISOString().split("Z")[0].split("T").join(" ");
-						
-						switch(bodydata.accountMsScenarios.marketPrices[k].priceScenario[i].brandName){
+						fpsi.Company = getCompanyForBrand(bodydata.accountMsScenarios.marketPrices[k].priceScenario[i].brandName);
+						fpsi.LastWeekShare = JSONPath({json: lastWeekShare, path: "$.lastWeekShare[?(@.brandName==" + bodydata.accountMsScenarios.marketPrices[k].priceScenario[i].brandName + ")]..lastWeekShare", wrap:false}); 
+                                                console.log("fpsi.LastWeekShare : " + fpsi.LastWeekShare  + " for brand = " + fpsi.brandSegment);    
+                        /*switch(bodydata.accountMsScenarios.marketPrices[k].priceScenario[i].brandName){
 
 							case "CHESTERFIELD": 
-								 fpsi.Company = "PH. MORRIS";
+								 //fpsi.Company = "PH. MORRIS";
 								 fpsi.LastWeekShare = 8.483;
 								 break;
 							case "L & M":
-								 fpsi.Company = "PH. MORRIS";
+								 //fpsi.Company = "PH. MORRIS";
 								 fpsi.LastWeekShare = 3.168;
 								 break;
 							case "L&M":
-								 fpsi.Company = "PH. MORRIS";
+								 //fpsi.Company = "PH. MORRIS";
 								 fpsi.LastWeekShare = 3.168;
 								 break;
 							case "MARLBORO":
-								fpsi.Company = "PH. MORRIS";
+								//fpsi.Company = "PH. MORRIS";
 								 fpsi.LastWeekShare = 21.813;
 								 break;
 							case "PALL MALL":
-								fpsi.Company = "BAT";
+								//fpsi.Company = "BAT";
 								 fpsi.LastWeekShare = 2.747;
 								 break;
 							case "PARISIENNE":
-								fpsi.Company = "BAT";
+								//fpsi.Company = "BAT";
 								 fpsi.LastWeekShare = 18.868;
 								 break;
 							case "WINSTON":
-								fpsi.Company = "JTI";
+								//fpsi.Company = "JTI";
 								 fpsi.LastWeekShare = 8.193;
 								 break;
 							case "OTHER":
-								fpsi.Company = "JTI";
+								//fpsi.Company = "JTI";
 								 fpsi.LastWeekShare = 36.729;
 								 break;
-						}
+						}*/
 
 						accountMsScenarios.fpsi.push(fpsi);
 						var SDate = new Date(new Date(SDate).setDate(SDate.getDate()+7));
