@@ -202,7 +202,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			url: "https://BATobacco.mybluemix.net/runscenario",
 			data: runMrkObj
 		}).success(function(respData) {		
-			if(respData.Data.Alert != null || respData.Data.Alert != ""){
+			if(respData.Alert != null || respData.Alert != ""){
 				$http({
 					method: "GET",
 					//url: "JSON/finalScenario.json"
@@ -211,6 +211,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 					$scope.mask_page = false;
 					var final_scenario_json = []; 
 					var radioElm = [];
+					console.log("after run scenario:==  "+JSON.stringify(data));
 					console.log("marketshareForecasts:==  "+JSON.stringify(data.Data.marketshareForecasts));
 					
 					for (var i = 0; i < data.Data.marketshareForecasts.length; i++) {
