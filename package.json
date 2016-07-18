@@ -4,15 +4,17 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "test" : "protractor e2etest/protractor.conf.js"
+    "test": "protractor e2etest/protractor.conf.js"
   },
   "dependencies": {
-    "express": "4.13.x",
-    "cfenv": "1.0.x",
-    "ibm_db": "*",
     "async": "*",
     "body-parser": "*",
-    "request": "*"
+    "cfenv": "1.0.x",
+    "express": "4.13.x",
+    "ibm_db": "*",
+    "request": "*",
+    "winston": "^0.6.2",
+    "JSONPath": "0.11.2"
   },
   "repository": {},
   "engines": {
