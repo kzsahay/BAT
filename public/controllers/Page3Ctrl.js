@@ -58,22 +58,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 				radioObj.name = "Corporate";
 				radioObj.val = tabelJson[i].scenario;
 			}else {
-                                var sceName = data.Data.marketshareForecasts[i].scenario;
-                                var snNum = sceName.slice(-1)*1 + 2;
-                                var priceScenario = tabelJson[i].priceScenario;
-				for (var int2 = 0; int2 < $scope.basePriceBody.length; int2++) {
-					for (var int3 = 0; int3 < priceScenario.length; int3++) {
-						if($scope.basePriceBody[int2].brandName == priceScenario[int3].brandName) {
-							$scope.basePriceBody[int2][sceName +"Price"]=priceScenario[int3].brandPrice.toFixed(2);
-						}
-					}
-				}
-                
-                                radioObj.name = "Scenario " + snNum;
-                                
-                                radioObj.val = sceName;
-                                scenarioObj.name = radioObj.name;		
-                //$scope.baseHeader.header.push(tabelJson[i].scenario);
+				var snNum = tabelJson[i].scenario.slice(-1)*1 + 2;
+				radioObj.name = "Scenario " + snNum;
+				radioObj.val = tabelJson[i].scenario;	
 			}
 			for (var j = 0; j < mshareScenario.length; j++) {
 				var wkNum = "Wk" + mshareScenario[j].weekNum;
@@ -211,7 +198,6 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 					$scope.mask_page = false;
 					var final_scenario_json = []; 
 					var radioElm = [];
-					console.log("after run scenario:==  "+JSON.stringify(data));
 					console.log("marketshareForecasts:==  "+JSON.stringify(data.Data.marketshareForecasts));
 					
 					for (var i = 0; i < data.Data.marketshareForecasts.length; i++) {
@@ -235,11 +221,10 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 								radioObj.name = scenarioObj.name;
 								radioObj.val = data.Data.marketshareForecasts[i].scenario;
 							}else {
-								var sceName = data.Data.marketshareForecasts[i].scenario;
-								var snNum = sceName.slice(-1)*1 + 2;
+								scenarioObj.name = data.Data.marketshareForecasts[i].scenario;
+								var snNum = scenarioObj.name.slice(-1)*1 + 2;
 								radioObj.name = "Scenario " + snNum;
-								radioObj.val = sceName;
-								scenarioObj.name = radioObj.name;
+								radioObj.val = scenarioObj.name;
 							}					
 							for (var j = 0; j < mshareScenario.length; j++) {
 								var wkNum = "Wk" + mshareScenario[j].weekNum;

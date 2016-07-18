@@ -100,6 +100,7 @@ deutscheDemo
 
 deutscheDemo.service('finalservice', function() {
 	this.finalizeDt = "";
+	this.selectRd = "";
 });
 
 deutscheDemo.run([
