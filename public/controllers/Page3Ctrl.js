@@ -58,7 +58,22 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 				radioObj.name = "Corporate";
 				radioObj.val = tabelJson[i].scenario;
 			}else {
-				//$scope.baseHeader.header.push(tabelJson[i].scenario);
+                                var sceName = data.Data.marketshareForecasts[i].scenario;
+                                var snNum = sceName.slice(-1)*1 + 2;
+                                var priceScenario = tabelJson[i].priceScenario;
+				for (var int2 = 0; int2 < $scope.basePriceBody.length; int2++) {
+					for (var int3 = 0; int3 < priceScenario.length; int3++) {
+						if($scope.basePriceBody[int2].brandName == priceScenario[int3].brandName) {
+							$scope.basePriceBody[int2][sceName +"Price"]=priceScenario[int3].brandPrice.toFixed(2);
+						}
+					}
+				}
+                
+                                radioObj.name = "Scenario " + snNum;
+                                
+                                radioObj.val = sceName;
+                                scenarioObj.name = radioObj.name;		
+                //$scope.baseHeader.header.push(tabelJson[i].scenario);
 			}
 			for (var j = 0; j < mshareScenario.length; j++) {
 				var wkNum = "Wk" + mshareScenario[j].weekNum;
