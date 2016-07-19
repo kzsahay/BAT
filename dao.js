@@ -47,7 +47,7 @@ exports.getTableDetails = function(conn, viewData, req) {
 					var k = 0; m =0; n = 0; j=1;
 					marketshareForecasts.scenario = "B";
                                            
-                                        var priceStmt = 'SELECT  "BrandSegment", "Price_Mean", Type   from FPSI2 a order by TYPE, "BrandSegment"';
+                                        var priceStmt = 'SELECT  "BrandSegment", "Price_Mean", Type   from FPSI3 a order by TYPE, "BrandSegment"';
                                     //console.log("console: " + priceStmt);    
                                     
                                     dataPrices = conn.querySync(priceStmt);
