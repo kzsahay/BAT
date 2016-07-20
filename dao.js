@@ -669,6 +669,7 @@ exports.getRunscenarioDetails = function(conn, req, res) {
                         lastWeekShare.lastWeekShare.push(brandLastShare);
                     }
                 }
+                console.log(lastWeekShare);  
                 
 		for(var k in bodydata.accountMsScenarios.marketPrices){
 			
