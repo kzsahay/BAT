@@ -689,7 +689,7 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 						fpsi.scenarioType = bodydata.accountMsScenarios.marketPrices[k].scenario;
 						fpsi.WeekendingDate = SDate.toISOString().split("Z")[0].split("T").join(" ");
 						fpsi.Company = getCompanyForBrand(bodydata.accountMsScenarios.marketPrices[k].priceScenario[i].brandName);
-						fpsi.LastWeekShare = JSONPath({json: lastWeekShare, path: "$.lastWeekShare[?(@.brandName==" + bodydata.accountMsScenarios.marketPrices[k].priceScenario[i].brandName + ")]..lastWeekShare", wrap:false}); 
+						fpsi.LastWeekShare = JSONPath({json: lastWeekShare, path: "$.lastWeekShare[?(@.brandName=='" + bodydata.accountMsScenarios.marketPrices[k].priceScenario[i].brandName + "')]..lastWeekShare", wrap:false}); 
                                                 console.log("fpsi.LastWeekShare : " + fpsi.LastWeekShare  + " for brand = " + fpsi.brandSegment);    
                         /*switch(bodydata.accountMsScenarios.marketPrices[k].priceScenario[i].brandName){
 
