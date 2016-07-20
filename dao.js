@@ -915,6 +915,16 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 														res.send(success);
 													}
 												}
+												else if(status == "FAILED"){
+													clearInterval(refreshId);
+													if(resScene == 1){
+														var success = {
+															"Alert": "Failed Run Scenario"
+														}
+														res.setHeader('Content-Type', 'application/json');
+														res.send(success);
+													}
+												}
 											}
 										}
 										else
@@ -1093,6 +1103,16 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 													if(resScene == 2){
 														var success = {
 															"Alert": "Run Scenario Succesfull"
+														}
+														res.setHeader('Content-Type', 'application/json');
+														res.send(success);
+													}
+												}
+												else if(status == "FAILED"){
+													clearInterval(refreshId);
+													if(resScene == 2){
+														var success = {
+															"Alert": "Failed Run Scenario"
 														}
 														res.setHeader('Content-Type', 'application/json');
 														res.send(success);
