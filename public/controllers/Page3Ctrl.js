@@ -8,7 +8,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	
 	$http({
 		method: "GET",
-		//url: "JSON/initialScenario.json"
+		//url: "JSON/inScenario.json"
 		url: "https://BATobacco.mybluemix.net/loadtable"
 		
 	}).success(function(data) {
@@ -59,8 +59,19 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 				radioObj.val = tabelJson[i].scenario;
 			}else {
 				var snNum = tabelJson[i].scenario.slice(-1)*1 + 2;
-				radioObj.name = "Scenario " + snNum;
+				radioObj.name = tabelJson[i].scenario;  //"Scenario " + snNum;
 				radioObj.val = tabelJson[i].scenario;	
+				$scope.baseHeader.header.push(radioObj.name);
+				scenarioObj.name = radioObj.name;
+				
+				var priceSc = tabelJson[i].priceScenario;
+				for (var sc = 0; sc < $scope.basePriceBody.length; sc++) {
+					for (var scp = 0; scp < priceSc.length; scp++) {
+						if($scope.basePriceBody[sc].brandName == priceSc[scp].brandName) {
+							$scope.basePriceBody[sc]["scPrice" + snNum] = priceSc[scp].brandPrice.toFixed(2);
+						}
+					}
+				}
 			}
 			for (var j = 0; j < mshareScenario.length; j++) {
 				var wkNum = "Wk" + mshareScenario[j].weekNum;
@@ -71,9 +82,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			initial_scenario_json.push(scenarioObj);
 			radioElm.push(radioObj);
 		}
-		$scope.baseHeader.header.push("Scenario 3");
-		$scope.baseHeader.header.push("Scenario 4");
-		$scope.baseHeader.header.push("Scenario 5");
+		
+//		$scope.baseHeader.header.push("Scenario 4");
+//		$scope.baseHeader.header.push("Scenario 5");
 		$scope.radioList = radioElm;
 		
 		console.log("baseHeader::  "+JSON.stringify($scope.baseHeader));
@@ -222,8 +233,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 								radioObj.val = data.Data.marketshareForecasts[i].scenario;
 							}else {
 								scenarioObj.name = data.Data.marketshareForecasts[i].scenario;
-								var snNum = scenarioObj.name.slice(-1)*1 + 2;
-								radioObj.name = "Scenario " + snNum;
+								//var snNum = scenarioObj.name.slice(-1)*1 + 2;
+								//radioObj.name = "Scenario " + snNum;
+								radioObj.name = scenarioObj.name;
 								radioObj.val = scenarioObj.name;
 							}					
 							for (var j = 0; j < mshareScenario.length; j++) {
@@ -245,8 +257,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			    	alert("The run scenario service is not available!");
 			    	$scope.mask_page = false;
 			    	console.log('Error '+data);
-			    });
-				
+			    });				
 			}
 		})
 	    .error(function(respData) {
