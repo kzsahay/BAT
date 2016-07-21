@@ -213,6 +213,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			alert("There are no new Scenarios to run!");
 			return;
 		}
+		
 					
 		$http({
 //			method: "GET",
