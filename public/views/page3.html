@@ -13,15 +13,14 @@
 				<td>{{itemCh.brandName}}</td>
 				<td>{{itemCh.brandPrice}}</td>
 				<td>{{itemCh.corporatePrice}}</td>
-                                
 				<td>
-					<input type="text" id="fst_{{$index}}" ng-value="itemCh.scPrice3" field="{{itemCh.brandName}}" class="fastClass" />
+					<input type="text" id="fst_{{$index}}" ng-value="itemCh.scPrice3" field="{{itemCh.brandName}}" class="fastClass" ng-keypress="scenario_event('fst');" />
 				</td>
 				<td>
-					<input type="text" id="snd_{{$index}}" ng-value="itemCh.scPrice4" field="{{itemCh.brandName}}" class="sendClass" /> 
+					<input type="text" id="snd_{{$index}}" ng-value="itemCh.scPrice4" field="{{itemCh.brandName}}" class="sendClass" ng-keypress="scenario_event('snd');" /> 
 				</td>
 				<td>
-					<input type="text" id="trd_{{$index}}" ng-value="itemCh.scPrice5" field="{{itemCh.brandName}}" class="thrdClass" />
+					<input type="text" id="trd_{{$index}}" ng-value="itemCh.scPrice5" field="{{itemCh.brandName}}" class="thrdClass" ng-keypress="scenario_event('trd');" />
 				</td>
 			</tr>						
 		</tbody>

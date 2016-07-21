@@ -106,8 +106,23 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		return true;
 	}
 	
+	var fstcng = false;
+	var sndcng = false;
+	var trdcng = false;
+	
+	$scope.scenario_event = function (elm) {
+		if(elm == "fst"){
+			fstcng = true;
+		}else if(elm == "snd"){
+			sndcng = true;
+		}else if(elm == "trd"){
+			trdcng = true;
+		}
+	};
+	
 	$scope.run_scenario = function () {
-		//console.log("accountName ++::  "+JSON.stringify($scope.baseHeader));		
+		//console.log("accountName ++::  "+JSON.stringify($scope.baseHeader));	
+		//alert("fstcng:: "+fstcng+"  ::  "+sndcng+"  ++  "+trdcng);
 		var changMarkObj = {
 				"accountName": $scope.baseHeader.account,
 				"marketPrices": []
@@ -130,7 +145,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			alert("Please give all the brand data for Scenario 3");
 			return;
 		}
-		if(fstCount > 0){
+		if(fstCount > 0 && fstcng){
 			var fastPrice = {
 					"scenario": "S1",
 					"priceScenario": fastContents
@@ -157,7 +172,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			alert("Please give all the brand data for Scenario 4");
 			return;
 		}
-		if(sndCount > 0){
+		if(sndCount > 0 && sndcng){
 			var sendPrice = {
 					"scenario": "S2",
 					"priceScenario": sendContents
@@ -182,7 +197,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			alert("Please give all the brand data for Scenario 5");
 			return;
 		}
-		if(trdCount > 0){
+		if(trdCount > 0 && trdcng){
 			var thrdPrice = {
 					"scenario": "S3",
 					"priceScenario": thrdContents
@@ -193,6 +208,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		console.log("runMrkObj::  "+JSON.stringify(runMrkObj));
 		
 		$scope.mask_page = true;
+		
 		$http({
 //			method: "GET",
 //			url: "JSON/scenario.json"			
@@ -265,6 +281,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	    	$scope.mask_page = false;
 	    	console.log('Error '+respData);
 	    });
+		
 	};
 	
 	$scope.populateLineChart = function (json_scenario) {
