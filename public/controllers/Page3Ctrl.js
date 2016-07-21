@@ -204,11 +204,16 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 			};
 			changMarkObj.marketPrices.push(thrdPrice);
 		}
-		var runMrkObj = {"accountMsScenarios": changMarkObj};
-		console.log("runMrkObj::  "+JSON.stringify(runMrkObj));
 		
-		$scope.mask_page = true;
-		
+		if(changMarkObj.marketPrices.length > 0){
+			var runMrkObj = {"accountMsScenarios": changMarkObj};
+			console.log("runMrkObj::  "+JSON.stringify(runMrkObj));
+			$scope.mask_page = true;
+		}else {
+			alert("There are no new Scenarios to run!");
+			return;
+		}
+					
 		$http({
 //			method: "GET",
 //			url: "JSON/scenario.json"			
