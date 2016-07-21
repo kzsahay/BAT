@@ -68,11 +68,12 @@ exports.getTableDetails = function(conn, viewData, req) {
                                                 pricescenario.brandName = dataPrices[i].BrandSegment.trim();
                                                 pricescenario.brandPrice = dataPrices[i].Price_Mean;
                                                 scenarioBrandPrices.priceScenario.push(pricescenario);
-                                                if(i==dataPrices.length-1) {
+                                               
+                                                prevBrandSegment = dataPrices[i].BrandSegment;
+                                            }  
+                                             if(i==dataPrices.length-1) {
                                                     allFPSIBrandPrices.prices.push(scenarioBrandPrices);
                                                 }
-                                                prevBrandSegment = dataPrices[i].BrandSegment;
-                                            }                                           
                                             
                                         }
                                         
