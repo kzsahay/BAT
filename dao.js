@@ -762,6 +762,10 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 							var stmt2 = "DELETE from FPSI3 where TYPE = '3'";
 							console.log("Delete query: "+stmt2);
 							conn.querySync(stmt2);
+							
+							var stmt5 = "DELETE from PRICINGA where TYPE = '3'";
+							console.log("Delete query: "+stmt5);
+							conn.querySync(stmt5);
 
 							for(var j in tabledata.accountMsScenarios[i].fpsi){
 								if(tabledata.accountMsScenarios[i].fpsi[j].PriceMean != undefined){
@@ -968,6 +972,10 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 //							var stmt2 = "DELETE from PRICINGA where TYPE = 4";
 //							console.log("Delete query: "+stmt2);
 //							conn.querySync(stmt2);
+							
+							var stmt5 = "DELETE from PRICINGA where TYPE = '4'";
+							console.log("Delete query: "+stmt5);
+							conn.querySync(stmt5);
 
 							for(var j in tabledata.accountMsScenarios[i].fpsi){
 								if(tabledata.accountMsScenarios[i].fpsi[j].PriceMean != undefined){
@@ -1161,6 +1169,10 @@ exports.getRunscenarioDetails = function(conn, req, res) {
 //								var stmt2 = "DELETE from PRICINGA where TYPE = 5";
 //								console.log("Delete query: "+stmt2);
 //								conn.querySync(stmt2);
+								
+								var stmt5 = "DELETE from PRICINGA where TYPE = '5'";
+								console.log("Delete query: "+stmt5);
+								conn.querySync(stmt5);
 
 								for(var j in tabledata.accountMsScenarios[i].fpsi){
 									if(tabledata.accountMsScenarios[i].fpsi[j].PriceMean != undefined){
