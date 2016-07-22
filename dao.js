@@ -519,7 +519,7 @@ exports.getfinalizeDetails = function(conn, viewData, req) {
 					marketshareForecasts.scenario = "Base"
 
 					for (var i in priceS_data){
-						if(priceS_data[i].Account == "VALORA    "){
+						if(priceS_data[i].Account == "VALORA"){
 							tabledata.accountName = "VALORA";
 
 							if(priceS_data[i].TYPE == 1){
@@ -554,7 +554,7 @@ exports.getfinalizeDetails = function(conn, viewData, req) {
 					marketshareForecasts.scenario = scenario;
 
 					for (var i in priceS_data){
-						if(priceS_data[i].Account == "VALORA    "){
+						if(priceS_data[i].Account == "VALORA"){
 							tabledata.accountName = "VALORA";
 
 							if(priceS_data[i].TYPE == type){
