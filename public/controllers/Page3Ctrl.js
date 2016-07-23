@@ -1,6 +1,8 @@
 //http://oss.opensagres.fr/angularjs-eclipse/0.4.0-SNAPSHOT/
 var Page3Ctrl = angular.module('Page3Ctrl', []);
 
+
+
 Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		'$rootScope', 'finalservice', function Page3Ctrl($scope, $location, $http, $rootScope, finalservice) {
 	
@@ -14,8 +16,18 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	}).success(function(data) {
 		
 		var tabelJson = data.Data.marketshareForecasts;	
-		console.log("tabelJson::  "+JSON.stringify(tabelJson));				
-		$scope.basePriceBody = [];
+		console.log("tabelJson::  "+JSON.stringify(tabelJson));	
+                loadTableCallBack(tabelJson);
+
+	})
+    .error(function(data) {
+    	alert("The loadtable service is not available!");
+    	console.log('Error '+data);
+    });
+    
+    
+    loadTableCallBack = function(tabelJson) {
+    		$scope.basePriceBody = [];
 		$scope.baseHeader = {
 				"account": data.Data.accountName,
 				"header" : []
@@ -159,13 +171,10 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		console.log("baseHeader::  "+JSON.stringify($scope.baseHeader));
 		console.log("baseBody::  "+JSON.stringify($scope.basePriceBody));	
 		console.log("initial_scenario_json::  "+JSON.stringify(initial_scenario_json));		
-		
+		$scope.selectedBrandName = "Overall";
+                $scope.selectedScenarios = ['B', 'S1', 'S2', 'S3'];
 		$scope.populateLineChart(initial_scenario_json);
-	})
-    .error(function(data) {
-    	alert("The loadtable service is not available!");
-    	console.log('Error '+data);
-    });
+    }
 	
 	$scope.validNumber = function (val) {
 		if (isNaN(val)){
@@ -298,11 +307,12 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 					url: "https://BATobacco.mybluemix.net/loadtable"
 				}).success(function(data) {			
 					$scope.mask_page = false;
-					var final_scenario_json = []; 
-					var radioElm = [];
-					console.log("marketshareForecasts:==  "+JSON.stringify(data.Data.marketshareForecasts));
-					
-					for (var i = 0; i < data.Data.marketshareForecasts.length; i++) {
+					//var final_scenario_json = []; 
+					//var radioElm = [];
+                                        var tabelJson = data.Data.marketshareForecasts;	
+					console.log("marketshareForecasts:==  "+JSON.stringify(tabelJson));
+                                        loadTableCallBack(tabelJson);
+					/*for (var i = 0; i < data.Data.marketshareForecasts.length; i++) {
 						var mshareScenario = data.Data.marketshareForecasts[i].mshareTrend;
 						
 						if (mshareScenario.length > 0){
@@ -342,7 +352,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 					console.log("final_scenario_json:==  "+JSON.stringify(final_scenario_json));			
 					$scope.populateLineChart(final_scenario_json);
 					$scope.radioList = radioElm;
-					//alert("$scope.radioList:==  "+JSON.stringify($scope.radioList));
+					//alert("$scope.radioList:==  "+JSON.stringify($scope.radioList));*/
 				})
 			    .error(function(data) {
 			    	alert("The run scenario service is not available!");
