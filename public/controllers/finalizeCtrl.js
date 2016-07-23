@@ -17,7 +17,7 @@ finalizeCtrl.controller('finalizeCtrl', ['$scope','$location','$rootScope','$htt
 					name: "",
 					data: []
 			};
-			if(finalizeVal.marketshareForecasts[i].scenario == "B"){
+			if(finalizeVal.marketshareForecasts[i].scenario == "Base"){
 				finalizeObj.name = "Base Case";
 			}else if(finalizeVal.marketshareForecasts[i].scenario == "C"){
 				finalizeObj.name = "Corporate";
