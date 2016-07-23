@@ -12,7 +12,7 @@
 			<tr ng-repeat="itemCh in basePriceBody">
 				<td>{{itemCh.brandName}}</td>
 				<td>{{itemCh.brandPrice}}</td>
-				<td>{{itemCh.corporatePrice}}</td>
+				 <!-- <td>{{itemCh.corporatePrice}}</td> -->
 				<td>
 					<input type="text" id="fst_{{$index}}" ng-value="itemCh.scPrice3" field="{{itemCh.brandName}}" class="fastClass" ng-keypress="scenario_event('fst');" />
 				</td>
@@ -28,17 +28,37 @@
 	<div style="clear: both;">
 		<a href="javascript:void(0);" class="runScenario"  ng-click="run_scenario();">Run Scenario</a>
 	</div>
-	<div class="radioDiv">
+	
+        <br/>
+        <br/>
+
+        <div class="brandRadioDiv">
+            <label class="radio-inline" ng-repeat="itm in shareBrandList">
+                
+                <input type="radio" name="rdBrand" ng-value="'{{itm.name}}'" ng-model="selectedBrandName" ng-click="select_BrandVal(itm.name)"> {{itm.name}}
+                <br><br/>
+            </label>
+
+        </div>
+         <br/>
+         <br/>
+        <div  class="brandRadioDiv">
    	 	<label class="radio-inline" ng-repeat="itm in radioList">
-		  <input type="radio" name="rdoResult" ng-value="'{{itm.val}}'" ng-model="radioSelect" ng-change="change_radioVal(itm.val)">{{itm.name}}
-		</label>
+                    
+		  <input type="checkbox" name="chkScenarios" ng-value="'{{itm.val}}'" ng-checked="selectedScenarios.indexOf(itm.val) > -1" ng-click="toggle_Scenario(itm.val)"> {{itm.name}}
+                  <br><br/>
+                </label>
    	 </div>
-   	 
-   	 <div id="scenario" style="width: 1120px; height: 350px; float: left" ng-model="scenarioLineChart"></div>
-   	
+  	 <div id="scenario" style="width: 950px; height: 350px; float: left" ng-model="scenarioLineChart"></div>
+
 	<div style="clear: both;">
 		<a href="javascript:void(0);" class="runScenario" ng-click="gotoFinalize()">Finalize</a>
 	</div>	
+         <div class="radioDiv">
+   	 	<label class="radio-inline" ng-repeat="itm in radioList">
+		  <input type="radio" name="rdoResult" ng-value="'{{itm.val}}'" ng-model="radioSelect" ng-change="change_radioVal(itm.val)"> {{itm.name}}
+		</label>
+   	 </div>
 	
 </div>
 <div class="maskPage" ng-show="mask_page">&nbsp;</div>
