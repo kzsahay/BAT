@@ -15,9 +15,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 		
 	}).success(function(data) {
 		
-		var tabelJson = data.Data.marketshareForecasts;	
-		console.log("tabelJson::  "+JSON.stringify(tabelJson));	
-                loadTableCallBack(tabelJson);
+		//var tabelJson = data.Data.marketshareForecasts;	
+		
+                loadTableCallBack(data);
 
 	})
     .error(function(data) {
@@ -26,7 +26,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
     });
     
     
-    loadTableCallBack = function(tabelJson) {
+    loadTableCallBack = function(data) {
+        var tabelJson = data.Data.marketshareForecasts;	
+        console.log("tabelJson::  "+JSON.stringify(tabelJson));	
     		$scope.basePriceBody = [];
 		$scope.baseHeader = {
 				"account": data.Data.accountName,
@@ -309,9 +311,9 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 					$scope.mask_page = false;
 					//var final_scenario_json = []; 
 					//var radioElm = [];
-                                        var tabelJson = data.Data.marketshareForecasts;	
-					console.log("marketshareForecasts:==  "+JSON.stringify(tabelJson));
-                                        loadTableCallBack(tabelJson);
+                                        //var tabelJson = data.Data.marketshareForecasts;	
+					//console.log("marketshareForecasts:==  "+JSON.stringify(tabelJson));
+                                        loadTableCallBack(data);
 					/*for (var i = 0; i < data.Data.marketshareForecasts.length; i++) {
 						var mshareScenario = data.Data.marketshareForecasts[i].mshareTrend;
 						
