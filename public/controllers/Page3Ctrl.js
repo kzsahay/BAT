@@ -9,7 +9,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	$http({
 		method: "GET",
 		//url: "JSON/inScenario.json"
-		url: "http://localhost:6001/loadtable"
+		url: "https://batobacco.bluemix.net/loadtable"
 		
 	}).success(function(data) {
 		
