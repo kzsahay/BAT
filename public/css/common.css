@@ -141,6 +141,25 @@
     margin: 1em auto;
     width: 45%;
 }
+.brandRadioDiv {
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 0.5em;
+    color: #666;
+    font-size: 12px;
+    float: right;
+    margin-right: 1.7em;
+    text-align: left;
+    text-decoration: none !important;
+    width: 150px;	
+	clear: both;
+}
+ol>li input[type=radio] {
+	display: -moz-inline-box;
+	display: inline-block;
+	vertical-align: middle;
+        align: left;
+}
 .maskPage {
     position: absolute;
     top: 0%;
