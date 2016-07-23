@@ -9,7 +9,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	$http({
 		method: "GET",
 		//url: "JSON/inScenario.json"
-		url: "https://BATobacco.mybluemix.net/loadtable"
+		url: "http://localhost:6001/loadtable"
 		
 	}).success(function(data) {
 		
@@ -20,21 +20,32 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 				"account": data.Data.accountName,
 				"header" : []
 		};
+                
+                $scope.allBrandsChartData = [];
 		var initial_scenario_json = []; 
-		var radioElm = [];		
+		var radioElm = [];
+                var chkBrandsElm = [];
 		for (var i = 0; i < tabelJson.length; i++) {
+                    if(tabelJson[i].scenario != "C") {
 			var scenarioObj = {
-					name: "",
+					scenario:"",
+                                        brand:"",
+                                        name: "",
 					data: []
 			};
 			var radioObj = {
 					name: "",
 					val: ""
 			}
+                        var allBrandScenarioObjData = {};
+                        
 			var mshareScenario = tabelJson[i].mshareTrend;
+                        scenarioObj.brand = "Overall";
+                        scenarioObj.scenario = tabelJson[i].scenario;
 			if(tabelJson[i].scenario == "B"){
 				$scope.baseHeader.header.push("Base Case");
 				scenarioObj.name = "Base Case";
+                                
 				var priceScenario = tabelJson[i].priceScenario;
 				for (var int = 0; int < priceScenario.length; int++) {
 					var brandObj={};
@@ -44,8 +55,21 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 				}
 				radioObj.name = "Base Case";
 				radioObj.val = tabelJson[i].scenario;
+                                // get the brands for marketshare checkboxes
+                                var mshareTrend = tabelJson[i].mshareTrend;
+                                if(mshareTrend.length > 0) {
+                                        for (var int = 0; int < mshareTrend[0].brandsMarketShare.length; int++) {
+                                            var brandNameObj = { name: ""}
+                                            brandNameObj.name= mshareTrend[0].brandsMarketShare[int].brandName;
+                                            chkBrandsElm.push(brandNameObj);
+                                    }
+                                    var brandNameObj = { name: "Overall"};
+                                    chkBrandsElm.push(brandNameObj);
+                                 }
+                                 $scope.shareBrandList = chkBrandsElm;
+                                
 			}else if(tabelJson[i].scenario == "C"){
-				$scope.baseHeader.header.push("Corporate");
+				/*$scope.baseHeader.header.push("Corporate");
 				scenarioObj.name = "Corporate";
 				var priceScenario = tabelJson[i].priceScenario;
 				for (var int2 = 0; int2 < $scope.basePriceBody.length; int2++) {
@@ -56,7 +80,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 					}
 				}
 				radioObj.name = "Corporate";
-				radioObj.val = tabelJson[i].scenario;
+				radioObj.val = tabelJson[i].scenario;*/
 			}else {
 				var snNum = tabelJson[i].scenario.slice(-1)*1 + 2;
 				radioObj.name = tabelJson[i].scenario;  //"Scenario " + snNum;
@@ -73,19 +97,64 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 					}
 				}
 			}
-			for (var j = 0; j < mshareScenario.length; j++) {
-				var wkNum = "Wk" + mshareScenario[j].weekNum;
-				var marsVal = mshareScenario[j].mshare * 1;
-				scenarioObj.data.push([wkNum, marsVal])
-			}
-			console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
-			initial_scenario_json.push(scenarioObj);
+                        
+                            for (var j = 0; j < mshareScenario.length; j++) {
+                                    var wkNum = "Wk" + mshareScenario[j].weekNum;
+                                    var marsVal = mshareScenario[j].mshare * 1;
+                                    scenarioObj.data.push([wkNum, marsVal])
+                                    //populate market share for brands
+                                    if(j == 0) {
+                                        console.log("inside j=0; length = " + mshareScenario[j].brandsMarketShare.length);
+                                        for(var k = 0; k < mshareScenario[j].brandsMarketShare.length; k++) {
+                                            var brandScenarioObj = {
+                                                                brand:"",
+                                                                name: "",
+                                                                data: []
+                                                              };
+                                                              console.log("inside k= " + k + "   value = " + mshareScenario[j].brandsMarketShare[k].brandName);
+                                            allBrandScenarioObjData[mshareScenario[j].brandsMarketShare[k].brandName] = brandScenarioObj;
+                                            //allScenarioObjArray.push(brandScenarioObj);
+                                            //console.log(" allBrandScenarioObjData.length while creation = " + allBrandScenarioObjData.length);
+                                            brandScenarioObj.name = scenarioObj.name;
+                                            brandScenarioObj.brand = mshareScenario[j].brandsMarketShare[k].brandName;
+                                            brandScenarioObj.scenario = tabelJson[i].scenario;
+                                          //brandScenarioObj.brand = 
+                                        }
+
+                                    }
+                                    for(var k = 0; k < mshareScenario[j].brandsMarketShare.length; k++) {
+
+                                        var brandScenarioObj = allBrandScenarioObjData[mshareScenario[j].brandsMarketShare[k].brandName];
+                                        brandScenarioObj.data.push([wkNum, mshareScenario[j].brandsMarketShare[k].brandShare * 1]);
+
+                                          //brandScenarioObj.brand = 
+                                    }
+
+
+                            }
+                        
+                        
+                            console.log("scenarioObj:==  "+JSON.stringify(scenarioObj));
+                            initial_scenario_json.push(scenarioObj);  // overall market share data
+                            $scope.allBrandsChartData.push(scenarioObj);
+                            //console.log(" allBrandScenarioObjData.length = " + allBrandScenarioObjData.length);
+                            for(var k = 0; k < mshareScenario[0].brandsMarketShare.length; k++) {
+                                $scope.allBrandsChartData.push(allBrandScenarioObjData[mshareScenario[0].brandsMarketShare[k].brandName]);
+                                console.log("brandshareObj:==  "+JSON.stringify(allBrandScenarioObjData[mshareScenario[0].brandsMarketShare[k].brandName]));
+                            }
+                    
+                        
+
+                        
 			radioElm.push(radioObj);
+                    }
 		}
 		
+                
 //		$scope.baseHeader.header.push("Scenario 4");
 //		$scope.baseHeader.header.push("Scenario 5");
 		$scope.radioList = radioElm;
+                
 		
 		console.log("baseHeader::  "+JSON.stringify($scope.baseHeader));
 		console.log("baseBody::  "+JSON.stringify($scope.basePriceBody));	
@@ -293,7 +362,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	$scope.populateLineChart = function (json_scenario) {
 		$('#scenario').highcharts({
 			title: {
-	            text: 'Overall BAT Market Share Forecast',
+	            text: 'BAT Market Share Forecast',
 	            x: -20 //center
 	        },
 	        xAxis: {
@@ -304,7 +373,7 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	        },
 	        yAxis: {
 	        	title: {
-                    text: "Overall BAT Market Share"
+                    text: "BAT Market Share"
                 }
 	        },
 	        legend: {
@@ -319,9 +388,57 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
 	
 	var selsctedRadio = "";
 	$scope.change_radioVal = function (id) {
-		selsctedRadio = id;
+            selsctedRadio = id;
 	};
 	
+        $scope.selectedScenarios = ['B', 'S1', 'S2', 'S3'];
+        $scope.toggle_Scenario = function (scenario) {
+            console.log ("clicked scenario = " + scenario);
+            var index = $scope.selectedScenarios.indexOf(scenario);
+            if(index > -1) {
+                $scope.selectedScenarios.splice(index,1);
+            } else {
+                $scope.selectedScenarios.push(scenario);
+            }
+            console.log("selectedScenarios = " + $scope.selectedScenarios);
+            plotChart();
+        }
+        
+        $scope.selectedBrandName = "Overall";
+        $scope.select_BrandVal = function (selBrandName) {
+            //selectedBrands.push(brandName);
+            //selectedBrands = brandName;
+            console.log("before function select_BrandVal called " + $scope.selectedBrandName);
+            $scope.selectedBrandName = selBrandName;
+            console.log("function select_BrandVal called " + selBrandName);
+            plotChart();
+            
+	};
+        
+        plotChart = function () {
+            var dataToPlot = [];
+            //console.log("$scope.allBrandsChartData = " + $scope.allBrandsChartData);
+            console.log("plotting chart for " + $scope.selectedBrandName + "  and scenarios = " + $scope.selectedScenarios);
+            for(var i =0; i < $scope.allBrandsChartData.length ; i++) {
+                //console.log("$scope.allBrandsChartData[i] = " + $scope.allBrandsChartData[i]  );
+                //console.log("$scope.allBrandsChartData[i].brand = " + $scope.allBrandsChartData[i].brand  + "  $scope.allBrandsChartData[i].scenario = " + $scope.allBrandsChartData[i].scenario  );
+                if($scope.allBrandsChartData[i].brand == $scope.selectedBrandName
+                        && $scope.selectedScenarios.indexOf($scope.allBrandsChartData[i].scenario) > -1
+                        ) {
+                    dataToPlot.push($scope.allBrandsChartData[i]);
+                        }
+            }
+            //console.log("selected brand data to plot = " + JSON.stringify(dataToPlot));
+            $scope.populateLineChart(dataToPlot);
+        }
+        /*$scope.unselect_ChkVal = function (brandName) {
+            var index = selectedBrands.indexOf(brandName);
+            if (index > -1) {
+                selectedBrands.splice(index, 1);
+            }
+	};*/
+        
+        
 	$scope.gotoFinalize = function () {
 		//alert($scope.baseHeader.account +"  ::  "+selsctedRadio);
 		if(selsctedRadio == null || selsctedRadio == ""){
