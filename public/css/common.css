@@ -1,5 +1,10 @@
+.left-div {float:left;}
+.right-div {float:right;}
+.clear-div {clear: both;}
+.center-align {text-align: center;}
+.overflow {overflow: hidden;}
 .spinner {
-       position: fixed;
+    position: fixed;
     top: 60%;
     left: 70%;
     margin-left: -150px;
@@ -142,23 +147,23 @@
     width: 45%;
 }
 .brandRadioDiv {
-    background: #fff;
     border: 1px solid #000;
     border-radius: 0.5em;
-    color: #666;
+    color: #333;
     font-size: 12px;
-    float: right;
-    margin-right: 1.7em;
-    text-align: left;
-    text-decoration: none !important;
-    width: 150px;	
-	clear: both;
+    width: 150px;
+    margin: 2em 0 0 2em;
+    padding: 5px;
 }
+.brandRadioDiv.chkBx {margin-top: 1.5em;}
+.brandRadioDiv  label{width: 100%;}
+.brandRadioDiv .radio-inline {margin: 5px;}
+
 ol>li input[type=radio] {
 	display: -moz-inline-box;
 	display: inline-block;
 	vertical-align: middle;
-        align: left;
+    align: left;
 }
 .maskPage {
     position: absolute;
