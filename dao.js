@@ -598,7 +598,111 @@ exports.getfinalizeDetails = function(conn, viewData, req) {
 	return viewData;
 };
 
+exports.getNewPriceDetails = function(conn, viewData, req) {
+	var scenario = req.body.finalizeInput.selectedScenario;
+	console.log(scenario)
+	var type = 3;  // new price to be shown is of S1 scenario
+        var account = "VALORA";
+	try {
+		
+		var tabledata = {"accountName": "", "basePrices": [], "newPrices":[]};
+                tabledata.accountName = account;
+		var priceS_data = []; var t = 0;
+		
+		var stmt1 = 'SELECT "BrandSegment", "Price_Mean" from FPSI3 where type =1 and "Account"=' + account;
+		var priceS = conn.querySync(stmt1);
+		//var priceS_data_raw = JSON.parse(JSON.stringify(priceS));
+		
+		async.series([
+		        //Scenario: Base
+				function(callback) {
+					var arraynew = [];
+					
+					var k = 0; m =0; n = 0; j=1;
+					
 
+					for (var i in priceS_data){
+						//if(priceS_data[i].Account == "VALORA"){
+							//tabledata.accountName = "VALORA";
+
+							//if(priceS_data[i].TYPE == 1){
+								
+								var basePrices = {"brandName":"", "price": ""};
+
+								basePrices.brandName = priceS_data[i].BrandSegment;
+								basePrices.price = priceS_data[i].Price_Mean;
+								arraynew[k++] = basePrices;
+								if(i>0){
+									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment)
+										arraynew.splice(k-1, 1);	
+								}
+							//}
+						//}
+					}
+
+					for(var i in arraynew){
+						if(arraynew[i]!= undefined)
+							tabledata.basePrices.push(arraynew[i]);
+					}
+
+					//tabledata.marketshareForecasts.push(marketshareForecasts);
+					callback(null, 2);
+				}, 
+				
+				//Scenario: Selected Scenario
+				function(callback) {
+                                        stmt1 = 'SELECT "BrandSegment", "Price_Mean" from FPSI3 where type = ' + type  +   ' and "Account" =' + account;
+                                        var priceS = conn.querySync(stmt1);
+                                        //var priceS_data_raw = JSON.parse(JSON.stringify(priceS));
+					var arraynew = [];
+					
+					var k = 0; m =0; n = 0; j=1;
+					
+
+					for (var i in priceS_data){
+						//if(priceS_data[i].Account == "VALORA"){
+							//tabledata.accountName = "VALORA";
+
+							//if(priceS_data[i].TYPE == 1){
+								
+								var basePrices = {"brandName":"", "price": ""};
+
+								basePrices.brandName = priceS_data[i].BrandSegment;
+								basePrices.price = priceS_data[i].Price_Mean;
+								arraynew[k++] = basePrices;
+								if(i>0){
+									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment)
+										arraynew.splice(k-1, 1);	
+								}
+							//}
+						//}
+					}
+
+					for(var i in arraynew){
+						if(arraynew[i]!= undefined)
+							tabledata.newPrices.push(arraynew[i]);
+					}
+
+					//tabledata.marketshareForecasts.push(marketshareForecasts);
+					callback(null, 3);	
+				}
+				], function(err) {
+			if (!err) {
+				console.log(tabledata);
+			} else {
+				console.log(JSON.stringify(err));
+			}
+		});
+
+		viewData.Data = tabledata;
+
+	} catch (err) {
+		console.log("Error in getTableDetails :: "
+				+ JSON.stringify(err));
+		throw err;
+	}
+	return viewData;
+};
 /*****************************************************************************************************************************************/
 /*****************************************************************************************************************************************/
 
