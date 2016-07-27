@@ -65,7 +65,14 @@ Page2Ctrl.controller('Page2Ctrl', ['$scope','$location','$rootScope','$http',
                 text: 'Price'
             }
         },
-
+        tooltip: {
+            useHTML: true,
+            headerFormat: '<table>',
+            pointFormat: '<tr><th>Brand:</th><td>{point[0]}</td></tr>' +
+                '<tr><th>Price:</th><td>{point[1]}</td></tr>',
+            footerFormat: '</table>',
+            followPointer: true
+        },
         series: [{// adding this element to control the sizes of bubbles
 			  name: ' ',
 			   color: '#FFFFFF',
