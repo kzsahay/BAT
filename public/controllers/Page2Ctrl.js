@@ -2,7 +2,40 @@ var Page2Ctrl = angular.module('Page2Ctrl', []);
 
 Page2Ctrl.controller('Page2Ctrl', ['$scope','$location','$rootScope','$http', 
   function Page2Ctrl  ($scope, $location, $rootScope, $http) {
-	$(function () {
+      
+      $http({
+		method: "GET",
+		//url: "JSON/inScenario.json"
+		url: "https://batobacco.mybluemix.net/newPrice"
+                //url: "http://localhost:6002/newPrice"
+		
+	}).success(function(data) {
+		
+		//var tabelJson = data.Data.marketshareForecasts;	
+		//console.log(data);
+                var priceData = data.Data;
+                var basePricesData = {data: []};
+                for(var k=0; k < priceData.basePrices.length; k++) {
+                    basePricesData.data.push([priceData.basePrices[k].brandName,priceData.basePrices[k].price, 10] );
+                }
+                //console.log("base prices data = " + JSON.stringify(basePricesData));
+                var newPricesData = {data: []};
+                for(var k=0; k < priceData.newPrices.length; k++) {
+                    newPricesData.data.push([priceData.newPrices[k].brandName,priceData.newPrices[k].price, 10] );
+                }
+                //console.log("new prices data = " + JSON.stringify(newPricesData));
+                loadNewPriceChart(basePricesData.data, newPricesData.data);
+
+	})
+    .error(function(data) {
+    	alert("The newPrice service is not available!");
+    	console.log('Error '+data);
+    });
+      
+      
+      
+    loadNewPriceChart = function (basePricesData, newPricesData) {  
+	//$(function () {
     $('#container').highcharts({
 
         chart: {
@@ -14,22 +47,29 @@ Page2Ctrl.controller('Page2Ctrl', ['$scope','$location','$rootScope','$http',
         title: {
             text: 'Price change across brands'
         },
+        
 
         xAxis: {
-            gridLineWidth: 0,
-			type: 'category'
+            gridLineWidth: 1,
+			type: 'category',
+                        title: {
+                text: 'Brands'
+            }
         },
 
         yAxis: {
             startOnTick: false,
             endOnTick: false,
-			 gridLineWidth: 0
+            gridLineWidth: 1,
+            title: {
+                text: 'Price'
+            }
         },
 
-        series: [{
-			  name: 'Old Price',
-			   color: '#FFA500',
-            data: [
+        series: [{// adding this element to control the sizes of bubbles
+			  name: ' ',
+			   color: '#FFFFFF',
+            /*data: [
                 ['WINSTON', 7.212, 33],
                 ['CHESTERFIELD', 7.453, 33],
                 ['L&M', 7.355, 33],
@@ -37,7 +77,34 @@ Page2Ctrl.controller('Page2Ctrl', ['$scope','$location','$rootScope','$http',
                 ['PALLMALL', 6.726, 33],
                 ['PARISIENNE', 7.119, 33],
                
-            ],
+            ],*/
+                    data: [[5,11.25,5], [5,11.25,10], [5,11.25,15], [5,11.25,20]],
+                    
+            
+            marker: {
+                fillColor: {
+                	 radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
+                    stops: [
+                        [0, '#FFFFFF']
+                      
+                    ]
+                }
+            }
+        },{
+			  name: 'Old Price',
+			   color: '#FFA500',
+            /*data: [
+                ['WINSTON', 7.212, 33],
+                ['CHESTERFIELD', 7.453, 33],
+                ['L&M', 7.355, 33],
+                ['MARLBORO', 7.889, 33],
+                ['PALLMALL', 6.726, 33],
+                ['PARISIENNE', 7.119, 33],
+               
+            ],*/
+                    data: basePricesData,
+                    
+            
             marker: {
                 fillColor: {
                 	 radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
@@ -50,7 +117,7 @@ Page2Ctrl.controller('Page2Ctrl', ['$scope','$location','$rootScope','$http',
         }, {
 			 name: 'New Price',
 			  color: '#483D8B',
-            data: [
+            /*data: [
                 ['WINSTON', 7.5, 33],
                 ['CHESTERFIELD', 8, 33],
                 ['L&M', 7, 33],
@@ -58,7 +125,8 @@ Page2Ctrl.controller('Page2Ctrl', ['$scope','$location','$rootScope','$http',
                 ['PALLMALL', 6.2, 33],
                 ['PARISIENNE', 7.9, 33],
              
-            ],
+            ],*/
+                    data: newPricesData,
             marker: {
                 fillColor: {
                     radialGradient: { cx: 0.4, cy: 0.3, r: 0.7 },
@@ -68,10 +136,11 @@ Page2Ctrl.controller('Page2Ctrl', ['$scope','$location','$rootScope','$http',
                     ]
                 }
             }
-        }]
+        }
+    ]
 
     });
-});
+};
 $(function () {
 
     var gaugeOptions = {
