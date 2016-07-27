@@ -68,7 +68,7 @@ Page2Ctrl.controller('Page2Ctrl', ['$scope','$location','$rootScope','$http',
         tooltip: {
             useHTML: true,
             headerFormat: '<table>',
-            pointFormat: '<tr><th>Brand:</th><td>{point.x}</td></tr>' +
+            pointFormat: '<tr><th>Brand:</th><td>{point.name}</td></tr>' +
                 '<tr><th>Price:</th><td>{point.y}</td></tr>',
             footerFormat: '</table>',
             followPointer: true
