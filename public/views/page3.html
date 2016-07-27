@@ -46,13 +46,18 @@
 			</div>
 	 	</div>	 
 	 </div>	 
+        	<div class="clear-div">
+		<a href="javascript:void(0);" class="runScenario" ng-click="gotoPage2()">New Pricing</a>
+	</div>
+        
 	 <div class="radioDiv">
 		<label class="radio-inline" ng-repeat="itm in radioList">
 			<input type="radio" name="rdoResult" ng-value="'{{itm.val}}'" ng-model="radioSelect" ng-change="change_radioVal(itm.val)">{{itm.name}}
 		</label>
 	</div>
-	<div class="clear-div">
+        <div class="clear-div">
 		<a href="javascript:void(0);" class="runScenario" ng-click="gotoFinalize()">Finalize</a>
 	</div>
+
 </div>
 <div class="maskPage" ng-show="mask_page">&nbsp;</div>
