@@ -450,7 +450,10 @@ Page3Ctrl.controller('Page3Ctrl', [ '$scope', '$location', '$http',
             }
 	};*/
         
-        
+        $scope.gotoPage2 = function (){
+		$scope.selectedClass = 'pricing';
+		$location.path('/page2');
+	}
 	$scope.gotoFinalize = function () {
 		//alert($scope.baseHeader.account +"  ::  "+selsctedRadio);
 		if(selsctedRadio == null || selsctedRadio == ""){
