@@ -599,8 +599,8 @@ exports.getfinalizeDetails = function(conn, viewData, req) {
 };
 
 exports.getNewPriceDetails = function(conn, viewData, req) {
-	var scenario = req.body.finalizeInput.selectedScenario;
-	console.log(scenario)
+	//var scenario = req.body.finalizeInput.selectedScenario;
+	//console.log(scenario)
 	var type = 3;  // new price to be shown is of S1 scenario
         var account = "VALORA";
 	try {
@@ -609,9 +609,9 @@ exports.getNewPriceDetails = function(conn, viewData, req) {
                 tabledata.accountName = account;
 		var priceS_data = []; var t = 0;
 		
-		var stmt1 = 'SELECT "BrandSegment", "Price_Mean" from FPSI3 where type =1 and "Account"=' + account;
+		var stmt1 = 'SELECT "BrandSegment", "Price_Mean" from FPSI3 where type =1';// and "Account"=' + account;
 		var priceS = conn.querySync(stmt1);
-		//var priceS_data_raw = JSON.parse(JSON.stringify(priceS));
+		var priceS_data = JSON.parse(JSON.stringify(priceS));
 		
 		async.series([
 		        //Scenario: Base
@@ -631,6 +631,7 @@ exports.getNewPriceDetails = function(conn, viewData, req) {
 
 								basePrices.brandName = priceS_data[i].BrandSegment;
 								basePrices.price = priceS_data[i].Price_Mean;
+                                                                //basePrices.dummy = 25;
 								arraynew[k++] = basePrices;
 								if(i>0){
 									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment)
@@ -651,9 +652,10 @@ exports.getNewPriceDetails = function(conn, viewData, req) {
 				
 				//Scenario: Selected Scenario
 				function(callback) {
-                                        stmt1 = 'SELECT "BrandSegment", "Price_Mean" from FPSI3 where type = ' + type  +   ' and "Account" =' + account;
+                                        stmt1 = 'SELECT "BrandSegment", "Price_Mean" from FPSI3 where type = ' + type;//  +   ' and "Account" =' + account;
                                         var priceS = conn.querySync(stmt1);
                                         //var priceS_data_raw = JSON.parse(JSON.stringify(priceS));
+                                        priceS_data = JSON.parse(JSON.stringify(priceS));
 					var arraynew = [];
 					
 					var k = 0; m =0; n = 0; j=1;
@@ -669,6 +671,7 @@ exports.getNewPriceDetails = function(conn, viewData, req) {
 
 								basePrices.brandName = priceS_data[i].BrandSegment;
 								basePrices.price = priceS_data[i].Price_Mean;
+                                                                //basePrices.dummy = 25;
 								arraynew[k++] = basePrices;
 								if(i>0){
 									if(priceS_data[i].BrandSegment == priceS_data[i-1].BrandSegment)
