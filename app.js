@@ -121,6 +121,46 @@ app.get('/loadtable', function(req, res) {
 		res.send(error_msg);
 	}
 });
+/******************************************************************************************************************************************/
+//NewPrice service
+app.get('/newPrice', function(req, res) {
+	
+	if(typeof(req.headers['Access-Control-Allow-Headers']) === 'undefined'){
+        req.headers['Access-Control-Allow-Headers'] = "Origin, X-Requested-With, Content-Type, Accept";
+    }
+	console.log(req.headers['Access-Control-Allow-Headers'])
+	var error_msg = "";
+	var conn = util.getDBConn();
+	try {
+		var viewData = {
+			Data : []
+		};
+
+		async.series([
+				function(callback) {
+					viewData = dao.getNewPriceDetails(conn, viewData, req);
+					callback(null);
+				}, function(callback) {
+					util.closeDBConn(conn);
+					callback(null);
+				} ], function(err) {
+			if (!err) {
+				res.setHeader('Content-Type', 'application/json');
+				res.send(viewData);
+			} else {
+				console.log(JSON.stringify(err));
+			}
+		});
+	} catch (err) {
+		console.log("Error in newPrice :: " + err);
+		if (conn.connected)
+			util.closeDBConn(conn);
+		res.status(600);
+		res.send(error_msg);
+	}
+});
+
+
 
 /*****************************************************************************************************************************************/
 
